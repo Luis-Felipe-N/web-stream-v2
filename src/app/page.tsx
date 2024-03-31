@@ -1,35 +1,26 @@
+import Header from '@/components/header'
 import { Hero } from '@/components/hero'
+import { getPopularAnime } from '@/server/actions/get-popular-anime'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from '@tanstack/react-query'
 
-export default function Home() {
+export default async function Home() {
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery({
+    queryKey: ['popular'],
+    queryFn: getPopularAnime,
+  })
+
   return (
     <>
-      <header className="p-6">
-        <div className="flex items-center gap-8">
-          <h1 className="text-xl font-semibold">Stream</h1>
-
-          <nav>
-            <ul className="flex items-center gap-8">
-              <li>
-                <a href="">Home</a>
-              </li>
-
-              <li>
-                <a href="">Minha lista</a>
-              </li>
-
-              <li>
-                <a href="">Animes</a>
-              </li>
-
-              <li>
-                <a href="">Filmes</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <main className="bg-red-700">
-        <Hero />
+      <main className="bg-red-700 relative">
+        <Header />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Hero />
+        </HydrationBoundary>
       </main>
     </>
   )
