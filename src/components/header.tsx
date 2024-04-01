@@ -1,29 +1,43 @@
+import Link from 'next/link'
+
 export default function Header() {
   return (
-    <header className="p-6 px-20 bg-gradient-to-b w-full from-zinc-900/30 via-zinc-900/30 to-transparent relative z-20">
-      <div className="flex items-center gap-8">
-        <h1 className="text-xl font-semibold">Stream</h1>
+    <>
+      <header className="px-20 flex justify-between items-center w-full absolute z-30">
+        <h1 className="text-3xl font-semibold">Stream</h1>
 
         <nav>
-          <ul className="flex items-center gap-8 font-mono font-semibold uppercase text-sm">
+          <ul className="flex items-center gap-8 font-mono font-semibold uppercase">
             <li>
-              <a href="">Home</a>
+              <Link className="py-6 inline-block" href={'/'}>
+                Home
+              </Link>
             </li>
 
             <li>
-              <a href="">Minha lista</a>
+              <a className="py-6 inline-block" href="">
+                Minha lista
+              </a>
             </li>
 
             <li>
-              <a href="">Animes</a>
+              <a className="py-6 inline-block" href="">
+                Animes
+              </a>
             </li>
 
             <li>
-              <a href="">Filmes</a>
+              <a className="py-6 inline-block" href="">
+                Filmes
+              </a>
             </li>
           </ul>
         </nav>
-      </div>
-    </header>
+
+        <div></div>
+      </header>
+
+      <div className="absolute top-0 left-0 right-0 w-full  bg-gradient-to-b from-zinc-950/80 via-zinc-950/20 to-transparent z-20 h-[10rem]"></div>
+    </>
   )
 }
