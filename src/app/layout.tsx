@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import { QueryProvider } from './providers/useQueryProvider'
 
 import './globals.css'
+import Header from '@/components/header'
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
@@ -23,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-zinc-950 text-slate-100 ${poppins.className}`}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <Header />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   )
