@@ -9,25 +9,20 @@ import { Pagination } from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { getAnimesByGenre } from '@/server/actions/animes/get-animes-by-genre'
+
 import Link from 'next/link'
 import { AnimeT } from '@/types'
+import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
 
-interface RailProps {
-  title: string
-  query?: string
-  genre: string
-}
-
-export default function RailGenres({ title, query, genre }: RailProps) {
+export default function RailRecommended() {
   const { data } = useQuery<AnimeT[]>({
-    queryKey: [query],
-    queryFn: () => getAnimesByGenre(genre),
+    queryKey: ['animespopular'],
+    queryFn: getPopularAnime,
   })
 
   return (
     <section className="lg:px-24 lg:py-8 p-4 relative z-20">
-      <strong className="text-xl">{title}</strong>
+      <strong className="text-xl">Recomendado para você</strong>
 
       <Swiper
         slidesPerView="auto"

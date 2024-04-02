@@ -13,8 +13,6 @@ export default function EpisodeList({ seasonId }: EpisodeListProps) {
     queryFn: () => getEpisodesBySeason(seasonId),
   })
 
-  console.log(data)
-
   return (
     <div className="mt-14">
       <p className="text-xl font-semibold">Todos Episódios</p>
@@ -23,12 +21,13 @@ export default function EpisodeList({ seasonId }: EpisodeListProps) {
           data.map((episode) => (
             <li className="w-full" key={episode.id}>
               <Image
-                width={450}
-                height={350}
+                width={850}
+                height={850}
                 src={episode.cover}
+                quality={100}
                 alt=""
               ></Image>
-              <small className="block my-2 mb-1 font-semibold text-slate-300">
+              <small className="block my-2 mb-1 font-semibold text-slate-300 uppercase">
                 {episode.season.anime.title}
               </small>
 

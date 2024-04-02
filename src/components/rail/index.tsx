@@ -4,7 +4,7 @@ import {
   dehydrate,
 } from '@tanstack/react-query'
 import RailGenres from './rail-genres'
-import { getAnimesByGenre } from '@/server/actions/get-animes-by-genre'
+import { getAnimesByGenre } from '@/server/actions/animes/get-animes-by-genre'
 
 export default async function Rail() {
   const queryClient = new QueryClient()

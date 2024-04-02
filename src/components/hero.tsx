@@ -6,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Pagination } from 'swiper/modules'
 
-import { getPopularAnime } from '@/server/actions/get-popular-anime'
+import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,8 +25,8 @@ export default function Hero() {
           data.map((anime) => (
             <SwiperSlide key={anime.id}>
               <div className="h-screen relative flex items-end">
-                <div className="relative z-10 bg-gradient-to-t w-full from-zinc-950 via-zinc-950/60 to-transparent">
-                  <div className="px-4 md:px-8 lg:px-24 py-64 bg-gradient-to-tr from-zinc-950 via-transparent to-transparent">
+                <div className="relative z-10 bg-gradient-to-t w-full from-slate-950 via-slate-950/60 to-transparent">
+                  <div className="px-4 md:px-8 lg:px-24 py-64 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
                     <h1 className="font-semibold  text-4xl">{anime.title}</h1>
                     <strong className="text-green-500 uppercase mt-4 block">
                       {anime.seasons.length}ª temporada já disponível
@@ -37,7 +37,7 @@ export default function Hero() {
 
                     <Link
                       href={`/anime/${anime.slug}`}
-                      className="mt-8 font-bold font-white uppercase"
+                      className="mt-8 rounded-md bg- font-bold font-white uppercase bg-slate-700/80 hover:bg-slate-800/80 transition px-8 py-4 inline-block"
                     >
                       Assistir agora
                     </Link>
@@ -50,14 +50,9 @@ export default function Hero() {
                     src={anime.banner}
                     width={3840}
                     height={2160}
+                    quality={100}
                     alt=""
                   />
-                  {/* <img
-                    className="h-screen w-full object-cover"
-                    src={anime.banner}
-                    // layout="fill"
-                    alt=""
-                  /> */}
                 </picture>
               </div>
             </SwiperSlide>
