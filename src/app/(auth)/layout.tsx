@@ -23,6 +23,13 @@ export default function RootLayout({
           >
             Cadastrar-se
           </Link>
+
+          <Link
+            className="font-semibold font-oswald underline"
+            href={'/sing-in'}
+          >
+            Entrar
+          </Link>
         </div>
       </header>
       <div className="flex-1">{children}</div>

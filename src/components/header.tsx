@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Bookmark, Search } from 'lucide-react'
+import { Profile } from './profile'
 
 export default function Header() {
   return (
@@ -35,7 +36,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <Link href={'/'}>
             <Search className="hover:font-bold" size={24} />
           </Link>
@@ -43,6 +44,8 @@ export default function Header() {
           <Link href={'/'}>
             <Bookmark className="hover:" size={24} />
           </Link>
+
+          <Profile />
         </div>
       </header>
 

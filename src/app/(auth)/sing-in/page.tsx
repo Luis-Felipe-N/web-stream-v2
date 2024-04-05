@@ -10,16 +10,17 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
+import { Loader2 } from 'lucide-react'
 
 const LoginFormSchema = z.object({
-  email: z.string(),
-  password: z.string(),
+  email: z.string().email({ message: 'Este email não parece válido.' }),
+  password: z.string().min(6, { message: 'Senha precisa conter no mínimo 6 caracteres' }),
 })
 
 export type loginFormData = z.infer<typeof LoginFormSchema>
 
 export default function SingIn() {
-  const { register, handleSubmit, setError } = useForm<loginFormData>({
+  const { register, handleSubmit, setError, formState: { isSubmitting, errors} } = useForm<loginFormData>({
     resolver: zodResolver(LoginFormSchema),
   })
 
@@ -33,28 +34,22 @@ export default function SingIn() {
         redirect: false,
       })
 
-      if (!response) {
+      if (response?.status === 401 || !response?.ok) {
         return setError('root', {
-          message:
-            'Ocorreu algum erro ao fazer o login. Por favor, tente novamente',
-        })
-      }
-
-      if (response.ok) {
-        router.replace('/')
-      } else {
-        setError('root', {
           message:
             'Credenciais incorretas. Por favor, verifique seu e-mail e senha.',
         })
       }
-    } catch (error) {
-      if (!response) {
-        return setError('root', {
-          message:
-            'Ocorreu algum erro ao fazer o login. Por favor, tente novamente',
-        })
+
+      if (response?.ok) {
+        router.replace('/')
       }
+
+    } catch (error) {
+      return setError('root', {
+        message:
+          'Ocorreu algum erro ao fazer o login. Por favor, tente novamente',
+      })
     }
   }
 
@@ -67,6 +62,11 @@ export default function SingIn() {
         </div>
 
         <form onSubmit={handleSubmit(handleLogin)} className="w-full">
+          {errors.root && (
+            <p className="text-start mt-2 text-sm text-red-400 mb-4 font-bold">
+              {errors.root?.message}
+            </p>
+          )}
           <div className="grid items-center gap-1.5">
             <Label className="text-base font-semibold">
               Endereço de email
@@ -74,6 +74,7 @@ export default function SingIn() {
                 className="mt-2"
                 {...register('email')}
                 placeholder="Ex: email@gmail.com"
+                errors={errors.email}
               />
             </Label>
           </div>
@@ -86,6 +87,7 @@ export default function SingIn() {
                 placeholder="Ex: suasenha"
                 type="password"
                 className="mt-2"
+                errors={errors.password}
               />
             </Label>
           </div>
@@ -94,9 +96,17 @@ export default function SingIn() {
             <Link href="/">Esqueceu sua senha?</Link>
           </p>
 
-          <Button className="mt-12 w-full" size="lg" type="submit">
-            Entrar
-          </Button>
+          {isSubmitting ? (
+              <Button className="mt-12 w-full" size="lg" type="submit" disabled={isSubmitting}>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              </Button>
+            ) : (
+              <Button className="mt-12 w-full" size="lg" type="submit">
+                Entrar
+              </Button>
+            )}
+
+
         </form>
       </div>
     </div>
