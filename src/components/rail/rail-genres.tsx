@@ -34,7 +34,7 @@ export default function RailGenres({ title, query, genre }: RailProps) {
         spaceBetween={15}
         pagination={true}
         modules={[Pagination]}
-        className="w-full mt-4"
+        className="w-full mt-4 swiper-rail"
       >
         {data &&
           data.map((anime) => (

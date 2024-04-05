@@ -9,16 +9,20 @@ import { Button } from './ui/button'
 import { useQuery } from '@tanstack/react-query'
 import { Plus } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Loading from '@/app/(app)/anime/loading'
 
 interface AnimeHeroProps {
   slug: string
 }
 
 export default function AnimeHero({ slug }: AnimeHeroProps) {
-  const { data } = useQuery<AnimeT>({
+  const { data, isLoading, error } = useQuery<AnimeT>({
     queryKey: [`anime@${slug}`],
     queryFn: () => getAnimeBySlug(slug),
   })
+
+  if (isLoading) return <Loading />
+  if (error || !data) return <Loading />
 
   return (
     <div className="h-screen relative flex items-end">

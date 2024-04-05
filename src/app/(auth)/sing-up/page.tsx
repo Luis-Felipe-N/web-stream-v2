@@ -6,33 +6,55 @@ import { Label } from '@/components/ui/label'
 import { api } from '@/lib/api'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
+import { Loader2 } from 'lucide-react'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const RegisterFormSchema = z.object({
-  name: z.string().min(3),
-  email: z.string(),
-  password: z.string(),
+  name: z.string().min(3, { message: 'Nome precisa conter no mínimo 3 caracteres' }),
+  email: z.string().email({ message: 'Este email não parece válido' }),
+  password: z.string().min(6, { message: 'Senha precisa conter no mínimo 6 caracteres' })
 })
 
 export type registerFormData = z.infer<typeof RegisterFormSchema>
 
 export default function SingIn() {
-  const { register, handleSubmit, setError } = useForm<registerFormData>({
+  const { register, handleSubmit, setError, formState: { isSubmitting, errors} } = useForm<registerFormData>({
     resolver: zodResolver(RegisterFormSchema),
   })
 
+  const router = useRouter()
+
   async function handleCreateAccount(credentials: registerFormData) {
     try {
-      await api.post('/users', credentials)
+      const response = await api.post('/users', credentials)
+      console.log(response.data)
+      if (response.status === 201) {
+        await signIn('credentials', {
+          email: response.data.user.email,
+          password: response.data.user.password,
+          redirect: false,
+        })
 
-      // LOGIN
+        router.replace('/')
+      }
+
     } catch (error) {
       if (error instanceof AxiosError) {
+        console.log(error.response?.status)
+
+        if (error.response?.status === 409) {
+          return setError('root', { message: "Este endereço de e-mail já está associado a uma conta existente" })
+        }
+
         setError('root', { message: error.response?.data.message })
       }
+
+      setError('root', { message: 'Ocorreu algum erro ao fazer o login. Por favor, tente novamente' })
     }
   }
 
@@ -45,6 +67,11 @@ export default function SingIn() {
         </div>
 
         <form onSubmit={handleSubmit(handleCreateAccount)} className="w-full">
+          {errors.root && (
+            <p className="text-start mt-2 text-sm text-red-400 mb-4 font-bold">
+              {errors.root?.message}
+            </p>
+          )}
           <div className="grid items-center gap-1.5">
             <Label className="text-base font-semibold">
               Nome Completo
@@ -52,6 +79,7 @@ export default function SingIn() {
                 className="mt-2"
                 {...register('name')}
                 placeholder="Ex: Kakashi Hatake"
+                errors={errors.name}
               />
             </Label>
           </div>
@@ -62,6 +90,7 @@ export default function SingIn() {
                 className="mt-2"
                 {...register('email')}
                 placeholder="Ex: email@gmail.com"
+                errors={errors.email}
               />
             </Label>
           </div>
@@ -74,6 +103,7 @@ export default function SingIn() {
                 placeholder="Ex: senhaforte"
                 type="password"
                 className="mt-2"
+                errors={errors.password}
               />
             </Label>
           </div>
@@ -82,9 +112,15 @@ export default function SingIn() {
             <Link href="/">Esqueceu sua senha?</Link>
           </p>
 
-          <Button className="mt-12 w-full" size="lg" type="submit">
-            Entrar
-          </Button>
+          {isSubmitting ? (
+            <Button className="mt-12 w-full" size="lg" disabled={isSubmitting}>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            </Button>
+          ) : (
+            <Button className="mt-12 w-full" size="lg" type="submit">
+              Cadastrar
+            </Button>
+          )}
         </form>
       </div>
     </div>

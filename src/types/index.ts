@@ -47,11 +47,16 @@ export interface EpisodeT {
   season: Season
 }
 
+export interface GenreT {
+  title: string
+  slug: string
+}
+
 export interface SeasonT extends Season {
   episodes: EpisodeT[]
 }
 
 export interface AnimeT extends Anime {
-  genres: []
+  genres: GenreT[]
   seasons: SeasonT[]
 }

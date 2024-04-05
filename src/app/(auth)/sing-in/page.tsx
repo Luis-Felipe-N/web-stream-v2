@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 
 const LoginFormSchema = z.object({
-  email: z.string().email({ message: 'Este email não parece válido.' }),
+  email: z.string().email({ message: 'Este email não parece válido' }),
   password: z.string().min(6, { message: 'Senha precisa conter no mínimo 6 caracteres' }),
 })
 
@@ -97,16 +97,14 @@ export default function SingIn() {
           </p>
 
           {isSubmitting ? (
-              <Button className="mt-12 w-full" size="lg" type="submit" disabled={isSubmitting}>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              </Button>
-            ) : (
-              <Button className="mt-12 w-full" size="lg" type="submit">
-                Entrar
-              </Button>
-            )}
-
-
+            <Button className="mt-12 w-full" size="lg" disabled={isSubmitting}>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            </Button>
+          ) : (
+            <Button className="mt-12 w-full" size="lg" type="submit">
+              Entrar
+            </Button>
+          )}
         </form>
       </div>
     </div>

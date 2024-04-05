@@ -6,14 +6,21 @@ import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
 
+import { Button } from "@/components/ui/button"
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 import { getFallbackName } from '@/utils/get-fallback-name'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
@@ -39,44 +46,47 @@ export function DropdownUser({ session }: DropdownUserProps) {
 
   if (status === 'authenticated')  {
     return (
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>
-              <div className="flex flex-col text-end mr-2">
-                <small>
-                  Olá, <strong>{session.user.name}</strong>
-                </small>
-                <small className="font-semibold">0 pontos</small>
-              </div>
-              <Avatar>
-                <AvatarImage src={session.user.avatar} alt={session.user.name} />
-                <AvatarFallback>
-                  {getFallbackName(session.user.name)}
-                </AvatarFallback>
-              </Avatar>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationMenuLink>
-                <Link
-                  href={`/account`}
-                  className="block px-6 pt-4 w-40 text-sm font-semibold text-slate-700"
-                >
-                  Perfil
-                </Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink>
-                <button
-                  onClick={logout}
-                  className="block px-6 py-4 w-40 text-start font-semibold text-sm text-red-700"
-                >
-                  Sair
-                </button>
-              </NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+      <Avatar className='h-12 w-12'>
+          <AvatarImage src={data.user.avatar} alt={data.user.name} />
+            <AvatarFallback>
+              {getFallbackName(data.user.name)}
+            </AvatarFallback>
+          </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>
+          <div className='flex gap-2 items-center py-2 px-2'>
+        <Avatar className='h-12 w-12'>
+          <AvatarImage src={data.user.avatar} alt={data.user.name} />
+            <AvatarFallback>
+              {getFallbackName(data.user.name)}
+            </AvatarFallback>
+          </Avatar>
+          <p className='text-sm'>{data.user.name}</p>
+          </div>
+        </DropdownMenuLabel>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Link className='w-full h-full flex items-center' href={'/'}>Minha conta</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className='w-full h-full flex items-center' href={'/'}>Meus Favoritos</Link>            
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className='w-full h-full flex items-center' href={'/'}>Histórico</Link>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className='text-red-500 cursor-pointer' onClick={logout}>
+          Sair
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
     )
   }
 
