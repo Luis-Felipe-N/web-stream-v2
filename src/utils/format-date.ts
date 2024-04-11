@@ -7,7 +7,8 @@ export function formatDistanceDate(date: Date) {
     addSuffix: true,
   })
 
-  return dateFormatted}
+  return dateFormatted
+}
 
 export function formatDate(date: Date | string) {
   const dateFormatted = new Date(date).toLocaleDateString('pt-BR', {
@@ -16,4 +17,5 @@ export function formatDate(date: Date | string) {
     year: 'numeric',
   })
 
-  return dateFormatted}
+  return dateFormatted
+}
