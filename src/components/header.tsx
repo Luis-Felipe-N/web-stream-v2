@@ -5,10 +5,10 @@ import { Profile } from './profile'
 export default function Header() {
   return (
     <>
-      <header className="px-20 flex justify-between items-center w-full absolute z-30">
-        <h1 className="text-4xl font-bold">Stream</h1>
+      <header className="px-4 md:px-8 lg:px-24 grid grid-cols-12 grid-rows-2 items-center w-full sticky z-30">
+        <h1 className="text-3xl font-bold lg:col-span-3 md:lg:col-span-3 col-span-6 md:lg:row-span-2 lg:row-span-2 row-span-1">./stream</h1>
 
-        <nav>
+        <nav className='justify-self-center lg:col-span-6 md:lg:col-span-6 col-span-12 md:lg:row-span-2 lg:row-span-2 row-span-1 md:lg:row-start-1 lg:row-start-1 row-start-2 md:lg:col-start-4 lg:col-start-4 col-start-1'>
           <ul className="flex items-center gap-8 font-mono font-semibold uppercase">
             <li>
               <Link className="py-6 inline-block" href={'/'}>
@@ -36,8 +36,8 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Link href={'/'}>
+        <div className="flex items-center justify-end gap-4 lg:col-span-3 md:lg:col-span-3 col-span-6 md:lg:row-span-2 lg:row-span-2 row-span-1">
+          <Link href={'/search'}>
             <Search className="hover:font-bold" size={24} />
           </Link>
 

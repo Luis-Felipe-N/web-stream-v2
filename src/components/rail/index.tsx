@@ -23,6 +23,12 @@ export default async function Rail() {
     queryFn: () => getAnimesByGenre('comedia'),
   })
 
+  await queryClient.prefetchQuery({
+    queryKey: ['animehorror'],
+    queryFn: () => getAnimesByGenre('horror'),
+  })
+
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <RailGenres
@@ -35,6 +41,12 @@ export default async function Rail() {
         title="Embarque em Grandes Aventuras"
         genre="aventura"
         query="animeaventura"
+      />
+
+      <RailGenres
+        title="Horror para você"
+        genre="horror"
+        query="animehorror"
       />
 
       <RailGenres

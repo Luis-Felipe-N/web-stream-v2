@@ -11,6 +11,8 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimeT } from '@/types'
+import { motion } from "framer-motion";
+
 
 export default function Hero() {
   const { data } = useQuery<AnimeT[]>({
@@ -19,7 +21,14 @@ export default function Hero() {
   })
 
   return (
-    <section className="h-[80vh]">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 1.5,
+      }}
+      className="h-[80vh]">
       <Swiper pagination={true} modules={[Pagination]} className="w-full">
         {data &&
           data.map((anime) => (
@@ -58,6 +67,6 @@ export default function Hero() {
             </SwiperSlide>
           ))}
       </Swiper>
-    </section>
+    </motion.section>
   )
 }

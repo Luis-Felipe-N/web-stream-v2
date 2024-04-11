@@ -7,9 +7,8 @@ import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
 import { Button } from './ui/button'
 
 import { useQuery } from '@tanstack/react-query'
-import { Plus } from 'lucide-react'
+import { Loader2, Plus } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Loading from '@/app/(app)/anime/loading'
 
 interface AnimeHeroProps {
   slug: string
@@ -21,20 +20,25 @@ export default function AnimeHero({ slug }: AnimeHeroProps) {
     queryFn: () => getAnimeBySlug(slug),
   })
 
-  if (isLoading) return <Loading />
-  if (error || !data) return <Loading />
+  if (!data || isLoading) return (
+    <div
+      className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-slate-950'>
+      <Loader2 className="mr-2 h-8 w-8 animate-spin text-zinc-500" />
+    </div>
+  )
 
   return (
-    <div className="h-screen relative flex items-end">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 1.5,
+      }}
+      className="h-screen relative flex items-end">
       <div className="relative z-10 bg-gradient-to-t w-full from-slate-950 via-slate-950/60 to-transparent">
         <div className="px-4 md:px-8 lg:px-24 py-64 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 1.5,
-            }}
-          >
+          <div>
             <h1 className="font-semibold  text-5xl">{data.title}</h1>
             <p className="mt-2 gap-3 flex items-center text-slate-300">
               {data.nsfw ? (
@@ -84,7 +88,7 @@ export default function AnimeHero({ slug }: AnimeHeroProps) {
                 <p key={genre.title}>{genre.title}</p>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -108,6 +112,6 @@ export default function AnimeHero({ slug }: AnimeHeroProps) {
           />
         )}
       </picture>
-    </div>
+    </motion.div >
   )
 }
