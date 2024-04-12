@@ -13,11 +13,7 @@ export function Profile() {
   if (status === 'loading') {
     return (
       <div className="flex items-end gap-1">
-        <div className="mb-2 flex flex-col items-end">
-          <Skeleton className="h-2 w-24 rounded" />
-          <Skeleton className="h-2 w-14 rounded mt-2" />
-        </div>
-        <Skeleton className="h-14 w-14 rounded-full" />
+        <Skeleton className="h-12 w-12 rounded-full" />
       </div>
     )
   }

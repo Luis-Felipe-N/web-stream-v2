@@ -27,11 +27,11 @@ export default function RailGenres({ title, query, genre }: RailProps) {
 
   return (
     <section className="lg:px-24 lg:py-8 p-4 relative z-20">
-      <strong className="text-xl">{title}</strong>
+      <strong className="lg:text-xl">{title}</strong>
 
       <Swiper
         slidesPerView="auto"
-        spaceBetween={15}
+        spaceBetween={5}
         pagination={true}
         modules={[Pagination]}
         className="w-full mt-4 swiper-rail"

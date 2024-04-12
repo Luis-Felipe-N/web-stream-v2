@@ -10,16 +10,24 @@ export function SearchBar() {
     const pathname = usePathname();
     const { replace } = useRouter();
 
+    let timeOutSearch: any
+
+
     function handleSearch(term: string) {
         const params = new URLSearchParams(searchParams);
 
-        if (term) {
-            params.set('query', term);
-        } else {
-            params.delete('query');
-        }
+        clearTimeout(timeOutSearch)
+        timeOutSearch = setTimeout(async () => {
+            if (term) {
+                params.set('keyword', term);
+            } else {
+                params.delete('keyword');
+            }
 
-        replace(`${pathname}?${params.toString()}`);
+            replace(`${pathname}?${params.toString()}`);
+        }, 700)
+
+
     }
 
     return (
@@ -30,7 +38,7 @@ export function SearchBar() {
             transition={{
                 duration: 0.5,
             }}
-            className="relative flex flex-1 flex-shrink-0">
+            className="relative z-20 flex flex-1 flex-shrink-0">
             <label htmlFor="search" className="sr-only">
                 Search
             </label>

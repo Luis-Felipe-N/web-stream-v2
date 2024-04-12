@@ -9,6 +9,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'kitsu-production-media.s3.us-west-002.backblazeb2.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images5.alphacoders.com',
+      },
+
     ],
   },
 }

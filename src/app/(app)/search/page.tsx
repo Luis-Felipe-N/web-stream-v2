@@ -13,16 +13,16 @@ import { SearchResults } from '@/components/search-results'
 
 
 interface AnimeProps {
-    params: { slug: string }
+    searchParams: { keyword: string }
 }
 
-export default async function Search({ params }: AnimeProps) {
+export default async function Search({ searchParams }: AnimeProps) {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
-        queryKey: [`animes`],
+        queryKey: [`animes@${searchParams.keyword}`],
         queryFn: () => getAnime(),
     })
-
+    console.log(searchParams)
     return (
         <main
             className='grid px-4 md:px-8 lg:px-24'
@@ -30,7 +30,7 @@ export default async function Search({ params }: AnimeProps) {
             <section className='mt-8 gap-8'>
                 <SearchBar />
                 <HydrationBoundary state={dehydrate(queryClient)}>
-                    <SearchResults />
+                    <SearchResults keyword={searchParams.keyword} />
                 </HydrationBoundary>
             </section>
         </main>
