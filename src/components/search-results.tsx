@@ -17,8 +17,6 @@ export function SearchResults({ keyword }: SearchResultsProps) {
         queryFn: () => getAnime(keyword),
     })
 
-    console.log({ data })
-
     return (
         <div className="relative z-20 mt-12">
             <strong className="mb-2 block">{keyword ? `Resultados para: ${keyword}` : "Recomendados para você"}</strong>

@@ -43,7 +43,6 @@ const nextAuthOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token }) {
-      console.log({ session, token })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       session.user = token.user as any
 

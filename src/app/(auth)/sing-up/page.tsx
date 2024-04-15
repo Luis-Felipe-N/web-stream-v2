@@ -23,7 +23,7 @@ const RegisterFormSchema = z.object({
 export type registerFormData = z.infer<typeof RegisterFormSchema>
 
 export default function SingIn() {
-  const { register, handleSubmit, setError, formState: { isSubmitting, errors} } = useForm<registerFormData>({
+  const { register, handleSubmit, setError, formState: { isSubmitting, errors } } = useForm<registerFormData>({
     resolver: zodResolver(RegisterFormSchema),
   })
 
@@ -32,7 +32,7 @@ export default function SingIn() {
   async function handleCreateAccount(credentials: registerFormData) {
     try {
       const response = await api.post('/users', credentials)
-      console.log(response.data)
+
       if (response.status === 201) {
         await signIn('credentials', {
           email: response.data.user.email,
@@ -45,7 +45,6 @@ export default function SingIn() {
 
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log(error.response?.status)
 
         if (error.response?.status === 409) {
           return setError('root', { message: "Este endereço de e-mail já está associado a uma conta existente" })

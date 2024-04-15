@@ -13,12 +13,10 @@ api.interceptors.request.use((request) => {
 
   const token = '' // cookies().get('session-token')
 
-  console.log(token)
-
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
-  console.log(token)
+
   request.headers = headers
   return request
 })

@@ -30,30 +30,33 @@ export default async function Rail() {
 
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <RailGenres
-        title="Desbrave o Mundo da Ação"
-        genre="acao"
-        query="animeacao"
-      />
+    <div className='mb-24'>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <RailGenres
+          title="Desbrave o Mundo da Ação"
+          genre="acao"
+          query="animeacao"
+        />
 
-      <RailGenres
-        title="Embarque em Grandes Aventuras"
-        genre="aventura"
-        query="animeaventura"
-      />
+        <RailGenres
+          title="Precisando de uma boa risada?"
+          genre="comedia"
+          query="animecomedia"
+        />
 
-      <RailGenres
-        title="Horror para você"
-        genre="horror"
-        query="animehorror"
-      />
+        <RailGenres
+          title="Embarque em Grandes Aventuras"
+          genre="aventura"
+          query="animeaventura"
+        />
 
-      <RailGenres
-        title="Precisando de uma boa risada?"
-        genre="comedia"
-        query="animecomedia"
-      />
-    </HydrationBoundary>
+        <RailGenres
+          title="Horror para você"
+          genre="horror"
+          query="animehorror"
+        />
+
+      </HydrationBoundary>
+    </div>
   )
 }

@@ -8,8 +8,6 @@ import { DropdownUser } from './dropdown-user'
 export function Profile() {
   const { data: session, status } = useSession()
 
-  console.log(session)
-
   if (status === 'loading') {
     return (
       <div className="flex items-end gap-1">

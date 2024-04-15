@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images5.alphacoders.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'watchbr-resources.s3.amazonaws.com',
+      },
 
     ],
   },

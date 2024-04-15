@@ -22,7 +22,7 @@ export default async function Search({ searchParams }: AnimeProps) {
         queryKey: [`animes@${searchParams.keyword}`],
         queryFn: () => getAnime(),
     })
-    console.log(searchParams)
+
     return (
         <main
             className='grid px-4 md:px-8 lg:px-24'
