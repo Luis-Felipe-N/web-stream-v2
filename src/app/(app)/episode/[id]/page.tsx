@@ -1,8 +1,6 @@
 'use client'
 
-import {
-  useQuery,
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { getEpisodesById } from '@/server/actions/episode/get-episode-by-id'
 import EpisodeDescription from '@/components/episode-description'
@@ -18,7 +16,7 @@ interface AnimeProps {
 }
 
 export default function Anime({ params }: AnimeProps) {
-  const { data: episode, isFetching, error } = useQuery<EpisodeT>({
+  const { data: episode } = useQuery<EpisodeT>({
     queryKey: [`episode@${params.id}`],
     queryFn: () => getEpisodesById(params.id),
   })

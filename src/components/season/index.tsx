@@ -17,6 +17,11 @@ export default function Season({ animeSlug }: SeasonProps) {
     queryFn: () => getAnimeBySlug(animeSlug),
   })
 
+  if (!data) {
+    return null
+    // TODO: Loading
+  }
+
   const seasons = data.seasons.sort(function (o1, o2) {
     return Number(o1.title.split('  ')[1]) - Number(o2.title.split('  ')[1])
   })

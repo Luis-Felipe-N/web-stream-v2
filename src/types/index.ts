@@ -8,6 +8,12 @@ export const Type: {
 
 export type Type = (typeof Type)[keyof typeof Type]
 
+export interface GenreT {
+  title: string
+  slug: string
+}
+
+
 interface Anime {
   id: string
   title: string
@@ -19,6 +25,7 @@ interface Anime {
   cover: string
   nsfw: boolean
   trailerYtId: string
+  genres: GenreT[]
 }
 
 interface Season {
@@ -47,17 +54,12 @@ export interface EpisodeT {
   season: Season
 }
 
-export interface GenreT {
-  title: string
-  slug: string
-}
 
 export interface SeasonT extends Season {
   episodes: EpisodeT[]
 }
 
 export interface AnimeT extends Anime {
-  genres: GenreT[]
   seasons: SeasonT[]
 }
 

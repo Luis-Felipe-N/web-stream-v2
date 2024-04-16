@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 export default function Header() {
   const [scrollY, setScrollY] = useState(0);
 
-  const onScroll = useCallback(event => {
+  const onScroll = useCallback((event: Event) => {
     setScrollY(window.pageYOffset);
   }, []);
 
@@ -16,7 +16,7 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", onScroll, { passive: true });
+      window.removeEventListener("scroll", onScroll);
     }
   }, []);
   return (

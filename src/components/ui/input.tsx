@@ -18,8 +18,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <div>
           <div
             className={cn(
-              `transition text-base flex h-16 w-full rounded-md border border-slate-700 bg-slate-800 px-6 py-2  ring-offset-slate-800 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${hasError ? 'border-2 border-red-600' : ''
-              } `,
+              `transition text-base flex h-16 w-full rounded-md border border-slate-700 bg-slate-800 px-6 py-2  ring-offset-slate-800 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${hasError ? 'border-2 border-red-600' : ''} `,
               className,
             )}
           >
@@ -44,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     if (props.icon) {
       return (
-        <div className='w-full'>
+        <div className="w-full">
           <label className={`w-full h-16 rounded-md border border-slate-700 bg-slate-800 px-6 py-2 flex items-center gap-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-within:outline-none focus-within:ring-1  focus-within:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${hasError ? ' border border-red-700 /40' : ''}
             `}>
             {props.icon}

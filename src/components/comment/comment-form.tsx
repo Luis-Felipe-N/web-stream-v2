@@ -22,12 +22,16 @@ export type CommentFormData = z.infer<typeof CommentFormSchema>
 export default function CommentForm() {
     const { data, status } = useSession()
 
-    const { register, handleSubmit, setError, formState: { isSubmitting, errors } } = useForm<CommentFormData>({
+    const { handleSubmit } = useForm<CommentFormData>({
         resolver: zodResolver(CommentFormSchema),
     })
 
     function handleComment(data: CommentFormData) {
 
+    }
+
+    if (!data) {
+        return null
     }
 
     if (status === 'authenticated') {

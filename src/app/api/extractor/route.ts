@@ -1,9 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from 'axios'
-import type { NextApiRequest } from 'next'
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 
-export default async function POST(req: NextApiRequest) {
-  const { linkEmbed, userAgent } = req.body.data
+const extractorFormSchema = z.object({
+  linkEmbed: z.string(),
+  userAgent: z.string(),
+})
+
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const { linkEmbed, userAgent } = extractorFormSchema.parse(body)
 
   const { data } = await axios.get(linkEmbed, {
     headers: { 'User-agent': userAgent },
