@@ -74,17 +74,34 @@
   }
 }
 
-@media (max-width: 1080px) {
+/* Small (sm) */
+@media (max-width: 640px) {
   html {
-    font-size: 93.75%;
+    font-size: 70.5% !important;
   }
 }
 
-@media (max-width: 720px) {
+/* Medium (md) */
+@media (min-width: 768px) {
   html {
-    font-size: 87.5%;
+    font-size: 87.5% !important;
   }
 }
+
+/* Large (lg) */
+@media (min-width: 1024px) {
+  html {
+    font-size: 93.75% !important;
+  }
+}
+
+/* Extra Large (xl) */
+@media (min-width: 1280px) {
+  html {
+    font-size: 100% !important;
+  }
+}
+
 
 .swiper-rail .swiper-slide {
   width: auto !important;
