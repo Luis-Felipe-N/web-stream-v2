@@ -55,6 +55,5 @@ export default function Anime({ params }: AnimeProps) {
       )
       }
     </AnimatePresence >
-
   )
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Lato, Poppins } from 'next/font/google'
+import { Inter, Lato, Poppins } from 'next/font/google'
 
 import { QueryProvider } from '@/providers/useQueryProvider'
 import NextAuthSessionProvider from '@/providers/sessionProvider'
@@ -7,7 +7,7 @@ import NextAuthSessionProvider from '@/providers/sessionProvider'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
-const lato = Poppins({
+const lato = Inter({
   weight: ['100', '300', '400', '700', '900'],
   subsets: ['latin'],
 })

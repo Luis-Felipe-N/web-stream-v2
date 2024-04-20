@@ -10,25 +10,6 @@ import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
 
 export default async function Rail() {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
-    queryKey: ['animeacao'],
-    queryFn: () => getAnimesByGenre('acao'),
-  })
-
-  await queryClient.prefetchQuery({
-    queryKey: ['animeaventura'],
-    queryFn: () => getAnimesByGenre('aventura'),
-  })
-
-  await queryClient.prefetchQuery({
-    queryKey: ['animecomedia'],
-    queryFn: () => getAnimesByGenre('comedia'),
-  })
-
-  await queryClient.prefetchQuery({
-    queryKey: ['animehorror'],
-    queryFn: () => getAnimesByGenre('horror'),
-  })
 
   return (
     <div className='mb-24'>

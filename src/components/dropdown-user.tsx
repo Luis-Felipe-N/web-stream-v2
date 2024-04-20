@@ -46,16 +46,16 @@ export function DropdownUser({ session }: DropdownUserProps) {
 
   if (status === 'authenticated') {
     return (
-      <DropdownMenu>
+      <DropdownMenu >
         <DropdownMenuTrigger asChild>
-          <Avatar className='h-12 w-12'>
+          <Avatar className='h-12 w-12 cursor-pointer'>
             <AvatarImage src={data.user.avatar} alt={data.user.name} />
             <AvatarFallback>
               {getFallbackName(data.user.name)}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
+        <DropdownMenuContent className="w-56 mt-2">
           <DropdownMenuLabel>
             <div className='flex gap-2 items-center py-2 px-2'>
               <Avatar className='h-12 w-12'>
