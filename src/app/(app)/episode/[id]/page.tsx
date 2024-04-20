@@ -24,18 +24,18 @@ export default function Anime({ params }: AnimeProps) {
   return (
     <AnimatePresence>
       {episode ? (
-        <main className='grid px-20'>
+        <main className='grid lg:px-20 px-4'>
           <section className='grid grid-cols-12 grid-rows-2 mt-20 gap-8'>
-            <div className='col-span-8'>
+            <div className='lg:col-span-8 col-span-12'>
               <Player episodeId={params.id} />
             </div>
 
-            <div className='col-span-8'>
+            <div className='lg:col-span-8 col-span-12'>
               <EpisodeDescription episode={episode} />
               <Comment />
             </div>
 
-            <div className='col-span-4 col-start-9 row-span-2 row-start-1'>
+            <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
               <NextEpisode episode={episode} />
             </div>
           </section>

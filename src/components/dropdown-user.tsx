@@ -72,7 +72,7 @@ export function DropdownUser({ session }: DropdownUserProps) {
 
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link className='w-full h-full flex items-center' href={'/'}>Minha conta</Link>
+              <Link className='w-full h-full flex items-center' href={'/profile'}>Minha conta</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link className='w-full h-full flex items-center' href={'/'}>Meus Favoritos</Link>

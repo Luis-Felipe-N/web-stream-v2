@@ -16,8 +16,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'watchbr-resources.s3.amazonaws.com',
-      },
-
+      }
     ],
   },
   eslint: {

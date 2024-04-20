@@ -5,6 +5,8 @@ import {
 } from '@tanstack/react-query'
 import RailGenres from './rail-genres'
 import { getAnimesByGenre } from '@/server/actions/animes/get-animes-by-genre'
+import RailBanner from './rail-banner'
+import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
 
 export default async function Rail() {
   const queryClient = new QueryClient()
@@ -27,7 +29,6 @@ export default async function Rail() {
     queryKey: ['animehorror'],
     queryFn: () => getAnimesByGenre('horror'),
   })
-
 
   return (
     <div className='mb-24'>
