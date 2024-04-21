@@ -69,7 +69,6 @@ export default function HeroItem({ data }: HeroItemProps) {
                     </motion.picture>
                 )}
             </AnimatePresence>
-
         </div>
     )
 }

@@ -32,10 +32,34 @@ export default async function Rail() {
           query="animeaventura"
         />
 
-        <RailGenres
+        {/* <RailGenres
           title="Horror para você"
           genre="horror"
           query="animehorror"
+        /> */}
+
+        <RailGenres
+          title="Um pouco de drama"
+          genre="drama"
+          query="animedrama"
+        />
+
+        <RailGenres
+          title="De volta para escola"
+          genre="escolar"
+          query="animeescolar"
+        />
+
+        <RailGenres
+          title="Fantasia para você"
+          genre="fantasia"
+          query="animefantasia"
+        />
+
+        <RailGenres
+          title="Ficção científica para você"
+          genre="ficcao-cientifica"
+          query="animeficcaocientifica"
         />
 
       </HydrationBoundary>
