@@ -22,13 +22,13 @@ export default function EpisodeList({ seasonId }: EpisodeListProps) {
           data.map((episode) => (
             <li className="w-full" key={episode.id}>
               <Link href={`/episode/${episode.id}`}>
-                <Image
+                <img
                   width={850}
                   height={850}
                   src={episode.cover}
-                  quality={100}
+                  // quality={100}
                   alt=""
-                ></Image>
+                />
                 <small className="block my-2 mb-1 font-semibold text-slate-300 uppercase">
                   {episode.season.anime.title}
                 </small>
