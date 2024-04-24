@@ -1,33 +1,34 @@
-'use client'
-
+import { api } from "@/data/api"
 import { getEpisodesById } from "@/server/actions/episode/get-episode-by-id"
 import { EpisodeT } from "@/types"
+import { getBaseUrl } from "@/utils/get-base-url"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2 } from "lucide-react"
+import { useState, useEffect } from "react"
+import ReactPlayer from "react-player"
 
 interface PlayerProps {
-  episodeId: string
+  episode: EpisodeT
 }
 
-export default function Player({ episodeId }: PlayerProps) {
-  const { data, isFetching, error } = useQuery<EpisodeT>({
-    queryKey: [`episode@${episodeId}`],
-    queryFn: () => getEpisodesById(episodeId),
-  })
+export default function Player({ episode }: PlayerProps) {
 
-  if (isFetching) return (
-    <div
-      className='grid place-items-center aspect-video z-50 bg-slate-900'>
-      <Loader2 className="mr-2 h-10 w-10 animate-spin text-zinc-500" />
-    </div>
-  )
+  const [video, setVideo] = useState('')
 
-  if (error || !data) return <h1>Error</h1>
-
+  useEffect(() => {
+    if(episode) {
+      const getVideoUrl = async () => {
+        const video = await getBaseUrl(episode.video)
+        setVideo(video)
+      }
+  
+      getVideoUrl()
+    }
+  }, [episode])
 
   return (
     <div className="aspect-video">
-      <iframe className="w-full h-full" src={data.video} frameBorder="0"></iframe>
+      <ReactPlayer url={video} playing controls/>
     </div>
   )
 }

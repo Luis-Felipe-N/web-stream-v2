@@ -16,7 +16,6 @@ export default async function Home() {
     queryFn: getHeroMovies,
   })
 
-
   return (
     <>
       <main>

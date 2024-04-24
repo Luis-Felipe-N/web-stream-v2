@@ -7,7 +7,6 @@ export async function getHeroMovies() {
     signal: {},
   })
 
-  console.log(response.data)
   const responseJson = await response.data
 
   return responseJson

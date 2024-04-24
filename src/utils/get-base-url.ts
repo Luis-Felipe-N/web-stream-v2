@@ -8,20 +8,16 @@ export async function getBaseUrl(
     const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_DOMAINURL}/api/extractor`,
       {
-        cancelToken: signal,
-        data: {
-          linkEmbed: link,
-          userAgent: window.navigator.userAgent,
-        },
+        linkEmbed: link,
+        userAgent: window.navigator.userAgent,
       },
     )
-
-    const dataContainer = document.createElement('div')
-    dataContainer.innerHTML = data.html
-
-    const urlVideo = _getUrlBaseVideo(dataContainer)
-
-    return urlVideo
+    
+    const div = document.createElement('div')
+    div.innerHTML = data
+    const video = _getUrlBaseVideo(div)
+    
+    return video.play_url
   } catch (error) {}
 }
 
@@ -31,6 +27,6 @@ function _getUrlBaseVideo(html: HTMLDivElement) {
     const indexStartStrem = videoConfig.replace('var VIDEO_CONFIG = ', '')
 
     const obj = JSON.parse(indexStartStrem)
-    return obj.streams
+    return obj.streams.reduce((max: any, video: any) => video.format_id > max.format_id ? video : max);
   }
 }

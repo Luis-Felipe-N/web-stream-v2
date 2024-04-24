@@ -22,38 +22,22 @@ export default function Anime({ params }: AnimeProps) {
   })
 
   return (
-    <AnimatePresence>
-      {episode ? (
-        <main className='grid lg:px-20 px-4'>
-          <section className='grid grid-cols-12 grid-rows-2 mt-20 gap-8'>
-            <div className='lg:col-span-8 col-span-12'>
-              <Player episodeId={params.id} />
-            </div>
+    <main className='grid lg:px-20 px-4'>
+      <section className='grid grid-cols-12 grid-rows-2 mt-20 gap-8'>
+        <div className='lg:col-span-8 col-span-12'>
+          {episode && <Player episode={episode} />}
+        </div>
 
-            <div className='lg:col-span-8 col-span-12'>
-              <EpisodeDescription episode={episode} />
-              <Comment />
-            </div>
+        <div className='lg:col-span-8 col-span-12'>
+          {episode && <EpisodeDescription episode={episode} />}
+          <Comment />
+        </div>
 
-            <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
-              <NextEpisode episode={episode} />
-            </div>
-          </section>
-        </main>
-      ) : (
-        <motion.div
-          key="loading"
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: .5,
-            delay: .2
-          }}
-          className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-slate-950'>
-          <Loader2 className="mr-2 h-10 w-10 animate-spin text-zinc-500" />
-        </motion.div>
-      )
-      }
-    </AnimatePresence >
+        <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
+          {episode && <NextEpisode episode={episode} />}
+        </div>
+      </section>
+    </main>
+
   )
 }

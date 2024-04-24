@@ -28,7 +28,7 @@ export default function RailGenres({ title, query, genre }: RailProps) {
 
   return (
     <section className="lg:px-24 lg:py-8 p-4 relative z-20">
-      <strong className="lg:text-xl">Movie{title}</strong>
+      <strong className="lg:text-xl">{title}</strong>
 
       <Swiper
         slidesPerView="auto"
@@ -41,7 +41,7 @@ export default function RailGenres({ title, query, genre }: RailProps) {
           data.map((anime) => (
             <SwiperSlide className="swiper-slide-perview" key={anime.id}>
               <div className="aspect-[4/3] lg:w-[15rem] lg:h-[21.92rem] md:w-[10rem] md:h-[14.62rem] w-[8rem] h-[11.69rem] border-2 border-transparent hover:border-slate-100 transition">
-                <Link href={`/anime/${anime.episode_id}`}>
+                <Link href={`/movie/${anime.id}`}>
                   <Image
                     quality={100}
                     width={308}

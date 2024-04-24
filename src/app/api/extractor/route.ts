@@ -9,6 +9,7 @@ const extractorFormSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
+  
   const { linkEmbed, userAgent } = extractorFormSchema.parse(body)
 
   const { data } = await axios.get(linkEmbed, {
