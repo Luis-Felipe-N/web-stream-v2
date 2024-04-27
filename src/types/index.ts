@@ -79,7 +79,7 @@ export interface MovieT {
   orientation: string
   cdn: number
   title: string
-  genres: string[]
+  genres: string
   availability: string
   expire: string
   imageUrl: string

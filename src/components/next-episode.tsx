@@ -1,3 +1,5 @@
+'use client'
+
 import { getEpisodesById } from "@/server/actions/episode/get-episode-by-id"
 import { getNextEpisode } from "@/server/actions/episode/get-next-episode"
 import { EpisodeT } from "@/types"

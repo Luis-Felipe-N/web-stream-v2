@@ -1,21 +1,17 @@
 'use client'
 
-import { getMovieById } from '@/server/actions/movies/get-movie-by-id'
-import { EpisodeT } from '@/types'
-import { useQuery } from '@tanstack/react-query'
+import { EpisodeT, MovieT } from '@/types'
 import ReactPlayer from 'react-player'
 
 interface MoviePlayerProps {
-    movieId: string
+    movie: MovieT
 }
 
-export default function Player({ movieId }: MoviePlayerProps) {
-    // const { data, isFetching, error } = useQuery<EpisodeT>({
-    //     queryKey: [`movie@${movieId}`],
-    //     queryFn: () => getMovieById(Number(movieId)),
-    // })
+export default function Player({ movie }: MoviePlayerProps) {
 
-    // console.log(data)
-    
-    return null
+    return (
+        <div>
+            <ReactPlayer url="https://cdnapisec.kaltura.com/p/2267831/sp/2267831/playManifest/entryId/1_ruhvtq6e/flavorIds/1_pmlrtqed,1_4k7uikft,1_ke0g804i,1_hfa3awex,1_jcgxx70u/deliveryProfileId/4542/protocol/https/format/applehttp/a.m3u8"/>
+        </div>
+    )
 }

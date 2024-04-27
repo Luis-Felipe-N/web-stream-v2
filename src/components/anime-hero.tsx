@@ -2,14 +2,13 @@
 
 import Image from 'next/image'
 
-import { AnimeT, EpisodeT } from '@/types'
+import { AnimeT } from '@/types'
 import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
 import { Button } from './ui/button'
 
 import { useQuery } from '@tanstack/react-query'
 import { Loader2, Plus } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { getEpisodesBySeason } from '@/server/actions/get-episode-by-season'
 
 interface AnimeHeroProps {
   slug: string
@@ -28,16 +27,11 @@ export default function AnimeHero({ slug }: AnimeHeroProps) {
     </div>
   )
 
-  const { data: episodes } = useQuery<EpisodeT[]>({
-    queryKey: [`episode@${anime.seasons[0].id}`],
-    queryFn: () => getEpisodesBySeason(anime.seasons[0].id),
-  })
-
   return (
     <>
       <div
         className="h-screen flex items-end">
-        <div className="relative z-20 bg-gradient-to-t w-full from-slate-950 via-slate-950/60 to-transparent">
+        <div className="relative z-20 bg-gradient-to-t w-full from-slate-950 via-slate-950/90 to-transparent">
           <div className="px-4 md:px-8 lg:px-24 py-64 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
             <div>
               <h1 className="font-semibold  text-5xl">{anime.title}</h1>

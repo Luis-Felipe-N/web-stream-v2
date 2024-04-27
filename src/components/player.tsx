@@ -1,3 +1,5 @@
+'use client'
+
 import { api } from "@/data/api"
 import { getEpisodesById } from "@/server/actions/episode/get-episode-by-id"
 import { EpisodeT } from "@/types"
@@ -28,7 +30,7 @@ export default function Player({ episode }: PlayerProps) {
 
   return (
     <div className="aspect-video">
-      <ReactPlayer url={video} playing controls/>
+      <ReactPlayer width="" height="" url={video} playing controls className="w-full h-full"/>
     </div>
   )
 }

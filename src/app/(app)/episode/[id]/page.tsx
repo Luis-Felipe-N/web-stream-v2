@@ -1,5 +1,3 @@
-'use client'
-
 import { useQuery } from '@tanstack/react-query'
 
 import { getEpisodesById } from '@/server/actions/episode/get-episode-by-id'
@@ -10,16 +8,26 @@ import { EpisodeT } from '@/types'
 import { Loader2 } from 'lucide-react'
 import NextEpisode from '@/components/next-episode'
 import { AnimatePresence, motion } from 'framer-motion'
+import { api } from '@/data/api'
 
 interface AnimeProps {
   params: { id: string }
 }
 
-export default function Anime({ params }: AnimeProps) {
-  const { data: episode } = useQuery<EpisodeT>({
-    queryKey: [`episode@${params.id}`],
-    queryFn: () => getEpisodesById(params.id),
+async function getEpisode(id: string): Promise<EpisodeT> {
+  const response = await api(`episodes/${id}`, {
+    next: {
+      revalidate: 60 * 60, // 1 hour
+    },
   })
+
+  const { episode } = await response.json()
+  console.log(episode)
+  return episode
+}
+
+export default async function Anime({ params }: AnimeProps) {
+  const episode = await getEpisode(params.id)
 
   return (
     <main className='grid lg:px-20 px-4'>

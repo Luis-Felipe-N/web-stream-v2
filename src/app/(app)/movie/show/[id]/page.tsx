@@ -15,10 +15,10 @@ async function getMovie(id: string): Promise<MovieT> {
 
 export default async function Movie({ params }: MovieProps) {
   const movie = await getMovie(params.id)
-  console.log(movie)
+  
   return (
-    <main>
-        <MovieHero movie={movie} />
-    </main>
+    <div>
+      <Player movie={movie} />
+    </div>
   )
 }
