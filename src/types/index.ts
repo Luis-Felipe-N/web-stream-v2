@@ -1,5 +1,5 @@
 export const Type: {
-  CRUNCHYROLL: 'CRUNCHYROLL'
+  CRUNCHYROLL: 'CRUNCHYROLL',
   ANIMESONLINE: 'ANIMESONLINE'
 } = {
   CRUNCHYROLL: 'CRUNCHYROLL',
@@ -94,9 +94,45 @@ export interface MovieT {
   matchIsComingSoon: boolean
   isComingSoon: number
   onktp: boolean
-  rented: true
-  isRented: true
+  rented: boolean
+  isRented: boolean
   rentStatus: null
+}
+
+export interface MovieD {
+  id: number,
+  id_kaltura: string,
+  title: string,
+  synopsis: string,
+  censorship: string,
+  year: number,
+  director: string,
+  actors: string,
+  cover: string,
+  highlight: string,
+  cdn: number,
+  duration: number,
+  availability: string,
+  price: string,
+  genres: string,
+  genre: string,
+  isNSportsMatch: boolean,
+  isConmebolLibertadoresMatch: boolean,
+  isConmebolSulamericanaMatch: boolean,
+  isLiveMatch: boolean,
+  isNSportsPayment: boolean,
+  isParamountFreemium: boolean,
+  dataFromOPC: boolean,
+  pageType: number,
+  favorite: boolean,
+  warning: string,
+  isParamount: boolean,
+  isVubiquitySony: boolean,
+  isGlobo: boolean,
+  isRegional: boolean,
+  rented: boolean,
+  progress: number,
+  endPointCdn: string
 }
 
 export interface MovieHeroT {
