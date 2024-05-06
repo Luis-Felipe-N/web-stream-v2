@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import { MovieT } from '@/types'
+import { MovieD, MovieT } from '@/types'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react'
 
 
 interface MovieHeroProps {
-  movie: MovieT
+  movie: MovieD
 }
 
 export default function MovieHero({ movie, }: MovieHeroProps) {

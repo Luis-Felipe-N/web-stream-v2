@@ -1,7 +1,12 @@
+interface Streams {
+    resolution: string
+    url: string
+}
+
 export function getStreams(response: string): string {
     const lines = response.split('\n');
 
-    const streams = [];
+    const streams: Streams[] = [];
 
     // Iterar pelas linhas para encontrar a resolução e a URL associada
     let currentResolution: null | string = null

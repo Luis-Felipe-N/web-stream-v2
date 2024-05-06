@@ -1,6 +1,5 @@
 import { getWatchBrasilUserProfile } from "@/server/actions/get-watchbrasil-user-profile";
 import { useEffect, useMemo, useState } from "react";
-import { string } from "zod";
 
 export interface WatchBrasilUser {
   id: number,
@@ -17,7 +16,11 @@ export interface WatchBrasilUser {
   ks: string
 }
 
-export const useWatchBrasil = () => {
+interface UseWatchBrasilResponse {
+  user: WatchBrasilUser | null
+}
+
+export const useWatchBrasil = (): UseWatchBrasilResponse => {
 
   useEffect(() => {
     const getUser = async () => {
@@ -29,6 +32,6 @@ export const useWatchBrasil = () => {
     getUser()
   }, [])
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<WatchBrasilUser | null>(null);
   return { user };
 };

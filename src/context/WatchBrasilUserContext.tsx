@@ -2,10 +2,10 @@ import { WatchBrasilUser, useWatchBrasil } from "@/hooks/useWatchBrasil";
 import React, { ReactNode, createContext } from "react";
 
 interface WatchBrasilContextType {
-  user: WatchBrasilUser
+  user: WatchBrasilUser | null
 }
 
-export const watchBrasilContext = createContext<WatchBrasilContextType | {}>({});
+export const watchBrasilContext = createContext<WatchBrasilContextType>({ user: null });
 
 interface WatchBrasilProviderProps {
   children: ReactNode

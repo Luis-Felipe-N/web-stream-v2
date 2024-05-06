@@ -1,13 +1,12 @@
 import MovieHero from '@/components/movie/movie-hero'
 import { getMovieById } from '@/server/actions/movies/get-movie-by-id'
-import { MovieT } from '@/types'
-import { getKalturaStream } from '@/server/actions/movies/get-kaltura-stream'
+import { MovieD } from '@/types'
 
 interface MovieProps {
   params: { id: string }
 }
 
-async function getMovie(id: string): Promise<MovieT> {
+async function getMovie(id: string): Promise<MovieD> {
   const response = await getMovieById(Number(id))
 
   return response
