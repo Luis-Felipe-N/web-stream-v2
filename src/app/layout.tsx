@@ -6,6 +6,7 @@ import NextAuthSessionProvider from '@/providers/sessionProvider'
 
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import AdSense from '../../components/ad-sense'
 
 const lato = Inter({
   weight: ['100', '300', '400', '700', '900'],
@@ -24,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className={lato.className} lang="pt">
+      <head>
+        <AdSense pId="ca-pub-4707731953261449" />
+      </head>
       <body className={`bg-slate-950 text-zinc-50 antialiased `}>
         <ThemeProvider
           attribute="class"
