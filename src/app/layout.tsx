@@ -8,6 +8,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import AdSense from '@/components/ad-sense'
 
+
 const lato = Inter({
   weight: ['100', '300', '400', '700', '900'],
   subsets: ['latin'],
