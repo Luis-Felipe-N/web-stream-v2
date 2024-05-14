@@ -11,10 +11,9 @@ export async function getMoviesByGenre(genreId: number) {
       id: genreId,
       page: 1,
       signal: {},
-      size: 30,
+      size: 30
     },
   )
-
   const responseJson = await response.data
 
   return responseJson.list

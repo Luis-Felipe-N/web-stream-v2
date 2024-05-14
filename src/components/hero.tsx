@@ -27,15 +27,15 @@ export default function Hero() {
       transition={{
         duration: 1.5,
       }}
-      className="lg:h-[80vh] h-[50vh]">
-      <div className='w-full absolute top-0 left-0'>
+      className="flex items-end lg:h-[90vh] md:h-[70vh] h-[60vh]">
+      <div className='w-full h-full'>
         <Swiper
           autoplay={{
             delay: 20000,
             disableOnInteraction: true,
           }}
           modules={[Autoplay]}
-          className="w-full"
+          className='w-full h-full'
         >
           {data &&
             data.map((anime) => (

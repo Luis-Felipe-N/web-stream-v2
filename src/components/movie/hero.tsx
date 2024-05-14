@@ -30,8 +30,8 @@ export default function Hero() {
       transition={{
         duration: 1.5,
       }}
-      className="lg:h-[80vh] h-[50vh]">
-      <div className='w-full absolute top-0 left-0'>
+      className="flex items-end lg:h-[90vh] md:h-[70vh] h-[60vh]">
+      <div className='w-full'>
         <Swiper
           autoplay={{
             delay: 4500,
@@ -45,7 +45,7 @@ export default function Hero() {
               <SwiperSlide key={movie.id}>
                 <div className="lg:h-screen h-[70vh] flex items-end">
                   <div className="relative z-10  w-full bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent">
-                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-24 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
                       <h1 className="font-semibold  text-4xl">{movie.title}</h1>
                       {/* <strong className="text-green-500 uppercase lg:mt-4 block lg:text-base text-sm">
                         {movie.seasons.length}ª temporada já disponível

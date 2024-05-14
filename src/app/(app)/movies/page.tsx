@@ -8,6 +8,8 @@ import {
 } from '@tanstack/react-query'
 
 import { getHeroMovies } from '@/server/actions/movies/get-hero-movies'
+import { getGenresTag } from '@/server/actions/movies/get-genres-tag'
+import { GenreT } from '@/data/types/Genre'
 
 export default async function Home() {
   const queryClient = new QueryClient()

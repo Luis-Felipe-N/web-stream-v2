@@ -22,17 +22,19 @@ const config = {
 };
 
 export async function getMovieById(movieId: number) {
-  const response = await axios.post(
-    'https://play.watch.tv.br/api/content-info',
+  const response = await fetch('https://play.watch.tv.br/api/content-info',
     {
-      id: movieId,
-      id_perfil: "6767556",
-      signal: {},
-      tipo: "filme",
+      method: 'post',
+      body: JSON.stringify({
+        id: movieId,
+        id_perfil: "6767556",
+        signal: {},
+        tipo: "filme",
+      }),
+      ...config
     },
-    config
   )
-  const responseJson = await response.data
 
+  const responseJson = await response.json()
   return responseJson
 }

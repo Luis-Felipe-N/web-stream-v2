@@ -3,7 +3,7 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query'
-// import RailGenres from './rail-genres'
+
 import { getMoviesByGenre } from '@/server/actions/movies/get-movies-by-genre'
 import RailGenres from './rail-genres'
 
@@ -40,9 +40,22 @@ export default async function Rail() {
       />
 
       <RailGenres
+        title="Precisando de uma boa risada?"
+        genre={10069}
+        query="movieecomedia"
+      />
+
+      <RailGenres
         title="Embarque em Grandes Aventuras"
         genre={10068}
         query="movieeaventura"
+      />
+
+
+      <RailGenres
+        title="Documentários"
+        genre={22}
+        query="moviedocumentarios"
       />
 
       <RailGenres
@@ -52,9 +65,15 @@ export default async function Rail() {
       />
 
       <RailGenres
-        title="Precisando de uma boa risada?"
-        genre={10069}
-        query="movieecomedia"
+        title="Ver com a familia?"
+        genre={10073}
+        query="movieefamilia"
+      />
+
+      <RailGenres
+        title="Um pouco de drama"
+        genre={10072}
+        query="movieedrama"
       />
     </HydrationBoundary>
   )
