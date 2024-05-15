@@ -1,6 +1,3 @@
-import axios from 'axios'
-import { CodeSquare } from 'lucide-react';
-
 const config = {
   headers: {
     'Accept': '*/*',
