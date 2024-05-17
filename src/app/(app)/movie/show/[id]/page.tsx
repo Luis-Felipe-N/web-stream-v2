@@ -16,7 +16,8 @@ async function getMovie(id: string): Promise<MovieD> {
 export default async function Movie({ params }: MovieProps) {
   const movie = await getMovie(params.id)
   const stream = await getKalturaStream(movie.id_kaltura)
-  console.log("AAAAAAAAa", stream)
+  console.log("stream: ", stream)
+  console.log("movie: ", movie)
   return (
     <div className='relative z-[9999999]'>
       <Player stream={stream} />
