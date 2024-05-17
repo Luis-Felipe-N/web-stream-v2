@@ -28,7 +28,6 @@ async function getGenres(movie: MovieD): Promise<GenreT | null> {
   return genre
 }
 
-
 export default async function Movie({ params }: MovieProps) {
   const movie = await getMovie(params.id)
 

@@ -11,21 +11,10 @@ import { Loader2, Plus } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 interface AnimeHeroProps {
-  slug: string
+  anime: AnimeT
 }
 
-export default function AnimeHero({ slug }: AnimeHeroProps) {
-  const { data: anime, isLoading } = useQuery<AnimeT>({
-    queryKey: [`anime@${slug}`],
-    queryFn: () => getAnimeBySlug(slug),
-  })
-
-  if (!anime || isLoading) return (
-    <div
-      className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-slate-950'>
-      <Loader2 className="mr-2 h-8 w-8 animate-spin text-zinc-500" />
-    </div>
-  )
+export default function AnimeHero({ anime }: AnimeHeroProps) {
 
   return (
     <>

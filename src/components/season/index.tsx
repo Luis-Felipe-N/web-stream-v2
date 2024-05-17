@@ -4,26 +4,14 @@ import { AnimeT } from '@/types'
 import SeasonButton from './season-button'
 import EpisodeList from '../episode-list'
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
-
 interface SeasonProps {
-  animeSlug: string
+  anime: AnimeT
 }
 
-export default function Season({ animeSlug }: SeasonProps) {
-  const { data } = useQuery<AnimeT>({
-    queryKey: [`anime@${animeSlug}`],
-    queryFn: () => getAnimeBySlug(animeSlug),
-  })
+export default function Season({ anime }: SeasonProps) {
 
-  if (!data) {
-    return null
-    // TODO: Loading
-  }
-
-  const seasons = data.seasons.sort(function (o1, o2) {
-    return Number(o1.title.split('  ')[1]) - Number(o2.title.split('  ')[1])
+  const seasons = anime.seasons.sort(function (x, y) {
+    return Number(x.title.split('  ')[1]) - Number(y.title.split('  ')[1])
   })
 
   const [seasonId, setSeasonId] = useState(seasons[0].id)
@@ -34,9 +22,7 @@ export default function Season({ animeSlug }: SeasonProps) {
 
   return (
     <section className="relative z-20 px-4 md:px-8 lg:px-24">
-      <div>
-        <SeasonButton seasons={seasons} onValueChange={handleOnValueChange} />
-      </div>
+      <SeasonButton seasons={seasons} onValueChange={handleOnValueChange} />
 
       <EpisodeList seasonId={seasonId} />
     </section>
