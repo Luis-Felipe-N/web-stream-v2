@@ -7,7 +7,6 @@ import Comment from '@/components/comment'
 import { EpisodeT } from '@/types'
 import { Loader2 } from 'lucide-react'
 import NextEpisode from '@/components/next-episode'
-import { AnimatePresence, motion } from 'framer-motion'
 import { api } from '@/data/api'
 
 interface AnimeProps {
@@ -22,7 +21,7 @@ async function getEpisode(id: string): Promise<EpisodeT> {
   })
 
   const { episode } = await response.json()
-  console.log(episode)
+
   return episode
 }
 
@@ -31,7 +30,7 @@ export default async function Anime({ params }: AnimeProps) {
 
   return (
     <main className='grid lg:px-20 px-4'>
-      <section className='grid grid-cols-12 grid-rows-2 mt-20 gap-8'>
+      <section className='grid grid-cols-12 grid-rows-2 lg:mt-24 mt-48 gap-8'>
         <div className='lg:col-span-8 col-span-12'>
           {episode && <Player episode={episode} />}
         </div>

@@ -27,7 +27,7 @@ export default async function Search({ searchParams }: AnimeProps) {
         <main
             className='grid px-4 md:px-8 lg:px-24'
         >
-            <section className='mt-8 gap-8'>
+            <section className='lg:mt-24 mt-48 gap-8'>
                 <SearchBar />
                 <HydrationBoundary state={dehydrate(queryClient)}>
                     <SearchResults keyword={searchParams.keyword} />

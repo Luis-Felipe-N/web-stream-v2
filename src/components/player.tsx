@@ -18,19 +18,19 @@ export default function Player({ episode }: PlayerProps) {
   const [video, setVideo] = useState('')
 
   useEffect(() => {
-    if(episode) {
+    if (episode) {
       const getVideoUrl = async () => {
         const video = await getBaseUrl(episode.video)
         setVideo(video)
       }
-  
+
       getVideoUrl()
     }
   }, [episode])
 
   return (
     <div className="aspect-video">
-      <ReactPlayer width="" height="" url={video} playing controls className="w-full h-full"/>
+      {video && (<ReactPlayer width="" height="" url={video} playing controls className="w-full h-full" />)}
     </div>
   )
 }

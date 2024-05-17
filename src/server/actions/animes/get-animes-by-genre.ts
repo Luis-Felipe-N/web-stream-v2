@@ -8,9 +8,7 @@ export async function getAnimesByGenre(genre: string) {
     },
   })
 
-
   const responseJson = await response.json()
-  console.log(responseJson)
 
   return responseJson.animes
 }
