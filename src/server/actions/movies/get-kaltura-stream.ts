@@ -1,5 +1,3 @@
-'use server'
-
 import { getStreams } from "@/utils/get-streams";
 
 
