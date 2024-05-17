@@ -8,7 +8,7 @@ interface MoviePlayerProps {
 }
 
 export default function Player({ movie }: MoviePlayerProps) {
-
+  // const sta
 
   return (
     <div>

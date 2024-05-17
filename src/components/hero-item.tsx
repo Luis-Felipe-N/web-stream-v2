@@ -39,11 +39,6 @@ export default function HeroItem({ data }: HeroItemProps) {
 
                 <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
             </div>
-            {swiperSlide.isActive && (
-                <LazyYoutube
-                    videoId={data.trailerYtId}
-                />
-            )}
         </>
     )
 }
