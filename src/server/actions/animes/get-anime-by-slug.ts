@@ -1,14 +1,14 @@
-import { api } from '@/lib/api'
+import { api } from '@/data/api'
 
 export async function getAnimeBySlug(slug: string) {
 
-  const response = await api.get(`animes/${slug}`)
-
-  const responseJson = await response.data
-
-  await api.post('/animes', {
-    slug: responseJson.anime.slug
+  const response = await api(`animes/${slug}`, {
+    next: {
+      revalidate: 60 * 60, // 1 hours
+    },
   })
+
+  const responseJson = await response.json()
 
   return responseJson.anime
 }

@@ -1,13 +1,20 @@
 import axios from 'axios'
 
 export async function getHeroMovies() {
-  const response = await axios.post('https://play.watch.tv.br/api/hero', {
-    contentType: 'filme',
-    unloggedToken: null,
-    signal: {},
+  const response = await fetch('https://play.watch.tv.br/api/hero', {
+    method: 'post',
+    body: JSON.stringify({
+      contentType: 'filme',
+      unloggedToken: null,
+      signal: {},
+    }),
+    next: {
+      revalidate: 60 * 60, // 1 hours
+    },
+
   })
 
-  const responseJson = await response.data
+  const responseJson = await response.json()
 
   return responseJson
 }

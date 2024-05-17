@@ -28,6 +28,9 @@ export async function getMovieById(movieId: number) {
         signal: {},
         tipo: "filme",
       }),
+      next: {
+        revalidate: 60 * 60, // 1 hours
+      },
       ...config
     },
   )
