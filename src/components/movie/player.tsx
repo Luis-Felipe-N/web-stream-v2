@@ -4,11 +4,10 @@ import { MovieD } from '@/types'
 import ReactPlayer from 'react-player'
 
 interface MoviePlayerProps {
-  stream: string
   movie: MovieD
 }
 
-export default function Player({ stream, movie }: MoviePlayerProps) {
+export default function Player({ movie }: MoviePlayerProps) {
 
 
   return (
