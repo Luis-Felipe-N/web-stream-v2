@@ -30,6 +30,7 @@ export async function getKalturaStream(kalturaId: string) {
         }
     )
 
+    console.log("getKalturaStream: ", response)
 
     const m3u8 = await response.text()
 
