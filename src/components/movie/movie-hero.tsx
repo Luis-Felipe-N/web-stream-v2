@@ -1,15 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-
-import { MovieD, MovieT } from '@/types'
+import Link from 'next/link'
+import { MovieD } from '@/types'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import Link from 'next/link'
 import { watchBrasilContext } from '@/context/WatchBrasilUserContext'
 import { useContext } from 'react'
 import { Loader2 } from 'lucide-react'
-
 
 interface MovieHeroProps {
   movie: MovieD
@@ -21,7 +18,7 @@ export default function MovieHero({ movie, }: MovieHeroProps) {
   return (
     <>
       {user ? (
-        <div className="flex items-end lg:h-[90vh] md:h-[70vh] h-[60vh]" style={{ backgroundSize: 'cover', backgroundImage: `url(${`https://cdnsecakmi.kaltura.com/api_v3/index.php/service/thumbAsset/action/serve/thumbAssetId/${movie.highlight}/ks/${user.ks}`})` }}>
+        <div className="flex items-end lg:h-[90vh] md:h-[70vh] h-[60vh]" style={{ backgroundSize: 'cover', backgroundImage: `url(${`https://cdnsecakmi.kaltura.com/api_v3/index.php/service/thumbAsset/action/serve/thumbAssetId/${movie.highlight}`})` }}>
           <div className="relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent">
             <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:py-14 py-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
               <h1 className="font-semibold  text-4xl">{movie.title}</h1>

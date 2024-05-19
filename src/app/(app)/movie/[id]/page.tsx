@@ -32,7 +32,7 @@ export default async function Movie({ params }: MovieProps) {
   const movie = await getMovie(params.id)
 
   const genre = await getGenres(movie)
-  console.log(genre)
+
   return (
     <main>
       <MovieHero movie={movie} />

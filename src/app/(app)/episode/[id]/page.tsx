@@ -8,6 +8,7 @@ import { EpisodeT } from '@/types'
 import { Loader2 } from 'lucide-react'
 import NextEpisode from '@/components/next-episode'
 import { api } from '@/data/api'
+import CommentForm from '@/components/comment/comment-form'
 
 interface AnimeProps {
   params: { id: string }
@@ -37,7 +38,9 @@ export default async function Anime({ params }: AnimeProps) {
 
         <div className='lg:col-span-8 col-span-12'>
           {episode && <EpisodeDescription episode={episode} />}
-          <Comment />
+          <div className="mt-12">
+            <CommentForm episodeId={episode.id} />
+          </div>
         </div>
 
         <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>

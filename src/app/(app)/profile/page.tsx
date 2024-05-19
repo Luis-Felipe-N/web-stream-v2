@@ -50,26 +50,12 @@ export default function Profile() {
     if (status === 'authenticated') {
         return (
             <main className='pb-24'>
-                <div className='relative h-96'>
-                    <Image
-                        width={1980}
-                        height={900}
-                        src="https://media.kitsu.io/anime/cover_images/80/original.jpg"
-                        quality={100}
-                        alt=""
-                        className='absolute h-96 object-cover top-0 left-0 right-0 bottom-0 -z-50'
-                    ></Image>
+                <div className='relative h-96' style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${session.user.avatar})` }}>
 
-                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950/30 via-slate-950/10 to-transparent -z-1 h-[15rem]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent z-0 h-[40rem]"></div>
 
                     <div className='px-4 max-w-7xl mx-auto h-full flex items-end relative z-10 pb-8'>
                         <div className='flex gap-4'>
-                            <Avatar className='h-24 w-24 text-2xl'>
-                                <AvatarImage src={session.user.avatar} alt={session.user.name} />
-                                <AvatarFallback>
-                                    {getFallbackName(session.user.name)}
-                                </AvatarFallback>
-                            </Avatar>
 
                             <div className='mt-2'>
                                 <h1 className='text-zinc-50 font-extrabold text-5xl'>{session.user.name}</h1>

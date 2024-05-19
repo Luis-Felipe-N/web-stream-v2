@@ -1,5 +1,6 @@
 'use server'
 
+import { api } from '@/data/api';
 import axios from 'axios'
 
 const config = {
@@ -23,10 +24,16 @@ const config = {
 };
 
 export async function getWatchBrasilUserProfile() {
-  const response = await axios.get(
+  const response = await api(
     'https://play.watch.tv.br/api/profile?responseType=standard&revalidate=0',
-    config
+    {
+      next: {
+        revalidate: 60 * 60 * 24, // 1 hours
+      },
+      ...config
+    }
   )
+
   const responseJson = await response.data
 
   return responseJson

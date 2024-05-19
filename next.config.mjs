@@ -20,7 +20,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdnsecakmi.kaltura.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.myanimelist.net',
       }
+
     ],
   },
   eslint: {

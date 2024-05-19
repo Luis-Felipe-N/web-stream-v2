@@ -25,9 +25,9 @@ export const useWatchBrasil = (): UseWatchBrasilResponse => {
   useEffect(() => {
     const getUser = async () => {
       const [user] = await getWatchBrasilUserProfile()
-
       setUser(user)
     }
+    console.log('user')
 
     getUser()
   }, [])

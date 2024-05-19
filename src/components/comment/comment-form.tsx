@@ -9,25 +9,29 @@ import { Textarea } from "../ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { getFallbackName } from "@/utils/get-fallback-name"
 import { useSession } from "next-auth/react"
+import { commentEpisode } from "@/server/actions/episode/comment-episode"
 
 const CommentFormSchema = z.object({
-    name: z.string().min(3, { message: 'Nome precisa conter no mínimo 3 caracteres' }),
-    email: z.string().email({ message: 'Este email não parece válido' }),
-    password: z.string().min(6, { message: 'Senha precisa conter no mínimo 6 caracteres' })
+    content: z.string().min(3, { message: 'Nome precisa conter no mínimo 3 caracteres' }),
 })
-
 
 export type CommentFormData = z.infer<typeof CommentFormSchema>
 
-export default function CommentForm() {
+interface CommentFormProps {
+    episodeId: string
+}
+
+export default function CommentForm({ episodeId }: CommentFormProps) {
     const { data, status } = useSession()
 
-    const { handleSubmit } = useForm<CommentFormData>({
+    const { handleSubmit, register, formState: { errors } } = useForm<CommentFormData>({
         resolver: zodResolver(CommentFormSchema),
     })
 
-    function handleComment(data: CommentFormData) {
+    async function handleComment(data: CommentFormData) {
+        const response = await commentEpisode(episodeId, data.content)
 
+        console.log(response)
     }
 
     if (!data) {
@@ -43,9 +47,12 @@ export default function CommentForm() {
                         {getFallbackName(data.user.name)}
                     </AvatarFallback>
                 </Avatar>
-                <div>
+                <div className="flex-1">
+
                     <Textarea
                         placeholder="Deixe um comentário"
+                        {...register('content')}
+                    // errors={errors.content}
                     />
                     <div className="mt-2">
                         <Button>Enviar</Button>

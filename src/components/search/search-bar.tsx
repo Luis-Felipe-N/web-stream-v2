@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { Input } from './ui/input';
+import { Input } from '../ui/input';
 import { Search } from 'lucide-react'
 import { motion } from "framer-motion";
 

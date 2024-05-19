@@ -1,5 +1,8 @@
-import { WatchBrasilUser, useWatchBrasil } from "@/hooks/useWatchBrasil";
-import React, { ReactNode, createContext } from "react";
+'use client'
+
+import { WatchBrasilUser } from "@/hooks/useWatchBrasil";
+import { getWatchBrasilUserProfile } from "@/server/actions/get-watchbrasil-user-profile";
+import React, { ReactNode, createContext, useCallback, useEffect, useState } from "react";
 
 interface WatchBrasilContextType {
   user: WatchBrasilUser | null
@@ -12,7 +15,18 @@ interface WatchBrasilProviderProps {
 }
 
 export const WatchBrasilProvider = ({ children }: WatchBrasilProviderProps) => {
-  const { user } = useWatchBrasil();
+  const [user, setUser] = useState<WatchBrasilUser | null>(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const [user] = await getWatchBrasilUserProfile()
+      setUser(user)
+    }
+    console.log('user')
+
+    getUser()
+  }, [])
+
   return (
     <watchBrasilContext.Provider value={{ user }}>
       {children}
