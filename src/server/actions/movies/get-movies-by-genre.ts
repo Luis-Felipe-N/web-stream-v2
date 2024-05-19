@@ -4,7 +4,7 @@ import { api } from '@/data/api'
 import { MovieD } from '@/types'
 import axios from 'axios'
 
-export async function getMoviesByGenre(genreId: number, size = 30): Promise<MovieD[]> {
+export async function getMoviesByGenre(genreId: number, size = 30) {
   const response = await api(
     'https://play.watch.tv.br/api/content-list',
     {
