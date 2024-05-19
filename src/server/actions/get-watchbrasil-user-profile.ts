@@ -34,7 +34,7 @@ export async function getWatchBrasilUserProfile() {
     }
   )
 
-  const responseJson = await response.data
+  const responseJson = await response.json()
 
   return responseJson
 }

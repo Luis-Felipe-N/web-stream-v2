@@ -60,7 +60,6 @@ const SearchResultsMoviesLoading = () => (
 
 export function SearchResultsMovies({ keyword }: SearchResultsMoviesProps) {
     const { user } = useContext(watchBrasilContext);
-    console.log(user)
 
     if (keyword) {
         const { data: movies, isFetching } = useQuery<MovieD[]>({
