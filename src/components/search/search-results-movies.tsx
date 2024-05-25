@@ -65,6 +65,7 @@ export function SearchResultsMovies({ keyword }: SearchResultsMoviesProps) {
         const { data: movies, isFetching } = useQuery<MovieD[]>({
             queryKey: [`movies@${keyword}`],
             queryFn: () => searchMovie(keyword),
+            enabled: !!user
         })
 
         if (!user) return null
@@ -81,6 +82,8 @@ export function SearchResultsMovies({ keyword }: SearchResultsMoviesProps) {
             queryKey: ['movies'],
             queryFn: () => getMoviesByGenre(22, 6),
         })
+
+        if (!user) return null
 
         if (isFetching) return (
             <SearchResultsMoviesLoading />
