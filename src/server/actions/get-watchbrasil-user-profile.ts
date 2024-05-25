@@ -27,9 +27,6 @@ export async function getWatchBrasilUserProfile() {
   const response = await api(
     'https://play.watch.tv.br/api/profile?responseType=standard&revalidate=0',
     {
-      next: {
-        revalidate: 60 * 60 * 24, // 1 hours
-      },
       ...config
     }
   )
