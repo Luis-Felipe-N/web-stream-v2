@@ -28,7 +28,6 @@ const SearchResultsMoviesList = ({ movies, user }: SearchResultsMoviesListProps)
                     <li key={movie.id} className="h-full w-full border-2 border-transparent hover:border-slate-100 transition">
                         <Link href={`/movie/${movie.id}`}>
                             <img
-                                quality={100}
                                 width={308}
                                 height={404}
                                 className="h-full w-full object-cover"
