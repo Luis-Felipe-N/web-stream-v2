@@ -12,8 +12,6 @@ export interface GenreT {
   title: string
   slug: string
 }
-
-
 interface Anime {
   id: string
   title: string
@@ -27,7 +25,6 @@ interface Anime {
   trailerYtId: string
   genres: GenreT[]
 }
-
 interface Season {
   id: string
   title: string
@@ -37,7 +34,6 @@ interface Season {
   updatedAt: string
   anime: Anime
 }
-
 export interface EpisodeT {
   id: string
   title: string
@@ -53,16 +49,12 @@ export interface EpisodeT {
   seasonId: string
   season: Season
 }
-
-
 export interface SeasonT extends Season {
   episodes: EpisodeT[]
 }
-
 export interface AnimeT extends Anime {
   seasons: SeasonT[]
 }
-
 export interface MovieT {
   order: number
   id: number
@@ -98,7 +90,6 @@ export interface MovieT {
   isRented: boolean
   rentStatus: null
 }
-
 export interface MovieD {
   id: number,
   id_kaltura: string,
@@ -134,7 +125,6 @@ export interface MovieD {
   progress: number,
   endPointCdn: string
 }
-
 export interface MovieHeroT {
   order: number
   destiny: string
@@ -161,4 +151,20 @@ export interface MovieHeroT {
   link_banner: string
   seasons: number
   cover: string
+}
+
+export interface User {
+  id: string,
+  name: string,
+  email: string,
+  role: "USER",
+  avatar: string
+}
+
+export interface Comment {
+  id: string,
+  content: string,
+  updatedAt: string,
+  createdAt: string
+  author: User
 }

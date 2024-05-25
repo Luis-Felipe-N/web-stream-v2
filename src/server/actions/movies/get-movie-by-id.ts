@@ -29,7 +29,7 @@ export async function getMovieById(movieId: number) {
         tipo: "filme",
       }),
       next: {
-        revalidate: 60 * 60, // 1 hours
+        revalidate: 60 * 60 * 24 * 7, // 1 hours
       },
       ...config
     },

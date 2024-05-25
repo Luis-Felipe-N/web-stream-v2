@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export async function getHeroMovies() {
   const response = await fetch('https://play.watch.tv.br/api/hero', {
     method: 'post',

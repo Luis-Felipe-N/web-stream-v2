@@ -36,13 +36,12 @@ export default function NextEpisode({ episode }: NextEpisodeProps) {
             <strong>Proximo Episódio</strong>
 
             <Link href={`/episode/${nextEpisode.id}`} className="mt-4 block">
-                <Image
+                <img
                     width={350}
                     height={350}
                     src={nextEpisode.cover}
-                    quality={100}
                     alt=""
-                ></Image>
+                />
 
                 <small className="block my-2 mb-1 font-semibold text-slate-300 uppercase">
                     {nextEpisode.season.anime.title}
