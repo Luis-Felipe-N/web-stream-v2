@@ -17,7 +17,7 @@ export async function getBaseUrl(link: string) {
     )
 
     const data = await response.json()
-
+    console.log(data)
     const video = _getUrlBaseVideo(data)
 
     return video.play_url
