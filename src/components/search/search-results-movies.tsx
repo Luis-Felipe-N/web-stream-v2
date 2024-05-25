@@ -27,14 +27,14 @@ const SearchResultsMoviesList = ({ movies, user }: SearchResultsMoviesListProps)
                 movies.map((movie) => (
                     <li key={movie.id} className="h-full w-full border-2 border-transparent hover:border-slate-100 transition">
                         <Link href={`/movie/${movie.id}`}>
-                            <Image
+                            <img
                                 quality={100}
                                 width={308}
                                 height={404}
                                 className="h-full w-full object-cover"
                                 src={`https://cdnsecakmi.kaltura.com/api_v3/index.php/service/thumbAsset/action/serve/thumbAssetId/${movie.highlight}/ks/${user.ks}`}
                                 alt=""
-                            ></Image>
+                            />
                         </Link>
                     </li>
                 ))

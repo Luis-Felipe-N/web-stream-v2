@@ -10,6 +10,7 @@ interface AnimeProps {
 
 export default async function Anime({ params }: AnimeProps) {
   const anime: AnimeT = await getAnimeBySlug(params.slug)
+
   console.log(anime.cover)
   return (
     <main>

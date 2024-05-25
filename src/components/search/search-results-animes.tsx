@@ -19,14 +19,13 @@ export function SearchResultsAnimes({ animes }: SearchResultsProps) {
                     animes.map((anime) => (
                         <li key={anime.id} className="h-full w-full border-2 border-transparent hover:border-slate-100 transition">
                             <Link href={`/anime/${anime.slug}`}>
-                                <Image
-                                    quality={100}
+                                <img
                                     width={308}
                                     height={404}
                                     className="h-full w-full object-cover"
                                     src={anime.cover}
                                     alt=""
-                                ></Image>
+                                />
                             </Link>
                         </li>
                     ))

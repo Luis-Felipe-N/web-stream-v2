@@ -8,6 +8,16 @@ export async function getAnimeBySlug(slug: string) {
     },
   })
 
+
+  await api(`animes`, {
+    method: 'post',
+    body: JSON.stringify({
+      slug: slug
+    }),
+    next: {
+      revalidate: 60 * 60, // 1 hours
+    },
+  })
   const responseJson = await response.json()
 
   return responseJson.anime
