@@ -1,8 +1,6 @@
 'use server'
 
 import { api } from '@/data/api'
-import { MovieD } from '@/types'
-import axios from 'axios'
 
 export async function getMoviesByGenre(genreId: number, size = 30) {
   const response = await api(
