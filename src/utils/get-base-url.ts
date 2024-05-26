@@ -1,3 +1,5 @@
+'use server'
+
 import { api } from '@/data/api'
 import cheerio from 'cheerio'
 
