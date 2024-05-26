@@ -24,7 +24,7 @@ export default async function Search({ searchParams }: AnimeProps) {
     })
 
     const results = await search(searchParams.keyword)
-    console.log(results)
+
     return (
         <main
             className='grid px-4 md:px-8 lg:px-24'

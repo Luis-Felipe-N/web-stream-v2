@@ -13,7 +13,7 @@ export default async function Anime({ params }: AnimeProps) {
 
   return (
     <main>
-      <section className="flex items-end lg:h-[80vh] md:h-[70vh] h-[60vh]">
+      <section className="flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]">
         <AnimeHero anime={anime} />
       </section>
 

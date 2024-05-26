@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className={lato.className} lang="pt">
+    <html className={lato.className} lang="pt-BR">
       <head>
         <AdSense pId="ca-pub-4707731953261449" />
       </head>

@@ -47,7 +47,7 @@ export default function AnimeHero({ anime }: AnimeHeroProps) {
                 {anime.seasons.length} Temporadas
               </p>
 
-              <Button className="font-bold font-white uppercase h-10 px-4 py-2 text-sm lg:h-14 rounded-md lg:px-12 lg:text-base" size="md">
+              <Button className="font-bold font-white uppercase" size="md">
                 Assistir 1T Ep.1
               </Button>
 
