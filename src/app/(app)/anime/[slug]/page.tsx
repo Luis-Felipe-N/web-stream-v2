@@ -11,7 +11,6 @@ interface AnimeProps {
 export default async function Anime({ params }: AnimeProps) {
   const anime: AnimeT = await getAnimeBySlug(params.slug)
 
-  console.log(anime.cover)
   return (
     <main>
       <section className="flex items-end lg:h-[80vh] md:h-[70vh] h-[60vh]">

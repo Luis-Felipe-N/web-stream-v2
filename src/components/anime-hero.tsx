@@ -15,7 +15,9 @@ interface AnimeHeroProps {
 }
 
 export default function AnimeHero({ anime }: AnimeHeroProps) {
-  const banner = anime.banner.split('?')[0]
+
+  console.log(anime)
+  const banner = anime?.banner.split('?')[0]
   return (
     <>
       <div

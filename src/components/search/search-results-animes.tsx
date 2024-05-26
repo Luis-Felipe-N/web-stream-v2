@@ -11,9 +11,12 @@ interface SearchResultsProps {
 }
 
 export function SearchResultsAnimes({ animes }: SearchResultsProps) {
+    if (!animes.length) { return null }
 
+    console.log(animes)
     return (
         <div>
+            <strong className="mb-2 block text-base">Animes</strong>
             <ul className="grid gap-2 lg:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] grid-cols-[repeat(auto-fill,minmax(8rem,1fr))]">
                 {animes &&
                     animes.map((anime) => (

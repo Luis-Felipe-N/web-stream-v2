@@ -24,7 +24,7 @@ export default async function Search({ searchParams }: AnimeProps) {
     })
 
     const results = await search(searchParams.keyword)
-
+    console.log(results)
     return (
         <main
             className='grid px-4 md:px-8 lg:px-24'
@@ -39,11 +39,9 @@ export default async function Search({ searchParams }: AnimeProps) {
                     </HydrationBoundary>
 
 
-                </div >
+                </div>
 
                 <div className="relative z-20 mt-12">
-                    <strong className="mb-2 block">{searchParams.keyword ? `Resultados para: ${searchParams.keyword}` : "Recomendados para você"}</strong>
-
                     <SearchResultsAnimes animes={results.animes} />
                 </div >
             </section>

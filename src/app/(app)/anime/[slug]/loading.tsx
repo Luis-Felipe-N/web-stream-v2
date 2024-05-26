@@ -6,22 +6,23 @@ import { Loader2 } from 'lucide-react'
 
 export default function Loading() {
     return (
-        // <AnimatePresence>
-        //     <motion.div
-        //         key="loading"
-        //         animate={{ opacity: 1 }}
-        //         exit={{ opacity: 0 }}
-        //         transition={{
-        //             duration: .5,
-        //             delay: .2
-        //         }}
-        //         className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-slate-950'>
-        //         <Loader2 className="mr-2 h-10 w-10 animate-spin text-zinc-500" />
-        //     </motion.div>
-        // </AnimatePresence>
         <main>
             <div className='lg:h-[90vh] md:h-[70vh] h-[60vh]'>
-                <Skeleton className='w-[280px] h-[30px]'></Skeleton>
+                <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent">
+                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+                        <h1 className="font-semibold  text-4xl"></h1>
+                        <strong className="text-green-500 uppercase mt-4 block lg:text-base text-sm">
+
+                        </strong>
+                        <Skeleton className='w-[430px] h-[40px]'></Skeleton>
+                        <Skeleton className='w-[230px] h-[24px] mt-4'></Skeleton>
+                        <Skeleton className='w-[700px] h-[80px] mt-4'></Skeleton>
+
+                        <Skeleton className='w-[200px] h-[56px] mt-4'></Skeleton>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
+                </div>
             </div>
 
             <div>
