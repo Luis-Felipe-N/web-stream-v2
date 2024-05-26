@@ -14,7 +14,7 @@ export default async function Anime({ params }: AnimeProps) {
   console.log(anime.cover)
   return (
     <main>
-      <section className="h-[80vh]">
+      <section className="flex items-end lg:h-[80vh] md:h-[70vh] h-[60vh]">
         <AnimeHero anime={anime} />
       </section>
 
