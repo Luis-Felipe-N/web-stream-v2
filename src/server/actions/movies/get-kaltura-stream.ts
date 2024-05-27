@@ -1,5 +1,6 @@
-import { getStreams } from "@/utils/get-streams";
+'use server'
 
+import { getStreams } from "@/utils/get-streams";
 
 export async function getKalturaStream(kalturaId: string) {
     const response = await fetch(
