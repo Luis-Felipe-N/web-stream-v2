@@ -1,6 +1,5 @@
-'use server'
-
 import { getStreams } from "@/utils/get-streams";
+
 
 export async function getKalturaStream(kalturaId: string) {
     const response = await fetch(
@@ -8,8 +7,6 @@ export async function getKalturaStream(kalturaId: string) {
     )
 
     const m3u8 = await response.text()
-
-    console.log(m3u8)
 
     return getStreams(m3u8)
 }
