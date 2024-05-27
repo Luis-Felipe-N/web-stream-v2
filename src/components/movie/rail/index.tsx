@@ -39,8 +39,6 @@ export default async function Rail() {
 
   const user = await getUser()
 
-  console.log(user)
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <RailGenres

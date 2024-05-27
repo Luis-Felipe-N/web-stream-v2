@@ -13,7 +13,6 @@ export async function commentEpisode(id: string, content: string) {
     })
 
     const responseJson = await response.data
-    console.log(responseJson)
 
     return responseJson.comment
 }

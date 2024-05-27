@@ -10,9 +10,8 @@ export async function getHeroMovies() {
       unloggedToken: null,
     }),
     next: {
-      revalidate: 60 * 60, // 1 hours
+      revalidate: 60 * 60,
     },
-    // ...config
   })
 
   const responseJson = await response.json()
