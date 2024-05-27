@@ -53,7 +53,7 @@ export default function Hero() {
 
                       <Link
                         href={`/movie/${movie.id}`}
-                        className="mt-4 rounded-md bg- font-bold font-white uppercase bg-slate-700/80 hover:bg-slate-800/80 transition px-8 py-4 inline-block"
+                        className="mt-4 rounded-md bg- font-bold font-white uppercase bg-slate-700/50 hover:bg-slate-800/80 transition px-8 py-4 inline-block"
                       >
                         Assistir agora
                       </Link>

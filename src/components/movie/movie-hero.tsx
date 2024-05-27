@@ -37,7 +37,7 @@ export default function MovieHero({ movie, }: MovieHeroProps) {
 
               <Link
                 href={`/movie/show/${movie.id}`}
-                className="mt-4 rounded-md bg- font-bold font-white uppercase bg-slate-700/80 hover:bg-slate-800/80 transition px-8 py-4 inline-block"
+                className="mt-4 rounded-md bg- font-bold font-white uppercase bg-slate-700/50 backdrop-blur-2xl hover:bg-slate-800/80 transition px-8 py-4 inline-block"
               >
                 Assistir agora
               </Link>

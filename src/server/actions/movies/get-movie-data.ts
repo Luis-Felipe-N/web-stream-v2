@@ -48,7 +48,5 @@ export async function getMovieData(id: string) {
     "partnerId": 2267831
   };
 
-  const response  = axios.post(baseUrl, JSON.stringify(requestData))
-  console.log(response)
-  
+  const response = axios.post(baseUrl, JSON.stringify(requestData))
 }
