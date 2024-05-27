@@ -27,7 +27,6 @@ export const useWatchBrasil = (): UseWatchBrasilResponse => {
       const [user] = await getWatchBrasilUserProfile()
       setUser(user)
     }
-    console.log('user')
 
     getUser()
   }, [])

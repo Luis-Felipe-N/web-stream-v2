@@ -21,7 +21,6 @@ export const WatchBrasilProvider = ({ children }: WatchBrasilProviderProps) => {
     const getUser = async () => {
       const [user] = await getWatchBrasilUserProfile()
       setUser(user)
-      console.log(user)
     }
 
     getUser()

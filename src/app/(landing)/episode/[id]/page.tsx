@@ -29,7 +29,7 @@ async function getEpisode(id: string): Promise<EpisodeT> {
 export default async function Anime({ params }: AnimeProps) {
   const episode = await getEpisode(params.id)
   const video = await getBaseUrl(episode.video)
-  console.log(video)
+
   return (
     <main className='grid lg:px-20 px-4 pb-24'>
       <section className='grid grid-cols-12 grid-rows-2 lg:mt-24 mt-48 gap-8'>

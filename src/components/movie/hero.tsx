@@ -20,8 +20,6 @@ export default function Hero() {
     queryFn: getHeroMovies,
   })
 
-  console.log(data)
-
   return (
     <motion.section
       initial={{ opacity: 0 }}

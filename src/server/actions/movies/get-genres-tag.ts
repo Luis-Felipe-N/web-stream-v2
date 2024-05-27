@@ -37,8 +37,7 @@ export async function getGenresTag() {
         ...config
     })
 
-
     const responseJson = await response.json()
-    console.log(responseJson)
+
     return responseJson
 }

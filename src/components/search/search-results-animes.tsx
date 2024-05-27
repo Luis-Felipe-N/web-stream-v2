@@ -11,9 +11,8 @@ interface SearchResultsProps {
 }
 
 export function SearchResultsAnimes({ animes }: SearchResultsProps) {
-    if (!animes.length) { return null }
+    if (animes && !animes.length) { return null }
 
-    console.log(animes)
     return (
         <div>
             <strong className="mb-2 block text-base">Animes</strong>

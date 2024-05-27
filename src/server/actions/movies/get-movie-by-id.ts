@@ -41,10 +41,7 @@ export async function getMovieById(movieId: number) {
     },
   )
 
-  console.log(response)
-
   const responseJson = await response.json()
 
-  console.log(responseJson)
   return responseJson
 }
