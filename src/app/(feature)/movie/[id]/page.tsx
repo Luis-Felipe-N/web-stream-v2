@@ -19,6 +19,10 @@ async function getMovie(id: string): Promise<MovieD> {
 async function getGenres(movie: MovieD): Promise<GenreT | null> {
   const response: GenreT[] = await getGenresTag()
 
+  if (!movie.genres) {
+    return null
+  }
+
   const genre = response.find(genre => movie.genres.includes(genre.title))
 
   if (!genre) {

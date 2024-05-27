@@ -30,7 +30,7 @@ export default function MovieHero({ movie, }: MovieHeroProps) {
               </p>
 
               <div className="flex text-zinc-400 gap-4 mt-2">
-                {movie.genres.split(', ').map((genre) => (
+                {movie.genres && movie.genres.split(', ').map((genre) => (
                   <p key={genre}>{genre}</p>
                 ))}
               </div>
