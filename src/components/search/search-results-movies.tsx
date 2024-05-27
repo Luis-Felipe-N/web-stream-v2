@@ -75,8 +75,6 @@ export function SearchResultsMovies({ keyword }: SearchResultsMoviesProps) {
             enabled: !!user
         })
 
-        console.log(isLoading)
-
         if (isLoading) return (
             <SearchResultsMoviesLoading />
         )
@@ -91,8 +89,6 @@ export function SearchResultsMovies({ keyword }: SearchResultsMoviesProps) {
             queryKey: ['movies'],
             queryFn: () => getMoviesByGenre(22, 6),
         })
-
-        console.log(movies)
 
         if (isLoading) return (
             <SearchResultsMoviesLoading />

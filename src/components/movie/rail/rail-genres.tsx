@@ -14,6 +14,8 @@ import Link from 'next/link'
 import { MovieT } from '@/types'
 import { getMoviesByGenre } from '@/server/actions/movies/get-movies-by-genre'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useContext } from 'react'
+import { watchBrasilContext } from '@/context/WatchBrasilUserContext'
 
 interface RailProps {
   title: string
@@ -22,10 +24,16 @@ interface RailProps {
 }
 
 export default function RailGenres({ title, query, genre }: RailProps) {
+  const { user } = useContext(watchBrasilContext);
+
   const { data } = useQuery<MovieT[]>({
     queryKey: [query],
     queryFn: () => getMoviesByGenre(genre),
   })
+
+  if (!user) {
+    return null
+  }
 
   return (
     <section className="lg:px-24 lg:py-8 p-4 relative z-20">
@@ -48,7 +56,7 @@ export default function RailGenres({ title, query, genre }: RailProps) {
                     width={308}
                     height={404}
                     className="h-full w-full object-cover"
-                    src={anime.imageUrl}
+                    src={`https://cdnsecakmi.kaltura.com/api_v3/index.php/service/thumbAsset/action/serve/thumbAssetId/${anime.cover}/ks/${user.ks}`}
                     alt=""
                   ></Image>
                 </Link>

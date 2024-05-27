@@ -6,7 +6,14 @@ import {
 
 import { getMoviesByGenre } from '@/server/actions/movies/get-movies-by-genre'
 import RailGenres from './rail-genres'
+import { getWatchBrasilUserProfile } from '@/server/actions/get-watchbrasil-user-profile'
 
+
+async function getUser() {
+  const [user] = await getWatchBrasilUserProfile()
+
+  return user
+}
 
 export default async function Rail() {
   const queryClient = new QueryClient()
@@ -30,6 +37,9 @@ export default async function Rail() {
     queryFn: () => getMoviesByGenre(10083),
   })
 
+  const user = await getUser()
+
+  console.log(user)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
