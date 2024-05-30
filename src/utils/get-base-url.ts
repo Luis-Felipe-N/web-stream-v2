@@ -11,10 +11,7 @@ export async function getBaseUrl(link: string) {
         method: 'post',
         body: JSON.stringify({
           link: link,
-        }),
-        next: {
-          revalidate: 60 * 60 * 24 * 7,
-        },
+        })
       }
     )
 

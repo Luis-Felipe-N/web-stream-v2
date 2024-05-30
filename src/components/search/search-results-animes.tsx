@@ -1,10 +1,7 @@
 'use client'
 
-import { watchBrasilContext } from '@/context/WatchBrasilUserContext'
-import { AnimeT, MovieD } from "@/types";
-import Image from "next/image";
+import { AnimeT } from "@/types";
 import Link from "next/link";
-import { useContext } from "react";
 
 interface SearchResultsProps {
     animes: AnimeT[]
