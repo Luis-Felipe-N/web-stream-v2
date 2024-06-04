@@ -1,26 +1,25 @@
-'use server'
-
-import { api } from '@/data/api'
+import axios, { CancelTokenSource } from 'axios'
 import cheerio from 'cheerio'
 
-export async function getBaseUrl(link: string) {
+export interface IStreamsBlogger {
+  play_url: string
+  format: number
+}
+
+export async function getBaseUrl(
+  link: string,
+) {
   try {
-    const response = await api(
+    const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_DOMAINURL}/api/extractor`,
       {
-        method: 'post',
-        body: JSON.stringify({
-          link: link,
-        })
-      }
+        link: link,
+      },
     )
 
-    const data = await response.json()
-
-    const video = _getUrlBaseVideo(data)
-
-    return video.play_url
-  } catch (error) { console.log(error) }
+    const { play_url } = _getUrlBaseVideo(data)
+    return play_url
+  } catch (error) { console.log({ error }) }
 }
 
 function _getUrlBaseVideo(html: string) {
