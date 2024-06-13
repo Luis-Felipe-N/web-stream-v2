@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Lato, Poppins } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import { QueryProvider } from '@/providers/useQueryProvider'
 import NextAuthSessionProvider from '@/providers/sessionProvider'
@@ -8,7 +8,6 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import AdSense from '@/components/ad-sense'
 import { WatchBrasilProvider } from '@/providers/useWatchBrasilProvider'
-
 
 const lato = Inter({
   weight: ['100', '300', '400', '700', '900'],

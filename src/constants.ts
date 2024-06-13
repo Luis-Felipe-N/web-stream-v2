@@ -1,0 +1,1 @@
+export const PLAYER_CONTAINER_CLASS = 'container-streamplayer';

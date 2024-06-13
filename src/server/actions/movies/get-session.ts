@@ -25,6 +25,7 @@ export async function getSession() {
         }
     };
 
+
     const response = await api(
         'https://play.watch.tv.br/api/auth/session',
         {

@@ -1,7 +1,6 @@
 import { getMovieById } from '@/server/actions/movies/get-movie-by-id'
-import Player from '@/components/movie/player'
+import PlayerMovie from '@/components/movie/player'
 import { MovieD } from '@/types'
-import { getKalturaStream } from '@/server/actions/movies/get-kaltura-stream'
 
 interface MovieProps {
   params: { id: string }
@@ -18,7 +17,7 @@ export default async function Movie({ params }: MovieProps) {
 
   return (
     <div className='relative z-[9999999]'>
-      <Player movie={movie} />
+      <PlayerMovie movie={movie} />
     </div>
   )
 }

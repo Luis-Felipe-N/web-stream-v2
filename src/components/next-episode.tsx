@@ -8,28 +8,10 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface NextEpisodeProps {
-    episode: EpisodeT
+    nextEpisode: EpisodeT
 }
 
-export default function NextEpisode({ episode }: NextEpisodeProps) {
-    const { data: nextEpisode, isLoading, error } = useQuery<EpisodeT>({
-        queryKey: [`episode@${episode.index + 1}`],
-        queryFn: () => getNextEpisode({
-            animeId: episode.season.animeId,
-            seasonId: episode.seasonId,
-            currentIndex: episode.index
-        }),
-    })
-
-    if (isLoading) {
-        return (
-            <h1>Loading...</h1>
-        )
-    }
-
-    if (!nextEpisode) {
-        return null
-    }
+export default function NextEpisode({ nextEpisode }: NextEpisodeProps) {
 
     return (
         <div>
