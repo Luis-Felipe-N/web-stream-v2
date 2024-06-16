@@ -1,9 +1,14 @@
+'use client'
+
 import * as React from 'react';
-import { parseNumberFromString } from '../../utils';
+
 import loadScript from '../../utils/load-script';
-import { Source } from '@/types/types';
 import Hls from 'hls.js';
-import { useVideoState } from '@/context/VideoStateContext';
+
+import screenfull from '@/utils/screenfull';
+import { isMobile } from '@/utils/device';
+import { Source } from '@/types/types';
+import { PLAYER_CONTAINER_CLASS } from '@/constants';
 
 const HLS_VARIABLE_NAME = 'Hls';
 
@@ -39,6 +44,7 @@ const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
             },
             [ref]
         );
+
         React.useEffect(() => {
             async function initHlsPlayer() {
                 const HlsSDK = await loadScript<typeof Hls>(
@@ -64,28 +70,24 @@ const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
                     }
                 } else if (innerRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
                     innerRef.current.src = source.file;
-
-
-                    if (innerRef.current.requestFullscreen) {
-                        innerRef.current.requestFullscreen();
-                    } else if (innerRef.current.requestFullscreen) { /* Safari */
-                        innerRef.current.requestFullscreen();
-                    } else if (innerRef.current.requestFullscreen) { /* IE11 */
-                        innerRef.current.requestFullscreen();
-                    }
                 }
             }
 
-            console.log(shouldPlayHls(source))
-
             if (shouldPlayHls(source)) {
                 initHlsPlayer();
+
+                const containerEl = document.querySelector(`.${PLAYER_CONTAINER_CLASS}`);
+
+                // @ts-ignore
+                screenfull.request(containerEl).then(() => {
+                    if (!isMobile) return;
+
+                    // @ts-ignore
+                    screen.orientation.lock('landscape');
+                });
             } else {
                 if (innerRef.current) {
                     innerRef.current.src = 'https://cors-anywhere.herokuapp.com/' + source.file;
-                    // if (innerRef.current.requestFullscreen) {
-                    //     innerRef.current.requestFullscreen();
-                    // }
                 }
             }
 
@@ -101,7 +103,7 @@ const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
                 ref={playerRef}
                 autoPlay
                 preload="auto"
-                className="h-full w-full"
+                className="max-h-screen  w-full"
                 playsInline
                 crossOrigin="anonymous"
                 {...props}

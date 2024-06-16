@@ -15,7 +15,7 @@ const Overlay = () => {
     };
 
     return (
-        <div onClick={handleToggleVideo} className="w-full h-full bg-slate-900/80 z-1"></div>
+        <div onClick={handleToggleVideo} className="w-full h-full z-1"></div>
     );
 };
 

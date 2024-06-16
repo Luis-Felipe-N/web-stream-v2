@@ -270,7 +270,7 @@ const Slider = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         ref={sliderRef}
-        className={classNames('styles.container', className)}
+        className={classNames('cursor-pointer', className)}
         style={{ ...sliderStyle }}
         {...props}
       >
@@ -319,7 +319,7 @@ const Bar: React.FC<BarProps> = ({
 
   return (
     <div
-      className={classNames('styles.bar', className)}
+      className={classNames('absolute', className)}
       style={{ ...barStyle, ...style }}
       {...props}
     />
@@ -358,7 +358,7 @@ const Dot: React.FC<DotProps> = ({
 
   return (
     <div
-      className={classNames('styles.dot', className)}
+      className={classNames('absolute rounded-full top-1/2 transform -translate-x-1/2 -translate-y-1/2', className)}
       style={{
         ...dotStyle,
         ...dotSize,

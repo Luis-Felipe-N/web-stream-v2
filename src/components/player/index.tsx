@@ -37,7 +37,7 @@ const InnerPlayer = forwardRef<HTMLVideoElement, InnerPlayerProps>(
 
         return (
             <VideoContextProvider videoRef={videoRef} >
-                {<DefaultUI ref={playerRef} {...props} >{""}</DefaultUI>}
+                <DefaultUI ref={playerRef} {...props} >{""}</DefaultUI>
             </VideoContextProvider>
         );
     },

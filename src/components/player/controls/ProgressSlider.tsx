@@ -4,6 +4,7 @@ import { isDesktop } from '@/utils/device';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Slider from '../slider';
 
+
 const ProgressSlider = () => {
   const { videoEl, setVideoState } = useVideo();
   const [bufferPercent, setBufferPercent] = useState(0);
@@ -93,24 +94,41 @@ const ProgressSlider = () => {
 
   return (
     <Slider
-      className={classNames('styles.container', isDesktop && 'styles.desktop')}
+      className={classNames(
+        "w-full cursor-pointer flex flex-col justify-end",
+        isDesktop ? "h-4" : "h-1"
+      )}
       onPercentIntent={handlePercentIntent}
       onPercentChange={handlePercentChange}
       onPercentChanging={handlePercentChanging}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className={'styles.innerContainer'}>
-        <Slider.Bar className={'styles.hoverBar'} percent={hoverPercent} />
-        <Slider.Bar className={'styles.bufferBar'} percent={bufferPercent} />
-        <Slider.Bar className={'styles.playBar'} percent={currentPercent} />
-        <Slider.Bar className={'styles.backgroundBar'} />
-        <Slider.Dot className={'styles.dot'} percent={currentPercent} />
+
+      <div>
+        {/* {currentPercent && <div>{convertTime(currentPercent)}</div>} */}
+        {/* {videoEl?.duration && <div>{convertTime(videoEl.duration)}</div>} */}
+      </div>
+
+
+      <div className="w-full h-2 relative group rounded-full">
+        <Slider.Bar className="bg-slate-50/70" percent={hoverPercent} />
+        <Slider.Bar className="bg-slate-50/60" percent={bufferPercent} />
+        <Slider.Bar className="bg-slate-50" percent={currentPercent} />
+        <Slider.Bar className="bg-slate-50/40 w-full" />
+        <Slider.Dot
+          className={classNames(
+            "w-3.5 h-3.5 absolute bg-slate-50 rounded-full",
+            isDesktop ? "hidden group-hover:block" : "block"
+          )}
+          percent={currentPercent}
+        />
+
 
         {!!hoverPercent && videoEl?.duration && (
           <div
-            className={'styles.hoverTime'}
-            style={{ left: hoverPercent + '%' }}
+            className="bg-black/80 text-white p-1 absolute bottom-full mb-3 transform -translate-x-1/2"
+            style={{ left: `${hoverPercent}%` }}
           >
             {convertTime((hoverPercent / 100) * videoEl.duration)}
           </div>
