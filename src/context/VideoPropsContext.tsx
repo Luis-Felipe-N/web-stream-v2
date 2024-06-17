@@ -10,7 +10,6 @@ import volumeHotKey from '../hotkeys/volume';
 
 import { HotKey, Shortcuts, Subtitle } from '@/types/types';
 import { mergeDeep } from '@/utils';
-import { IndicatorRef } from '@/components/player/indicator';
 import { StreamPlayer } from '@/components/player';
 import { VideoState } from './VideoStateContext';
 
@@ -52,15 +51,6 @@ export interface I18n extends I18nField {
 
 export type Components = {
     Subtitle: React.FC;
-    MobileBackwardIndicator: React.ForwardRefExoticComponent<
-        React.RefAttributes<IndicatorRef>
-    >;
-    MobileForwardIndicator: React.ForwardRefExoticComponent<
-        React.RefAttributes<IndicatorRef>
-    >;
-    MobileVolumeSlider: React.ForwardRefExoticComponent<
-        React.RefAttributes<IndicatorRef>
-    >;
     Player: React.ForwardRefExoticComponent<
         StreamPlayerProps & React.RefAttributes<HTMLVideoElement>
     >;
