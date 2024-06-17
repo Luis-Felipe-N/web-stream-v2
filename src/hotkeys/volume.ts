@@ -1,4 +1,4 @@
-import { HotKey } from '../types';
+import { HotKey } from "@/types/types";
 
 const volumeHotKey = (hotKey: string | string[] = 'm'): HotKey => {
   let previousVolume = 1;

@@ -1,4 +1,4 @@
-import { HotKey } from '../types';
+import { HotKey } from "@/types/types";
 
 const forwardHotKey = (hotKey: string | string[] = 'right'): HotKey => ({
   fn: (videoEl: HTMLVideoElement) => {

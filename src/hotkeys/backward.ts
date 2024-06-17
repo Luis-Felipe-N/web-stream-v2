@@ -1,4 +1,5 @@
-import { HotKey } from '../types';
+import { HotKey } from "@/types/types";
+
 
 const backwardHotKey = (hotKey: string | string[] = 'left'): HotKey => ({
   fn: (videoEl: HTMLVideoElement) => {

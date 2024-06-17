@@ -1,4 +1,4 @@
-import { HotKey } from '../types';
+import { HotKey } from "@/types/types";
 
 const playPauseHotKey = (
   hotKey: string | string[] = ['k', 'space']
