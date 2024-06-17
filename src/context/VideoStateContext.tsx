@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { ReactNode, useCallback, useContext, useEffect, useMemo } from 'react';
 import { isInArray } from '../utils';
 import { useVideoProps } from './VideoPropsContext';
 import { Audio, Subtitle } from '@/types/types';
@@ -24,6 +24,7 @@ interface VideoContextProps {
 }
 
 interface VideoContextProviderProps {
+    children: ReactNode
     defaultState?: Partial<VideoState>;
 }
 
@@ -44,18 +45,12 @@ export const VideoStateContext = React.createContext<VideoContextProps>({
 
 const LOCALSTORAGE_KEY = 'netplayer_video_settings';
 
-export const VideoStateContextProvider: React.FC<VideoContextProviderProps> = ({
-    children,
-}) => {
+export function VideoStateContextProvider({ children }: VideoContextProviderProps) {
     const props = useVideoProps();
 
-    const defaultQualities = useMemo(
-        () =>
-            props.sources
-                .filter((source) => source.label)
-                .map((source) => source.label!),
-        [props.sources]
-    );
+    const defaultQualities = useMemo(() => {
+        return props.source.label ?? '';
+    }, [props.source]);
 
     const defaultState = useMemo(
         () => ({
@@ -93,6 +88,7 @@ export const VideoStateContextProvider: React.FC<VideoContextProviderProps> = ({
                     ? (settings.currentAudio as string) || null
                     : newState.currentAudio,
             currentQuality:
+                // @ts-ignore
                 isInArray(settings?.currentQuality, langQualities) ||
                     langQualities.length === 0
                     ? (settings.currentQuality as string) || null
@@ -106,12 +102,12 @@ export const VideoStateContextProvider: React.FC<VideoContextProviderProps> = ({
 
         return { ...newState, ...filteredSettings };
     }, [defaultState, props?.defaultVideoState]);
-
+    // @ts-ignore
     const [state, setState] = React.useState<VideoState>(getState);
 
     useEffect(() => {
         const state = getState();
-
+        // @ts-ignore
         setState(state);
     }, [getState]);
 
