@@ -87,7 +87,7 @@ const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
                 });
             } else {
                 if (innerRef.current) {
-                    innerRef.current.src = 'https://cors-anywhere.herokuapp.com/' + source.file;
+                    innerRef.current.src = source.file;
                 }
             }
 
