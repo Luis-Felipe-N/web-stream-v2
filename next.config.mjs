@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images2.alphacoders.com' },
       { protocol: 'https', hostname: 'media.kitsu.io' },
+      { protocol: 'https', hostname: 'media.kitsu.app' },
       { protocol: 'https', hostname: 'animesonlinecc.to' },
       {
         protocol: 'https',
