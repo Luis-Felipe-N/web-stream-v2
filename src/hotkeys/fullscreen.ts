@@ -20,13 +20,13 @@ const fullscreenHotKey = (hotKey: string | string[] = 'f'): HotKey => ({
       screenfull.request(containerEl as HTMLElement).then(() => {
         if (!isMobile) return;
 
-        screen.orientation.lock('landscape');
+        // screen.orientation.lock('landscape');
       });
     } else {
       screenfull.exit().then(() => {
         if (!isMobile) return;
 
-        screen.orientation.lock('portrait');
+        // screen.orientation.lock('portrait');
       });
     }
   },
