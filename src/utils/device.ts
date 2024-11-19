@@ -1,3 +1,4 @@
+//@ts-nocheck
 /* eslint-disable */
 let userAgent: string;
 let vendor: string;
@@ -11,6 +12,7 @@ if (typeof navigator !== 'undefined') {
 }
 
 if (typeof window !== 'undefined') {
+    //@ts-ignore
     opera = window.opera;
 }
 
