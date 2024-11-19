@@ -50,7 +50,7 @@ export default async function Anime({ params }: AnimeProps) {
     <main className='grid lg:px-20 px-4 pb-24'>
       <section className='grid grid-cols-12 grid-rows-2 lg:mt-24 mt-48 gap-8'>
         <div className='lg:col-span-8 col-span-12'>
-          <Player source={source} forwarder={nextEpisode} />
+          <video src={source.file}></video>
         </div>
 
         <div className='lg:col-span-8 col-span-12'>
