@@ -12,7 +12,7 @@ export default async function Anime({ params }: AnimeProps) {
   const anime: AnimeT = await getAnimeBySlug(params.slug)
 
   return (
-    <main>
+    <main className='pb-24'>
       <section className="flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]">
         <AnimeHero anime={anime} />
       </section>
