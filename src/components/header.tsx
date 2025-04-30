@@ -36,11 +36,11 @@ export default function Header() {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <a className="px-6 inline-block" href="">
                 Minha lista
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a className="px-6 inline-block" href="/animes  ">
@@ -48,11 +48,11 @@ export default function Header() {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a className="px-6 inline-block" href="/movies">
                 Filmes
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
 

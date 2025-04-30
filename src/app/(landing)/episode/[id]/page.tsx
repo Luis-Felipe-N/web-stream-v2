@@ -61,9 +61,11 @@ export default async function Anime({ params }: AnimeProps) {
           </div>
         </div>
 
-        <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
-          {episode && <NextEpisode nextEpisode={nextEpisode} />}
-        </div>
+        {nextEpisode && (
+          <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
+            <NextEpisode nextEpisode={nextEpisode} />
+          </div>
+        )}
       </section>
     </main>
 

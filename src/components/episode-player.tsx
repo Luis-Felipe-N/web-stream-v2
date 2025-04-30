@@ -32,7 +32,11 @@ export default function EpisodePlayer({ episode, nextEpisode }: EpisodePlayerPro
 
     if (source) {
         return (
-            <Player source={source} forwarder={nextEpisode} />
+            // <Player source={source} forwarder={nextEpisode} />
+            < iframe src={episode.video} >
+                sdasda
+
+            </iframe >
         );
     }
 

@@ -30,18 +30,18 @@ export default function RootLayout({
         <AdSense pId="ca-pub-4707731953261449" />
       </head>
       <body className={`bg-slate-950 text-zinc-50 antialiased `}>
-        <WatchBrasilProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NextAuthSessionProvider>
-              <QueryProvider>{children}</QueryProvider>
-            </NextAuthSessionProvider>
-          </ThemeProvider>
-        </WatchBrasilProvider>
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextAuthSessionProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </NextAuthSessionProvider>
+        </ThemeProvider>
+
       </body>
     </html>
   )

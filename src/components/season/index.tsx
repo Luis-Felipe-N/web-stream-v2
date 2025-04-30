@@ -13,7 +13,7 @@ export default function Season({ anime }: SeasonProps) {
   const seasons = anime.seasons.sort(function (x, y) {
     return Number(x.title.split('  ')[1]) - Number(y.title.split('  ')[1])
   })
-
+  console.log({ seasons })
   const [seasonId, setSeasonId] = useState(seasons[0].id)
 
   async function handleOnValueChange(value: string) {
