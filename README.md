@@ -1,37 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Claro! Aqui está um modelo de README para o seu projeto web-stream-v2, baseado na descrição e nas informações fornecidas:
 
-## Getting Started
+---
 
-First, run the development server:
+# web-stream-v2
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Aplicação de stream para melhorar meus conhecimentos em Front-end.
+
+## Descrição
+
+Este projeto tem como objetivo aprimorar meus conhecimentos em desenvolvimento Front-end, utilizando tecnologias modernas e práticas recomendadas do mercado. A aplicação simula um serviço de streaming, permitindo experimentar conceitos como componentes reutilizáveis, gerenciamento de estado, roteamento, consumo de APIs, entre outros.
+
+## Tecnologias Utilizadas
+
+- **TypeScript** (98.4%)
+- Outras
+
+## Funcionalidades
+
+- Interface de usuário interativa e responsiva
+- Consumo e exibição de conteúdo via streaming
+- Organização de componentes reutilizáveis
+- Gerenciamento de estado eficiente
+- Roteamento de páginas
+
+## Como Rodar o Projeto
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/Luis-Felipe-N/web-stream-v2.git
+   cd web-stream-v2
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. **Inicie a aplicação:**
+   ```bash
+   npm start
+   # ou
+   yarn start
+   ```
+
+4. **Acesse no navegador:**
+   ```
+   http://localhost:3000
+   ```
+
+## Estrutura do Projeto
+
+```
+src/
+├── components/
+├── pages/
+├── services/
+├── styles/
+└── App.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contribuição
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Sinta-se à vontade para abrir issues ou pull requests para sugerir melhorias, reportar bugs ou contribuir com novas funcionalidades.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Licença
 
-## Learn More
+Este projeto está sob a licença MIT.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# web-stream-v2
+Se quiser adicionar detalhes específicos (como imagens, GIFs, links de deploy, etc.), me avise!
