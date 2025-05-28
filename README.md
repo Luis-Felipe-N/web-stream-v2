@@ -1,6 +1,4 @@
-Claro! Aqui está um modelo de README para o seu projeto web-stream-v2, baseado na descrição e nas informações fornecidas:
 
----
 
 # web-stream-v2
 
