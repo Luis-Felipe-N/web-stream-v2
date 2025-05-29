@@ -48,6 +48,6 @@ export async function getMoviesByGenre(genreId: number, size = 30) {
 
   console.log({ response })
   const responseJson = await response.json()
-
+  console.log({ responseJson })
   return responseJson.list
 }

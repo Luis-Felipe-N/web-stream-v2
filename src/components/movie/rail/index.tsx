@@ -7,7 +7,10 @@ import {
 import { getMoviesByGenre } from '@/server/actions/movies/get-movies-by-genre'
 import RailGenres from './rail-genres'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a34a42ca5c9f7bec5864887bf953f27d29295a39
 export default async function Rail() {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery({
@@ -29,7 +32,6 @@ export default async function Rail() {
     queryKey: ['moviehorror'],
     queryFn: () => getMoviesByGenre(10083),
   })
-
 
 
   return (

@@ -12,7 +12,6 @@ export function SearchBar() {
 
     let timeOutSearch: any
 
-
     function handleSearch(term: string) {
         const params = new URLSearchParams(searchParams);
 
