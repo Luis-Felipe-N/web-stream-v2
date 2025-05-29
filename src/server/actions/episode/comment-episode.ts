@@ -11,7 +11,7 @@ export async function commentEpisode(id: string, content: string) {
     const response = await api.post(`episodes/${id}/comments`, {
         content,
     })
-
+    console.log({ response })
     const responseJson = await response.data
 
     return responseJson.comment

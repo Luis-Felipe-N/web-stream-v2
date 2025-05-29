@@ -36,7 +36,7 @@ export default function SingIn() {
   async function handleCreateAccount(credentials: registerFormData) {
     try {
       const response = await api.post('/users', credentials)
-
+      console.log(response)
       if (response.status === 201) {
         await signIn('credentials', {
           email: response.data.user.email,

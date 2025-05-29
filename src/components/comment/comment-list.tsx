@@ -23,7 +23,8 @@ export default function CommentList({ episode }: CommentListProps) {
     }
 
     return (
-        <div>
+        <div className="mt-12">
+            <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-slate-200 rounded-full"></div>Comentários</strong>
             {comments.map(comment => (
                 <div className={`flex mt-8 items-start gap-4`} key={comment.id}>
                     <Avatar className='h-14 w-14'>
@@ -36,7 +37,8 @@ export default function CommentList({ episode }: CommentListProps) {
                         <div className="flex gap-2">
                             <span className="font-semibold">{comment.author.name}</span>
                         </div>
-                        <p>{comment.content}</p>
+                        <small>6 horas atrás</small>
+                        <p className="text-sm">{comment.content}</p>
                     </div>
                 </div>
             ))}
