@@ -35,22 +35,9 @@ export default function Header() {
                 Home
               </Link>
             </li>
-
             <li>
-              <a className="px-6 inline-block" href="">
-                Minha lista
-              </a>
-            </li>
-
-            <li>
-              <a className="px-6 inline-block" href="/animes  ">
+              <a className="px-6 inline-block" href="/animes">
                 Animes
-              </a>
-            </li>
-
-            <li>
-              <a className="px-6 inline-block" href="/movies">
-                Filmes
               </a>
             </li>
           </ul>

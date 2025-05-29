@@ -1,9 +1,8 @@
 import { getSession } from "./get-session";
 
 export async function getMovieById(movieId: number) {
-  const { wtk, token } = await getSession()
 
-  const cookie = `__Host-next-auth.csrf-token=422e5095bb9f387946e05298f3a456c69cdeff655b808c8cffa3024c218a4cfb%7Cade8e5fd9dddbd35eb544750a14ff24972d8eb51218660f955c1f65f7f126a44; __Secure-next-auth.callback-url=https%3A%2F%2Fplay.watch.tv.br; wtk=${wtk}; deviceUuid=49fd-571e-a8fe-0018-38cd-7e61; pid=6767556; hasShownModal-6767556=true; __Secure-next-auth.session-token=${token}`
+  const cookie = `__Host-next-auth.csrf-token=422e5095bb9f387946e05298f3a456c69cdeff655b808c8cffa3024c218a4cfb%7Cade8e5fd9dddbd35eb544750a14ff24972d8eb51218660f955c1f65f7f126a44; __Secure-next-auth.callback-url=https%3A%2F%2Fplay.watch.tv.br; ; deviceUuid=49fd-571e-a8fe-0018-38cd-7e61; pid=6767556; hasShownModal-6767556=true; __Secure-next-auth.session-token`
 
   const config = {
     headers: {

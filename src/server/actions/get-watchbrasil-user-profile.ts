@@ -1,43 +1,47 @@
 'use server'
 
-import { api } from '@/data/api';
-import { getSession } from './movies/get-session';
-
+import { api } from '@/data/api'; // Sua função fetch wrapper
+import { getSession } from './movies/get-session'; // Sua função para pegar a sessão/token
 
 export async function getWatchBrasilUserProfile() {
-  const token = getSession()
 
   const config = {
     headers: {
-      'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br, zstd',
-      'Accept-Language': 'en-US,en;q=0.6',
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
-      'Cookie': `__Host-next-auth.csrf-token=cb037e9047ef5a66a390b39b810e069837bc3fe477c6d62d870662c44b039781%7C1c0be8c5de93c852c79cdfdbd6f4e75715f5a8aaaafb865ada31c0125397dd84; __Secure-next-auth.callback-url=https%3A%2F%2Fplay.watch.tv.br%2Fselecionar-perfil%3Fredirect%3D%2Fhome; wtk=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aDIud2F0Y2gudHYuYnIvYXBpL3Y0L2F1dGgiLCJpYXQiOjE3MTY3NTU0MDgsImV4cCI6MTczMjMwNzQwOCwibmJmIjoxNzE2NzU1NDA4LCJqdGkiOiJYdEFPNFB3SGF3S0sxTXRlIiwic3ViIjoiMTg3MDE5NSIsInBydiI6IjdhZTRlY2QyNWI3NjZhM2Y0ZWI0YzZmZjU5MDI0NzEzZWU0MThiZDEiLCJicmFuZCI6IndhdGNoIn0.SwMDoVp7Q6MuZRpJSpHFrD9nuewLjk-aRI6U5U4il-U; deviceUuid=3ecc-984d-30a7-2829-447e-9a81; pid=6767556; __Secure-next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..yPrAUVlNUiX0vSFa.lqF8fhXsG9bePawB9IMhxx2VquauqFWrfDQnNV9ChVuYCSW2MPngA_nr-o0VfQkPqhurXOOO2pg52suuIw6uMs45XEjL8VaBVxPhT2Uft26eK0nLB-scBky5T2nZy_Pg87IzJ_03kOqPBJb6V3rq59hvSfTqzNFyNP-e2JWqwCyM5gRHvQHI7OgNd2dFQvnxKyOW_KWKiTD30o0WX5ZueGYSqTUzOuKo7pzrlTX8AYPJljqXXR1dP891jLPopkUwfx0kZffeLsGVcDPxSqfulHpzFwxNyWE4DQWeAkQMrKWnOjrhbU7S9HyLTNPKWY0VgjTp_R25wQWGWQ9FRpq8WrSzWvPHWAxJyvitmrOxrt10cBNRXu3g_KPg9SNOVEOwpiIBI7jpaCPh2yXuTMpZnEwqG_2VAepOku3rASFTqmXLDa-rmDfZ0GcDrBOZIRefOIahziYTlpr8k_fpN8mDnXGoSKJkGrWL5PTlQd2s6e7zUAUoXVOO0tu5SlqhyzXb2DDWvINQJSsKD44mvoMECTzHXRYfYcLOuBkVM_rda7o-r9Vd585b75EFifZ1DNXhI3FosX-NInAbY0LdAvO8WiEZyqdkm8mQ8YnDgKRsdVG0go6oAxdNN_LxZfGZc8BzEf-jBcyDMXU0YmeCbNzj3G32Xaaov2IML4Ndt_efFV12LoXxp_mp-eiU-9yhh48L4zKUxFP9.v-bj_l584fkLjSRiw38-1g`,
-      'Pragma': 'no-cache',
-      'Sec-Ch-Ua': '"Brave";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
-      'Sec-Ch-Ua-Mobile': '?0',
-      'Sec-Ch-Ua-Platform': '"Linux"',
-      'Sec-Fetch-Dest': 'empty',
-      'Sec-Fetch-Mode': 'cors',
-      'Sec-Fetch-Site': 'same-origin',
-      'Sec-Gpc': '1',
-      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+      "accept": "application/json",
+      "accept-encoding": "gzip, deflate, br, zstd",
+      "accept-language": "en-US,en;q=0.6",
+      "cookie": "deviceUuid=d725-6d7c-412f-a265-e787-845d; __Host-next-auth.csrf-token=f2b19062392a12134a3f3c7770fbea662b47caba94b85f8b03fd05816462931c%7Cd425434cff6794b04d64c7cb8d7f73a138ab333eb7b42535dcea182ffd66ee27; __Secure-next-auth.callback-url=https%3A%2F%2Fplay.watch.tv.br%2Fselecionar-perfil%3Fredirect%3D%252Fhome; pid=Njc2NzU1Ng%3D%3D; active_profile=%7B%22ageBracket%22%3A18%2C%22id%22%3A6767556%2C%22isMaster%22%3Atrue%2C%22name%22%3A%22Luis%20Felipe%20Nunes%22%2C%22photo%22%3A%22%22%2C%22isKidsProfile%22%3Afalse%2C%22liveContentEnabled%22%3Atrue%2C%22usePin%22%3Afalse%2C%22userId%22%3Anull%2C%22ks%22%3Anull%2C%22languagePlayer%22%3A%7B%22_id%22%3A%22%22%2C%22_language%22%3A%22por%22%2C%22_label%22%3A%22POR%22%2C%22_short_language%22%3A%22pt%22%2C%22_title%22%3A%22Portugu%C3%AAs%22%2C%22_active%22%3Afalse%7D%2C%22subtitlePlayer%22%3A%7B%22_id%22%3A%22off%22%2C%22_language%22%3A%22off%22%2C%22_label%22%3A%22Off%22%2C%22_short_language%22%3A%22off%22%2C%22_title%22%3A%22Desativadas%22%2C%22_active%22%3Afalse%7D%7D; wtk=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJicmFuZCI6IldBVCIsImRldmljZV9pZCI6OTY0NDA2LCJsb2dpbl90aW1lc3RhbXAiOjE3NDg1MzMyNTkwMDAsInN1YiI6MTg3MDE5NSwidXNlcl9pZCI6MTg3MDE5NSwiaWF0IjoxNzQ4NTMzMjU5LCJleHAiOjE3NDg1MzY4NTksInByb2ZpbGVfaWQiOjY3Njc1NTZ9.FQufrjGzXFiudj5iCHGwUd0hEMEa5DDtNjBXB3c4ScY; __Secure-next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..lOuu0P5RdiFPqLom.uYuM8gLSzgj4l3w0AkU6DznYftEYkT4uBhk-GAYydfVFnA4gff7BeGJguEGywusEmpfXdT7a5Arn6Hhzrn3vMwXE3krAut013sX_CenJSFlKsiSR0J1YOP-WiODKjR_QvL_p20Fa2PxL3pb4vzfu499-jb46yLJPiStY_A8M24nE1e3MlQ9O4EKG6xP1LUjgEGSezQKtKTkDOrnIqSxXIBkjLi2OlKGcEQ4eMRi_IccQtIoticrjybmyP-FZxf7prHoSCPwTTVHXungxuBEV4zaFevbGEmSBg_RFpUQXjjpH3GMtB9oik9eDJxzrQ8klbDk_6s5x_W5bba0N8Ly_k719PN3lHdWrD75Po5Y9A32i73-3qVzR5v9nRsznC_bq6qSIRg8OF6IuQ9D8uWykfUtusNdZnhKRiyIucQI9ceRkJrfF_xZyVCW_Nli_KFsegsuye8G8tS3KoPJbQFc5vucenEzv1PglOL_QO_B1cuR8WPWtAlZP0LyRjBj5Uqx9w_r3oemePY3pvM7GVVB9_vgiqJvk8UK9ctWxi_mbCLa0bMFjgvhQ7o4eVZ-T1IoBBHukZY4x0IW1s6Bqau3q1vOSUfkzXn2vuXUbrqBuipPeX5ps7-F-6wkRe5qkt6O3Dju7yKEBt9fnvXfkCo13VqEy9lL-1InGRvaHOu_qbfAH3i3tkt1xBRyIEZg7zZ5_LGGj9qySkloR0piTmwov4R23u9wWC5N2mWhLm1o5H4CN8z5HmznBgtQxSp9KzMIIEB5DCcZ4ZyQaFBAR8xbKhbGkvEwUSeBpcwLlpyAZH8W-sMc7jPt8JOUb8vkGhlZ1VjhhGStu47AR-KYRQJjMSaqdYYXX7Gk5u7VE7C5GoJcFN_Jy-i5ddSd4CXyqyciDdrVVVlOUzaE4lz8VHkOR2dyZ34zUn1QHulp9R6-jLcaLvxC1TzTRrdNEMEKT41tFyFE.1NzBUWJ8PGu_AVz6inYagg",
+      "priority": "u=1, i",
+      "referer": "https://play.watch.tv.br/filmes",
+      "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Brave\";v=\"134\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "sec-gpc": "1",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
     }
   };
 
   const response = await api(
-    'https://play.watch.tv.br/api/profile?responseType=standard&revalidate=0',
+    'https://play.watch.tv.br/api/profile?revalidate=0',
     {
       next: {
-        revalidate: 60 * 60, // 1 hours
+        revalidate: 0,
       },
       ...config
     },
-  )
+  );
 
-  const responseJson = await response.json()
+  if (!response.ok) {
+    const errorBody = await response.text();
+    console.error('Erro na API da Watch Brasil:', errorBody);
+    throw new Error(`Falha ao buscar perfil da Watch Brasil: ${response.status} ${response.statusText}`);
+  }
 
-  return responseJson
+  const responseJson = await response.json();
+  console.log(responseJson.data);
+  return responseJson.data.profiles[0].id;
+
 }
