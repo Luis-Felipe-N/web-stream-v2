@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 
@@ -10,18 +11,22 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, AlertCircle, AlertCircleIcon } from 'lucide-react'
 
 const LoginFormSchema = z.object({
-  email: z.string().email({ message: 'Este email não parece válido' }),
-  password: z.string().min(6, { message: 'Senha precisa conter no mínimo 6 caracteres' }),
+  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
+  password: z.string().min(6, { message: 'A senha precisa ter no mínimo 6 caracteres.' }),
 })
 
 export type loginFormData = z.infer<typeof LoginFormSchema>
 
 export default function SingIn() {
-  const { register, handleSubmit, setError, formState: { isSubmitting, errors} } = useForm<loginFormData>({
+  const { register, handleSubmit, setError, formState: { isSubmitting, errors } } = useForm<loginFormData>({
     resolver: zodResolver(LoginFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    }
   })
 
   const router = useRouter()
@@ -34,22 +39,33 @@ export default function SingIn() {
         redirect: false,
       })
 
-      if (response?.status === 401 || !response?.ok) {
-        return setError('root', {
-          message:
-            'Credenciais incorretas. Por favor, verifique seu e-mail e senha.',
+      if (!response) {
+        setError('root', {
+          message: 'Ocorreu um erro inesperado. Por favor, tente novamente.',
         })
+        return;
       }
 
-      if (response?.ok) {
-        router.replace('/')
+      if (response?.status === 401 || !response?.ok) {
+        let errorMessage = 'Credenciais incorretas. Verifique seu e-mail e senha.';
+        if (response.error === 'CredentialsSignin') {
+          errorMessage = 'Email ou senha inválidos. Por favor, tente novamente.';
+        } else if (response.error) {
+          errorMessage = 'Ocorreu um erro ao tentar fazer login. Tente mais tarde.';
+          console.error("NextAuth SignIn Error:", response.error);
+        }
+
+        setError('root', { message: errorMessage });
+        return;
       }
+
+      router.replace('/')
 
     } catch (error) {
-      return setError('root', {
-        message:
-          'Ocorreu algum erro ao fazer o login. Por favor, tente novamente',
-      })
+      console.error("Login submission error:", error);
+      setError('root', {
+        message: 'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.',
+      });
     }
   }
 
@@ -58,14 +74,18 @@ export default function SingIn() {
       <div className="bg-slate-900 p-12 py-16 pb-20 max-w-xl w-full rounded-lg m">
         <div className="mb-14 text-center">
           <h1 className="text-4xl mb-2 font-bold">Entrar</h1>
-          <p>Digite o endereço de e-mail e a senha da sua conta.</p>
+          <p>Acesse sua conta para continuar.</p>
         </div>
 
         <form onSubmit={handleSubmit(handleLogin)} className="w-full">
           {errors.root && (
-            <p className="text-start mt-2 text-sm text-red-400 mb-4 font-bold">
-              {errors.root?.message}
-            </p>
+            <Alert variant="destructive" className='mb-4'>
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Erro ao Entrar</AlertTitle>
+              <AlertDescription>
+                {errors.root.message}
+              </AlertDescription>
+            </Alert>
           )}
           <div className="grid items-center gap-1.5">
             <Label className="text-base font-semibold">
@@ -105,6 +125,11 @@ export default function SingIn() {
               Entrar
             </Button>
           )}
+
+          <p className="mt-4 text-sm font-semibold text-slate-200 ">
+            Não possui uma conta? <Link className='hover:underline transition text-[#E71D36] hover:text-slate-400' href={'/sing-up'}>Faça seu cadastro.</Link>
+          </p>
+
         </form>
       </div>
     </div>

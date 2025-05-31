@@ -41,6 +41,7 @@
     "react-hook-form": "^7.51.2",
     "react-icons": "^5.2.1",
     "react-player": "^2.16.0",
+    "sonner": "^2.0.4",
     "swiper": "^11.1.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",

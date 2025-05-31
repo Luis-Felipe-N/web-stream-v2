@@ -33,12 +33,6 @@ export default async function Search({ searchParams }: AnimeProps) {
                 <SearchBar />
                 <div className="relative z-20 mt-12">
                     <strong className="mb-2 block">{searchParams.keyword ? `Resultados para: ${searchParams.keyword}` : "Recomendados para você"}</strong>
-
-                    <HydrationBoundary state={dehydrate(queryClient)}>
-                        <SearchResultsMovies keyword={searchParams.keyword} />
-                    </HydrationBoundary>
-
-
                 </div>
 
                 <div className="relative z-20 mt-12">
