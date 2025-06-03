@@ -1,3 +1,5 @@
+'use client'
+
 import { api } from '@/data/api'
 
 import NextEpisode from '@/components/next-episode'
@@ -7,7 +9,6 @@ import EpisodeDescription from '@/components/episode-description'
 
 import { getBaseUrl } from '@/utils/get-base-url'
 import { EpisodeT } from '@/types'
-import Player from '@/components/player'
 import { Source } from '@/types/types'
 import { getNextEpisode as getNextEpisodeAction } from '@/server/actions/episode/get-next-episode'
 
@@ -36,6 +37,7 @@ function getNextEpisode(episode: EpisodeT) {
 }
 
 export default async function Anime({ params }: AnimeProps) {
+  console.log(`[SERVER RENDER Anime Page] ID: ${params.id}, Timestamp: ${new Date().toISOString()}`);
   const episode = await getEpisode(params.id)
   const video = await getBaseUrl(episode.video)
 
@@ -50,7 +52,16 @@ export default async function Anime({ params }: AnimeProps) {
     <main className='grid lg:px-20 px-4 pb-24'>
       <section className='grid grid-cols-12 grid-rows-2 lg:mt-24 mt-48 gap-8'>
         <div className='lg:col-span-8 col-span-12'>
-          <iframe className='w-full aspect-video' src={episode.video}></iframe>
+          <video
+            src={source.file}
+            controls
+            autoPlay
+            className="w-full max-h-screen aspect-video"
+            title="Uma descrição concisa do conteúdo do vídeo"
+
+          >
+
+          </video>
         </div>
 
         <div className='lg:col-span-8 col-span-12'>

@@ -28,15 +28,10 @@ export default function EpisodePlayer({ episode, nextEpisode }: EpisodePlayerPro
 
         getVideo()
     }, [episode])
-    console.log(source)
 
     if (source) {
         return (
-            // <Player source={source} forwarder={nextEpisode} />
-            < iframe src={episode.video} >
-                sdasda
-
-            </iframe >
+            <Player source={source} forwarder={nextEpisode} />
         );
     }
 

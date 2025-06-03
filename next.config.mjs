@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      { protocol: 'https', hostname: 'imgsrv.crunchyroll.com' },
       { protocol: 'https', hostname: 'images2.alphacoders.com' },
       { protocol: 'https', hostname: 'media.kitsu.io' },
       { protocol: 'https', hostname: 'media.kitsu.app' },

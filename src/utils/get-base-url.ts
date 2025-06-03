@@ -11,7 +11,7 @@ export async function getBaseUrl(
 ) {
   try {
     const { data } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_DOMAINURL}/api/extractor`,
+      `${process.env.NEXT_PUBLIC_API_DOMAINURL}api/extractor`,
       {
         link: link,
       },
@@ -25,7 +25,6 @@ export async function getBaseUrl(
 function _getUrlBaseVideo(html: string) {
   const $ = cheerio.load(html);
   const scriptContent = $('script[type="text/javascript"]').html();
-
   if (scriptContent) {
     const indexStartStrem = scriptContent.replace('var VIDEO_CONFIG = ', '')
 

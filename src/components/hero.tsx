@@ -18,7 +18,7 @@ export default function Hero() {
     queryKey: ['popular'],
     queryFn: getPopularAnime,
   })
-  console.log({ data })
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
