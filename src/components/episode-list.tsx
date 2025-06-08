@@ -8,7 +8,6 @@ interface EpisodeListProps {
 }
 
 export default async function EpisodeList({ seasonId }: EpisodeListProps) {
-  // Fetch data directly on the server
   let episodes: EpisodeT[] = [];
   let errorFetching: string | null = null;
 
@@ -17,8 +16,6 @@ export default async function EpisodeList({ seasonId }: EpisodeListProps) {
   } catch (error) {
     console.error("Failed to fetch episodes:", error);
     errorFetching = "Failed to load episodes. Please try again later.";
-    // Optionally, you can re-throw the error or handle it by returning a specific UI
-    // For example, return <p>Error loading episodes.</p>;
   }
 
   if (errorFetching) {

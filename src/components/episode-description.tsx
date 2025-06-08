@@ -2,7 +2,6 @@
 
 import { EpisodeT } from "@/types"
 import { formatDate } from "@/utils/format-date"
-import { Star, StarIcon } from "lucide-react"
 
 import Image from "next/image"
 import Link from "next/link"
