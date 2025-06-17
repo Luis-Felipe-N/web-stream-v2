@@ -17,11 +17,6 @@ async function search(keyword: string) {
 }
 
 export default async function Search({ searchParams }: AnimeProps) {
-    const queryClient = new QueryClient()
-    await queryClient.prefetchQuery({
-        queryKey: ['movies'],
-        queryFn: () => getMoviesByGenre(22, 6),
-    })
 
     const results = await search(searchParams.keyword)
 
