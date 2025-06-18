@@ -33,7 +33,6 @@ interface DropdownUserProps {
 export function DropdownUser({ session }: DropdownUserProps) {
   const { data, status } = useSession()
 
-
   const router = useRouter()
 
   async function logout() {
@@ -57,7 +56,7 @@ export function DropdownUser({ session }: DropdownUserProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 mt-2">
           <DropdownMenuLabel>
-            <div className='flex gap-2 items-center py-2 px-2'>
+            <div className='flex gap-6 items-center py-2 px-2'>
               <Avatar className='h-12 w-12'>
                 <AvatarImage src={data.user.avatar} alt={data.user.name} />
                 <AvatarFallback>

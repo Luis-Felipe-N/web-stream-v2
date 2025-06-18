@@ -28,22 +28,22 @@ export default function Header() {
           </Link>
         </h1>
 
-        <nav className='justify-self-center lg:col-span-6 md:lg:col-span-6 col-span-12 md:lg:row-span-2 lg:row-span-2 row-span-1 md:lg:row-start-1 lg:row-start-1 row-start-2 md:lg:col-start-4 lg:col-start-4 col-start-1'>
-          <ul className="flex items-center font-mono font-semibold uppercase">
+        <nav className={`justify-self-center lg:col-span-6 md:lg:col-span-6 col-span-12 md:lg:row-span-2 lg:row-span-2 row-span-1 md:lg:row-start-1 lg:row-start-1 row-start-2 md:lg:col-start-4 lg:col-start-4 col-start-1`}>
+          <ul className="flex items-center font-semibold uppercase">
             <li>
               <Link className="px-6 inline-block" href={'/'}>
                 Home
               </Link>
             </li>
             <li>
-              <a className="px-6 inline-block" href="/animes">
-                Animes
+              <a className="px-6 inline-block text-slate-100/50 cursor-default">
+                Filmes
               </a>
             </li>
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-4 lg:col-span-3 md:lg:col-span-3 col-span-6 md:lg:row-span-2 lg:row-span-2 row-span-1">
+        <div className="flex items-center justify-end gap-6 lg:col-span-3 md:lg:col-span-3 col-span-6 md:lg:row-span-2 lg:row-span-2 row-span-1">
           <Link href={'/search'}>
             <Search className="hover:font-bold" size={24} />
           </Link>
