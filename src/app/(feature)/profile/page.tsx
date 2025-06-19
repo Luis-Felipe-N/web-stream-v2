@@ -97,10 +97,10 @@ export default function Profile() {
                                     </Button>
                                 ) : (
                                     <>
-                                        <Button className="mt-12" size="md" type="submit" variant="outline">
+                                        <Button className="mt-12" type="submit" variant="outline">
                                             Cancelar
                                         </Button>
-                                        <Button className="mt-12" size="md" type="submit">
+                                        <Button className="mt-12" type="submit">
                                             Atualizar
                                         </Button>
                                     </>
