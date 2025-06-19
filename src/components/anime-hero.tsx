@@ -7,14 +7,17 @@ import { Button } from './ui/button'
 
 import { Outfit } from 'next/font/google';
 import { FaPlay, FaVideo } from 'react-icons/fa6'
+import Link from 'next/link';
+import { getEpisodesBySeason } from '@/server/actions/get-episode-by-season';
 
 const outfit = Outfit({ subsets: ['latin'] });
 
 interface AnimeHeroProps {
   anime: AnimeT
+  URLEpisodeToWatch: string
 }
 
-export default function AnimeHero({ anime }: AnimeHeroProps) {
+export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) {
 
   const banner = anime?.banner ? anime?.banner.split('?')[0] : anime.cover
 
@@ -55,19 +58,14 @@ export default function AnimeHero({ anime }: AnimeHeroProps) {
                 </div>
               </div>
 
-
-              {/* 
-              <Button className="font-bold font-white uppercase" size="md">
-                Assistir 1T Ep.1
-              </Button> */}
-
               <div className="flex gap-4">
+                <Link href={URLEpisodeToWatch}>
+                  <Button className='gap-2 font-bold text-base px-16 py-6'>
+                    <FaPlay />
 
-                <Button className='gap-2 font-bold text-base px-16 py-6'>
-                  <FaPlay />
-
-                  Assista 1T E1
-                </Button>
+                    Assista 1T E1
+                  </Button>
+                </Link>
 
                 {!!anime.trailerYtId && (
                   <Button size='icon' variant="ghost" className='px-6 py-6 bg-[#FFFFFF26]' title='Assista o trailer'>

@@ -14,7 +14,6 @@ export default async function EpisodeList({ seasonId }: EpisodeListProps) {
   try {
     episodes = await getEpisodesBySeason(seasonId);
   } catch (error) {
-    console.error("Failed to fetch episodes:", error);
     errorFetching = "Failed to load episodes. Please try again later.";
   }
 

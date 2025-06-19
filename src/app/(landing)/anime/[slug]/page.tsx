@@ -1,10 +1,11 @@
-import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
+import type { Metadata, ResolvingMetadata } from 'next';
 
 import Season from '@/components/season'
 import AnimeHero from '@/components/anime-hero'
+
 import { AnimeT } from '@/types'
-import type { Metadata, ResolvingMetadata } from 'next';
-import { getBaseUrl } from '@/utils/get-base-url';
+import { getURLEpisodeToWatch } from '@/utils/get-url-episode-to-watch';
+import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
 
 interface AnimeProps {
   params: { slug: string }
@@ -82,6 +83,8 @@ export async function generateMetadata(
 export default async function Anime({ params }: AnimeProps) {
   const anime: AnimeT = await getAnimeBySlug(params.slug)
 
+  const URLEpisodeToWatch = await getURLEpisodeToWatch(anime)
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TVSeries',
@@ -102,7 +105,7 @@ export default async function Anime({ params }: AnimeProps) {
 
 
       <section className="flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]">
-        <AnimeHero anime={anime} />
+        <AnimeHero anime={anime} URLEpisodeToWatch={URLEpisodeToWatch} />
       </section>
 
       <Season anime={anime} />

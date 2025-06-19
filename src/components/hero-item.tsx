@@ -1,5 +1,3 @@
-// 'use server' 
-
 import { AnimeT } from "@/types"
 import Link from "next/link"
 
@@ -9,6 +7,7 @@ interface HeroItemProps {
 }
 
 export default function HeroItem({ data }: HeroItemProps) {
+
     return (
         <>
             <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent" style={{ backgroundSize: 'cover', backgroundImage: `url(${data.banner})` }}>
