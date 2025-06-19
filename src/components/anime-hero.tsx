@@ -3,12 +3,7 @@
 import Image from 'next/image'
 
 import { AnimeT } from '@/types'
-import { getAnimeBySlug } from '@/server/actions/animes/get-anime-by-slug'
 import { Button } from './ui/button'
-
-import { useQuery } from '@tanstack/react-query'
-import { Loader2, Play, Plus } from 'lucide-react'
-import { motion } from 'framer-motion'
 
 import { Outfit } from 'next/font/google';
 import { FaPlay, FaVideo } from 'react-icons/fa6'
@@ -67,19 +62,15 @@ export default function AnimeHero({ anime }: AnimeHeroProps) {
               </Button> */}
 
               <div className="flex gap-4">
-                {/* <Button className="flex items-center gap-2" variant="ghost">
-                  <Plus />
-                  <span>Minha Lista</span>
-                </Button> */}
 
-                <Button className='gap-2 font-bold text-base px-16 py-6 rounded-md'>
+                <Button className='gap-2 font-bold text-base px-16 py-6'>
                   <FaPlay />
 
-                  Assista
+                  Assista 1T E1
                 </Button>
 
                 {!!anime.trailerYtId && (
-                  <Button size='icon' variant="icon" className='py-6 px-6' title='Assista o trailer'>
+                  <Button size='icon' variant="ghost" className='px-6 py-6 bg-[#FFFFFF26]' title='Assista o trailer'>
                     <a
                       target="__black"
                       href={`https://www.youtube.com/watch?v=${anime.trailerYtId}`}
