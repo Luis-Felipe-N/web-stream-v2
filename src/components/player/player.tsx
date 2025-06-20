@@ -1,119 +1,93 @@
+
 'use client'
-
-import * as React from 'react';
-
-import loadScript from '../../utils/load-script';
-import Hls from 'hls.js';
 
 import screenfull from '@/utils/screenfull';
 import { isMobile } from '@/utils/device';
 import { Source } from '@/types/types';
 import { PLAYER_CONTAINER_CLASS } from '@/constants';
-
-const HLS_VARIABLE_NAME = 'Hls';
-
-const getHlsScriptUrl = (version = 'latest') =>
-    `https://cdn.jsdelivr.net/npm/hls.js@${version}/dist/hls.min.js`;
-
-const getAltHlsScriptUrl = (version = '1.4.10') =>
-    `https://cdnjs.cloudflare.com/ajax/libs/hls.js/${version}/hls.min.js`;
+import { api } from '@/lib/api'
+import { useCallback, useEffect, useRef } from 'react';
 
 export interface PlayerProps extends React.HTMLAttributes<HTMLVideoElement> {
     source: Source;
     autoPlay?: boolean;
+    lockOrientationOnFullscreen?: boolean;
 }
 
-const shouldPlayHls = (source: Source) =>
-    source.file.includes('m3u8') || source.type === 'hls';
+// Removendo React.forwardRef
+export default function Player({ source, children, autoPlay = false, lockOrientationOnFullscreen = true, ...props }: PlayerProps) {
+    const innerRef = useRef<HTMLVideoElement>(null);
 
-const noop = () => { };
+    const playerRef = useCallback(
+        (node: HTMLVideoElement) => {
+            innerRef.current = node;
+        },
+        []
+    );
 
-const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
-    ({ source, children, autoPlay = false, ...props }, ref) => {
-        const innerRef = React.useRef<HTMLVideoElement>();
-        const hls = React.useRef<Hls | null>(null);
+    const sendWatchedProgress = useCallback(async (currentTime: number) => {
+        if (currentTime !== 0 || isNaN(currentTime)) {
 
-        const playerRef = React.useCallback(
-            (node: HTMLVideoElement) => {
-                innerRef.current = node;
-                if (typeof ref === 'function') {
-                    ref(node);
-                } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLVideoElement>).current = node;
-                }
-            },
-            [ref]
-        );
+            console.log(currentTime)
+            const response = await api.post('/watched', {
+                episodeId: source.refer,
+                duration: currentTime
+            });
+            console.log('Progresso do episódio salvo com sucesso:', response.data);
+        }
+    }, [source.refer])
 
-        React.useEffect(() => {
-            async function initHlsPlayer() {
-                const HlsSDK = await loadScript<typeof Hls>(
-                    [getHlsScriptUrl(), getAltHlsScriptUrl()],
-                    HLS_VARIABLE_NAME
-                );
+    useEffect(() => {
+        const videoElement = innerRef.current
 
-                if (HlsSDK.isSupported()) {
-                    const _hls = new HlsSDK();
-                    hls.current = _hls;
+        if (!videoElement) {
+            return null
+        }
 
-                    if (innerRef.current != null) {
-                        _hls.attachMedia(innerRef.current);
-                        _hls.loadSource(source.file);
-
-                        _hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                            if (autoPlay) {
-                                innerRef.current
-                                    ?.play()
-                                    .catch(() => console.error('User must interact before playing the video.'));
-                            }
-                        });
-                    }
-                } else if (innerRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
-                    innerRef.current.src = source.file;
-                }
+        const handleEnded = () => {
+            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                sendWatchedProgress(videoElement.currentTime);
             }
+        }
 
-            if (shouldPlayHls(source)) {
-                initHlsPlayer();
-
-                const containerEl = document.querySelector(`.${PLAYER_CONTAINER_CLASS}`);
-
-                // @ts-ignore
-                screenfull.request(containerEl).then(() => {
-                    if (!isMobile) return;
-
-                    // @ts-ignore
-                    screen.orientation.lock('landscape');
-                });
-            } else {
-                if (innerRef.current) {
-                    innerRef.current.src = source.file;
-                }
+        const handlePause = () => {
+            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                sendWatchedProgress(videoElement.currentTime);
             }
+        }
 
-            return () => {
-                if (hls.current) {
-                    hls.current.destroy();
-                }
-            };
-        }, [source]);
+        const handlePlay = () => {
+            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                sendWatchedProgress(videoElement.currentTime);
+            }
+        }
 
-        return (
-            <video
-                ref={playerRef}
-                autoPlay
-                preload="auto"
-                className="max-h-screen  w-full"
-                playsInline
-                crossOrigin="anonymous"
-                {...props}
-            >
-                {children}
-            </video>
-        );
-    }
-);
+        videoElement.addEventListener('ended', handleEnded)
+        videoElement.addEventListener('pause', handlePause)
 
-Player.displayName = 'Player';
+        return () => {
+            videoElement.removeEventListener('ended', handleEnded);
+            videoElement.removeEventListener('pause', handlePause);
+            videoElement.removeEventListener('play', handlePlay);
 
-export default Player;
+            if (videoElement.currentTime > 0 && !videoElement.ended) {
+                sendWatchedProgress(videoElement.currentTime);
+            }
+        };
+    }, [source, sendWatchedProgress])
+
+    return (
+        <video
+            ref={playerRef}
+            autoPlay
+            preload="auto"
+            playsInline
+            src={source.file}
+            controls
+            className="w-full max-h-screen aspect-video"
+            title="Uma descrição concisa do conteúdo do vídeo"
+        >
+
+        </video>
+    );
+}

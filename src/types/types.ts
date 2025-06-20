@@ -1,4 +1,5 @@
 export type Source = {
+  refer: string
   file: string;
   label?: string;
   type?: string | 'hls' | 'dash';
