@@ -1,39 +1,25 @@
+
 'use client'
-
-import * as React from 'react';
-
-import loadScript from '../../utils/load-script';
-import Hls from 'hls.js';
 
 import screenfull from '@/utils/screenfull';
 import { isMobile } from '@/utils/device';
 import { Source } from '@/types/types';
 import { PLAYER_CONTAINER_CLASS } from '@/constants';
-
-const HLS_VARIABLE_NAME = 'Hls';
-
-const getHlsScriptUrl = (version = 'latest') =>
-    `https://cdn.jsdelivr.net/npm/hls.js@${version}/dist/hls.min.js`;
-
-const getAltHlsScriptUrl = (version = '1.4.10') =>
-    `https://cdnjs.cloudflare.com/ajax/libs/hls.js/${version}/hls.min.js`;
+import { api } from '@/lib/api'
+import { forwardRef, MutableRefObject, useCallback, useEffect, useRef } from 'react';
 
 export interface PlayerProps extends React.HTMLAttributes<HTMLVideoElement> {
     source: Source;
     autoPlay?: boolean;
+    lockOrientationOnFullscreen?: boolean;
 }
 
-const shouldPlayHls = (source: Source) =>
-    source.file.includes('m3u8') || source.type === 'hls';
 
-const noop = () => { };
-
-const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
+const Player = forwardRef<HTMLVideoElement, PlayerProps>(
     ({ source, children, autoPlay = false, ...props }, ref) => {
-        const innerRef = React.useRef<HTMLVideoElement>();
-        const hls = React.useRef<Hls | null>(null);
+        const innerRef = useRef<HTMLVideoElement | null>(null);
 
-        const playerRef = React.useCallback(
+        const playerRef = useCallback(
             (node: HTMLVideoElement) => {
                 innerRef.current = node;
                 if (typeof ref === 'function') {
@@ -45,75 +31,74 @@ const Player = React.forwardRef<HTMLVideoElement, PlayerProps>(
             [ref]
         );
 
-        React.useEffect(() => {
-            async function initHlsPlayer() {
-                const HlsSDK = await loadScript<typeof Hls>(
-                    [getHlsScriptUrl(), getAltHlsScriptUrl()],
-                    HLS_VARIABLE_NAME
-                );
+        const sendWatchedProgress = useCallback(async (currentTime: number) => {
+            if (currentTime !== 0 || isNaN(currentTime)) {
 
-                if (HlsSDK.isSupported()) {
-                    const _hls = new HlsSDK();
-                    hls.current = _hls;
-
-                    if (innerRef.current != null) {
-                        _hls.attachMedia(innerRef.current);
-                        _hls.loadSource(source.file);
-
-                        _hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                            if (autoPlay) {
-                                innerRef.current
-                                    ?.play()
-                                    .catch(() => console.error('User must interact before playing the video.'));
-                            }
-                        });
-                    }
-                } else if (innerRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
-                    innerRef.current.src = source.file;
-                }
-            }
-
-            if (shouldPlayHls(source)) {
-                initHlsPlayer();
-
-                const containerEl = document.querySelector(`.${PLAYER_CONTAINER_CLASS}`);
-
-                // @ts-ignore
-                screenfull.request(containerEl).then(() => {
-                    if (!isMobile) return;
-
-                    // @ts-ignore
-                    screen.orientation.lock('landscape');
+                console.log(currentTime)
+                const response = await api.post('/watched', {
+                    episodeId: source.refer,
+                    duration: currentTime
                 });
-            } else {
-                if (innerRef.current) {
-                    innerRef.current.src = source.file;
+                console.log('Progresso do episódio salvo com sucesso:', response.data);
+            }
+        }, [source.refer])
+
+        useEffect(() => {
+            const videoElement = innerRef.current
+
+            if (!videoElement) {
+                return;
+            }
+
+            const handleEnded = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
                 }
             }
+
+            const handlePause = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
+            }
+
+            const handlePlay = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
+            }
+
+            videoElement.addEventListener('ended', handleEnded)
+            videoElement.addEventListener('pause', handlePause)
 
             return () => {
-                if (hls.current) {
-                    hls.current.destroy();
+                videoElement.removeEventListener('ended', handleEnded);
+                videoElement.removeEventListener('pause', handlePause);
+                videoElement.removeEventListener('play', handlePlay);
+
+                if (videoElement.currentTime > 0 && !videoElement.ended) {
+                    sendWatchedProgress(videoElement.currentTime);
                 }
             };
-        }, [source]);
+
+        }, [source, sendWatchedProgress])
 
         return (
             <video
                 ref={playerRef}
                 autoPlay
                 preload="auto"
-                className="max-h-screen  w-full"
                 playsInline
-                crossOrigin="anonymous"
-                {...props}
+                src={source.file}
+                controls
+                className="w-full max-h-screen aspect-video"
+                title="Uma descrição concisa do conteúdo do vídeo"
             >
                 {children}
             </video>
         );
     }
-);
-
+)
 Player.displayName = 'Player';
 
 export default Player;

@@ -8,32 +8,23 @@ import { getBaseUrl } from "@/utils/get-base-url";
 import { Source } from "@/types/types";
 
 interface EpisodePlayerProps {
-    episode: EpisodeT
+    source: Source
     nextEpisode?: EpisodeT
 }
 
-export default function EpisodePlayer({ episode, nextEpisode }: EpisodePlayerProps) {
-    const [source, setSource] = useState<Source>()
+export default function EpisodePlayer({ source }: EpisodePlayerProps) {
 
-    useEffect(() => {
-        const getVideo = async () => {
-            const video = await getBaseUrl(episode.video)
-            const sourceT: Source = {
-                file: video,
-                label: episode.slug,
-            }
+    return (
+        <video
+            // ref={playerRef}
+            autoPlay
 
-            setSource(sourceT)
-        }
 
-        getVideo()
-    }, [episode])
-
-    if (source) {
-        return (
-            <Player source={source} forwarder={nextEpisode} />
-        );
-    }
-
-    return null
+            src={source.file}
+            controls
+            className="w-full max-h-screen aspect-video"
+            title="Uma descrição concisa do conteúdo do vídeo"
+        >
+        </video>
+    )
 };  
