@@ -6,7 +6,7 @@ import { isMobile } from '@/utils/device';
 import { Source } from '@/types/types';
 import { PLAYER_CONTAINER_CLASS } from '@/constants';
 import { api } from '@/lib/api'
-import { useCallback, useEffect, useRef } from 'react';
+import { forwardRef, MutableRefObject, useCallback, useEffect, useRef } from 'react';
 
 export interface PlayerProps extends React.HTMLAttributes<HTMLVideoElement> {
     source: Source;
@@ -14,80 +14,91 @@ export interface PlayerProps extends React.HTMLAttributes<HTMLVideoElement> {
     lockOrientationOnFullscreen?: boolean;
 }
 
-// Removendo React.forwardRef
-export default function Player({ source, children, autoPlay = false, lockOrientationOnFullscreen = true, ...props }: PlayerProps) {
-    const innerRef = useRef<HTMLVideoElement>(null);
 
-    const playerRef = useCallback(
-        (node: HTMLVideoElement) => {
-            innerRef.current = node;
-        },
-        []
-    );
+const Player = forwardRef<HTMLVideoElement, PlayerProps>(
+    ({ source, children, autoPlay = false, ...props }, ref) => {
+        const innerRef = useRef<HTMLVideoElement | null>(null);
 
-    const sendWatchedProgress = useCallback(async (currentTime: number) => {
-        if (currentTime !== 0 || isNaN(currentTime)) {
+        const playerRef = useCallback(
+            (node: HTMLVideoElement) => {
+                innerRef.current = node;
+                if (typeof ref === 'function') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLVideoElement>).current = node;
+                }
+            },
+            [ref]
+        );
 
-            console.log(currentTime)
-            const response = await api.post('/watched', {
-                episodeId: source.refer,
-                duration: currentTime
-            });
-            console.log('Progresso do episódio salvo com sucesso:', response.data);
-        }
-    }, [source.refer])
+        const sendWatchedProgress = useCallback(async (currentTime: number) => {
+            if (currentTime !== 0 || isNaN(currentTime)) {
 
-    useEffect(() => {
-        const videoElement = innerRef.current
-
-        if (!videoElement) {
-            return null
-        }
-
-        const handleEnded = () => {
-            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
-                sendWatchedProgress(videoElement.currentTime);
+                console.log(currentTime)
+                const response = await api.post('/watched', {
+                    episodeId: source.refer,
+                    duration: currentTime
+                });
+                console.log('Progresso do episódio salvo com sucesso:', response.data);
             }
-        }
+        }, [source.refer])
 
-        const handlePause = () => {
-            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
-                sendWatchedProgress(videoElement.currentTime);
+        useEffect(() => {
+            const videoElement = innerRef.current
+
+            if (!videoElement) {
+                return;
             }
-        }
 
-        const handlePlay = () => {
-            if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
-                sendWatchedProgress(videoElement.currentTime);
+            const handleEnded = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
             }
-        }
 
-        videoElement.addEventListener('ended', handleEnded)
-        videoElement.addEventListener('pause', handlePause)
-
-        return () => {
-            videoElement.removeEventListener('ended', handleEnded);
-            videoElement.removeEventListener('pause', handlePause);
-            videoElement.removeEventListener('play', handlePlay);
-
-            if (videoElement.currentTime > 0 && !videoElement.ended) {
-                sendWatchedProgress(videoElement.currentTime);
+            const handlePause = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
             }
-        };
-    }, [source, sendWatchedProgress])
 
-    return (
-        <video
-            ref={playerRef}
-            autoPlay
-            preload="auto"
-            playsInline
-            src={source.file}
-            controls
-            className="w-full max-h-screen aspect-video"
-            title="Uma descrição concisa do conteúdo do vídeo"
-        >
+            const handlePlay = () => {
+                if (!isNaN(videoElement.currentTime) && videoElement.currentTime > 0) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
+            }
 
-        </video>
-    );
-}
+            videoElement.addEventListener('ended', handleEnded)
+            videoElement.addEventListener('pause', handlePause)
+
+            return () => {
+                videoElement.removeEventListener('ended', handleEnded);
+                videoElement.removeEventListener('pause', handlePause);
+                videoElement.removeEventListener('play', handlePlay);
+
+                if (videoElement.currentTime > 0 && !videoElement.ended) {
+                    sendWatchedProgress(videoElement.currentTime);
+                }
+            };
+
+        }, [source, sendWatchedProgress])
+
+        return (
+            <video
+                ref={playerRef}
+                autoPlay
+                preload="auto"
+                playsInline
+                src={source.file}
+                controls
+                className="w-full max-h-screen aspect-video"
+                title="Uma descrição concisa do conteúdo do vídeo"
+            >
+                {children}
+            </video>
+        );
+    }
+)
+Player.displayName = 'Player';
+
+export default Player;

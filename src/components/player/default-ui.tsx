@@ -67,7 +67,7 @@ const DefaultUI = React.forwardRef<HTMLVideoElement, StreamPlayerProps>(({ ...pr
             <Subtitle /> */}
 
             <div className="w-full h-full">
-                <Player ref={playerRef} {...props}></Player>
+                <Player  {...props}></Player>
             </div>
 
             <div className="absolute z-1 inset-0">
