@@ -101,7 +101,7 @@ const Player = forwardRef<HTMLVideoElement, PlayerProps>(
                         innerRef.current.play()
                     }
                 } catch (error) {
-                    console.error("Erro ao buscar progresso assistido:", error);
+
                 }
             };
 
