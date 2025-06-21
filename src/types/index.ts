@@ -168,3 +168,15 @@ export interface Comment {
   createdAt: string
   author: User
 }
+
+export interface Watched {
+
+  stopAt: number,
+
+  updatedAt: '2025-06-20T22:24:50.732Z',
+  id: string,
+  authorId: string,
+  episodeId: string,
+  createdAt: string,
+  episode: EpisodeT
+}
