@@ -8,6 +8,8 @@ import {
 } from '@tanstack/react-query'
 
 import type { Metadata } from 'next';
+import { fetchWatchedEpisodes } from '@/server/actions/episode/fetch-watched-episodes';
+import { KeepWatching } from '@/components/keep-watching';
 
 // SEO Metadata para a Homepage
 export const metadata: Metadata = {
@@ -49,13 +51,15 @@ export default async function Home() {
     queryFn: getPopularAnime,
   })
 
+  const watchedEpisodes = await fetchWatchedEpisodes()
+
   return (
     <>
       <main>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <Hero />
         </HydrationBoundary>
-
+        <KeepWatching />
         <Rail />
       </main>
     </>
