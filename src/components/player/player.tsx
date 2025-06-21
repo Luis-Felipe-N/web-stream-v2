@@ -34,13 +34,18 @@ const Player = forwardRef<HTMLVideoElement, PlayerProps>(
         const sendWatchedProgress = useCallback(async (currentTime: number) => {
             if (currentTime !== 0 || isNaN(currentTime)) {
 
-                console.log(currentTime)
                 const response = await api.post('/watched', {
                     episodeId: source.refer,
                     duration: currentTime
                 });
-                console.log('Progresso do episódio salvo com sucesso:', response.data);
+                return response
             }
+        }, [source.refer])
+
+        const getWatchedProgress = useCallback(async () => {
+            const response = await api.get(`/watched/${source.refer}`);
+            return response.data
+
         }, [source.refer])
 
         useEffect(() => {
@@ -82,6 +87,31 @@ const Player = forwardRef<HTMLVideoElement, PlayerProps>(
             };
 
         }, [source, sendWatchedProgress])
+
+        useEffect(() => {
+            const fetchWatchedProgress = async () => {
+                try {
+                    const { watched } = await getWatchedProgress();
+
+                    if (innerRef.current && watched?.stopAt) {
+                        innerRef.current.currentTime = watched.stopAt;
+                    }
+
+                    if (innerRef.current && innerRef.current.paused) {
+                        innerRef.current.play()
+                    }
+                } catch (error) {
+                    console.error("Erro ao buscar progresso assistido:", error);
+                }
+            };
+
+            fetchWatchedProgress();
+
+            return () => {
+            };
+        }, []);
+
+
 
         return (
             <video
