@@ -1,5 +1,8 @@
+'use client'
+
 import { fetchWatchedEpisodes } from "@/server/actions/episode/fetch-watched-episodes";
 import { Watched } from "@/types";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 interface KeepWatchingProps {
@@ -7,6 +10,10 @@ interface KeepWatchingProps {
 }
 
 export async function KeepWatching() {
+    const { data: session, status } = useSession()
+
+    if (status !== 'authenticated') return null
+    console.log(status, session)
     const watchedEpisodes = await fetchWatchedEpisodes()
 
     const getProgress = (watched: Watched) => {

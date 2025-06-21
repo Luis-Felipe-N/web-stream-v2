@@ -51,8 +51,6 @@ export default async function Home() {
     queryFn: getPopularAnime,
   })
 
-  const watchedEpisodes = await fetchWatchedEpisodes()
-
   return (
     <>
       <main>

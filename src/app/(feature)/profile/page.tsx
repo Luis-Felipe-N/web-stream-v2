@@ -31,7 +31,7 @@ export default function Profile() {
     if (status === 'unauthenticated') {
         return router.push('/')
     }
-    console.log({ session })
+
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<ProfilerFormData>({
         resolver: zodResolver(ProfileFormSchema),
         defaultValues: {
