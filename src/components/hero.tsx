@@ -6,8 +6,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Autoplay } from 'swiper/modules'
 
-import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
-import { useQuery } from '@tanstack/react-query'
 import { AnimeT } from '@/types'
 import { motion } from "framer-motion";
 import HeroItem from './hero-item'

@@ -1,15 +1,8 @@
 import Rail from '@/components/rail'
 import Hero from '@/components/hero'
 import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
-
-import type { Metadata } from 'next';
-import { fetchWatchedEpisodes } from '@/server/actions/episode/fetch-watched-episodes';
 import { KeepWatching } from '@/components/keep-watching';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Assista Animes Populares Online | Web Stream',
