@@ -12,12 +12,11 @@ import { AnimeT } from '@/types'
 import { motion } from "framer-motion";
 import HeroItem from './hero-item'
 
+interface HeroProps {
+  data: AnimeT[]
+}
 
-export default function Hero() {
-  const { data } = useQuery<AnimeT[]>({
-    queryKey: ['popular'],
-    queryFn: getPopularAnime,
-  })
+export default function Hero({ data }: HeroProps) {
 
   return (
     <motion.section
@@ -27,7 +26,7 @@ export default function Hero() {
       transition={{
         duration: 1.5,
       }}
-      className="flex items-end lg:h-[90vh] md:h-[70vh] h-[60vh]">
+      className="flex items-end lg:h-[80vh] md:h-[70vh] h-[60vh]">
       <div className='w-full h-full'>
         <Swiper
           autoplay={{

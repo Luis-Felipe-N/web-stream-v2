@@ -11,7 +11,7 @@ export default function HeroItem({ data }: HeroItemProps) {
     return (
         <>
             <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent" style={{ backgroundSize: 'cover', backgroundImage: `url(${data.banner})` }}>
-                <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+                <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-24 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
                     <h1 className="font-semibold  text-4xl">{data.title}</h1>
                     <strong className="text-green-500 uppercase mt-4 block lg:text-base text-sm">
                         {data.seasons.length}ª temporada já disponível

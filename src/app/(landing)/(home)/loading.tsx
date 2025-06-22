@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react'
 export default function Loading() {
     return (
         <main>
-            <div className='lg:h-[90vh] md:h-[70vh] h-[60vh]'>
+            <div className='lg:h-[80vh] md:h-[70vh] h-[60vh]'>
                 <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent">
                     <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
                         <h1 className="font-semibold  text-4xl"></h1>

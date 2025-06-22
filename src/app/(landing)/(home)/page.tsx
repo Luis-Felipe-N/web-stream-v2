@@ -11,7 +11,6 @@ import type { Metadata } from 'next';
 import { fetchWatchedEpisodes } from '@/server/actions/episode/fetch-watched-episodes';
 import { KeepWatching } from '@/components/keep-watching';
 
-// SEO Metadata para a Homepage
 export const metadata: Metadata = {
   title: 'Assista Animes Populares Online | Web Stream',
   description: 'Descubra e assista a uma vasta coleção de animes populares, incluindo os últimos lançamentos e clássicos. Explore diversos gêneros e encontre seu próximo anime favorito em Web Stream.',
@@ -45,18 +44,13 @@ export const metadata: Metadata = {
 
 
 export default async function Home() {
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
-    queryKey: ['popular'],
-    queryFn: getPopularAnime,
-  })
+  const data = await getPopularAnime()
 
   return (
     <>
       <main>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <Hero />
-        </HydrationBoundary>
+        <Hero data={data} />
+
         <KeepWatching />
         <Rail />
       </main>
