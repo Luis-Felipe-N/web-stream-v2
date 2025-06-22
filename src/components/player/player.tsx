@@ -121,7 +121,7 @@ const Player = forwardRef<HTMLVideoElement, PlayerProps>(
                 playsInline
                 src={source.file}
                 controls
-                className="w-full max-h-screen aspect-video"
+                className="h-full "
                 title="Uma descrição concisa do conteúdo do vídeo"
             >
                 {children}

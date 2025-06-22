@@ -12,9 +12,9 @@ interface KeepWatchingProps {
 }
 
 export async function KeepWatching() {
-    console.log('KeepWatching renderizado');
     const data = await getServerSession()
-    console.log(data)
+
+    if (!data) return null
 
     const watchedEpisodes = await fetchWatchedEpisodes();
 

@@ -53,8 +53,8 @@ export default async function Anime({ params }: AnimeProps) {
 
   return (
     <main className='grid lg:px-20 px-4 pb-24'>
-      <section className='grid grid-cols-12 grid-rows-2 lg:mt-24 mt-48 gap-8'>
-        <div className='lg:col-span-8 col-span-12'>
+      <section className='grid grid-cols-12  lg:mt-24 mt-48 gap-8'>
+        <div className='col-span-12 h-[50vh] flex justify-center'>
           <Player source={source}></Player>
         </div>
 
@@ -67,7 +67,7 @@ export default async function Anime({ params }: AnimeProps) {
         </div>
 
         {nextEpisode && (
-          <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-1'>
+          <div className='lg:col-span-4 lg:block hidden lg:col-start-9 row-span-2 row-start-2'>
             <NextEpisode nextEpisode={nextEpisode} />
           </div>
         )}
