@@ -117,11 +117,11 @@ export default function SingIn() {
           </p>
 
           {isSubmitting ? (
-            <Button className="mt-12 w-full" size="lg" disabled={isSubmitting}>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Button className="mt-12 w-full h-16 font-bold " size="lg" disabled={isSubmitting}>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Entrando
             </Button>
           ) : (
-            <Button className="mt-12 w-full" size="lg" type="submit">
+            <Button className="mt-12 w-full font-bold h-16" size="lg" type="submit">
               Entrar
             </Button>
           )}

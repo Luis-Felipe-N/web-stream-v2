@@ -1,14 +1,16 @@
 'use client'
 
+import Link from 'next/link';
 import Image from 'next/image'
 
 import { AnimeT } from '@/types'
 import { Button } from './ui/button'
 
+import { motion } from "framer-motion";
+
 import { Outfit } from 'next/font/google';
 import { FaPlay, FaVideo } from 'react-icons/fa6'
-import Link from 'next/link';
-import { getEpisodesBySeason } from '@/server/actions/get-episode-by-season';
+
 
 const outfit = Outfit({ subsets: ['latin'] });
 
@@ -22,7 +24,13 @@ export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) 
   const banner = anime?.banner ? anime?.banner.split('?')[0] : anime.cover
 
   return (
-    <>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 1.5,
+      }} className='flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]'>
       <div
         className="flex items-end w-full h-full">
         <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent" style={{ backgroundSize: 'cover', backgroundImage: `url(${banner})` }}>
@@ -89,6 +97,6 @@ export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) 
           <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
         </div>
       </div>
-    </>
+    </motion.section>
   )
 }

@@ -11,7 +11,6 @@ interface AnimeProps {
   params: { slug: string }
 }
 
-// Função para gerar metadados dinâmicos
 export async function generateMetadata(
   { params }: AnimeProps,
   parent: ResolvingMetadata
@@ -79,7 +78,6 @@ export async function generateMetadata(
   };
 }
 
-
 export default async function Anime({ params }: AnimeProps) {
   const anime: AnimeT = await getAnimeBySlug(params.slug)
 
@@ -103,10 +101,8 @@ export default async function Anime({ params }: AnimeProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <AnimeHero anime={anime} URLEpisodeToWatch={URLEpisodeToWatch} />
 
-      <section className="flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]">
-        <AnimeHero anime={anime} URLEpisodeToWatch={URLEpisodeToWatch} />
-      </section>
 
       <Season anime={anime} />
     </main>
