@@ -47,18 +47,17 @@ Este projeto tem como objetivo aprimorar meus conhecimentos em desenvolvimento F
    ```
    http://localhost:3000
    ```
-
+   
 ## Estrutura do Projeto
 
-```
-src/
-├── components/
-├── pages/
-├── services/
-├── styles/
-└── App.tsx
-```
+- `web-stream-v2` — Frontend (este repositório)
+- [`anime-api-v2`](https://github.com/Luis-Felipe-N/anime-api-v2) — Backend
 
+## Observações
+
+- Certifique-se de que o backend está rodando ANTES de iniciar o frontend.
+- Para mais detalhes sobre configuração e uso do backend, consulte o [README do anime-api-v2](https://github.com/Luis-Felipe-N/anime-api-v2).
+- 
 ## Contribuição
 
 Sinta-se à vontade para abrir issues ou pull requests para sugerir melhorias, reportar bugs ou contribuir com novas funcionalidades.
@@ -66,7 +65,3 @@ Sinta-se à vontade para abrir issues ou pull requests para sugerir melhorias, r
 ## Licença
 
 Este projeto está sob a licença MIT.
-
----
-
-Se quiser adicionar detalhes específicos (como imagens, GIFs, links de deploy, etc.), me avise!
