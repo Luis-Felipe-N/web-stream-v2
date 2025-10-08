@@ -121,7 +121,7 @@ export default function SignUp() {
                   className="mt-2"
                   {...register('name')}
                   placeholder="Ex: Kakashi Hatake"
-                  errors={errors.name}
+                  // errors={errors.name}
                 />
               </Label>
             </div>
@@ -132,7 +132,7 @@ export default function SignUp() {
                   className="mt-2"
                   {...register('email')}
                   placeholder="Ex: email@gmail.com"
-                  errors={errors.email}
+                  // errors={errors.email}
                 />
               </Label>
             </div>
@@ -145,7 +145,7 @@ export default function SignUp() {
                   placeholder="Ex: senhaforte"
                   type="password"
                   className="mt-2"
-                  errors={errors.password}
+                  // errors={errors.password}
                 />
               </Label>
             </div>
