@@ -45,7 +45,7 @@ export function SearchBar() {
             <Input
                 className="w-full"
                 placeholder="Encontre animes de todos estilos"
-                icon={<Search className="hover:font-bold" size={24} />}
+                // icon={<Search className="hover:font-bold" size={24} />}
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
