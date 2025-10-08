@@ -85,7 +85,7 @@ export default function Profile() {
                                         className="mt-2"
                                         {...register('name')}
                                         placeholder="Ex: Kakashi Hatake"
-                                        errors={errors.name}
+                                        // errors={errors.name}
                                     />
                                 </Label>
                             </div>
