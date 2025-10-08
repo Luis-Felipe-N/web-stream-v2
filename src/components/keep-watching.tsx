@@ -33,7 +33,7 @@ export async function KeepWatching() {
                 {watchedEpisodes.map((watched) => (
                     <li className="w-full relative" key={watched.id}>
                         <Link href={`/episode/${watched.episode.id}`} className="group">
-                            <div className="aspect-video overflow-hidden bg-slate-700">
+                            <div className="aspect-video overflow-hidden bg-zinc-700">
                                 <img
                                     width={850}
                                     height={478}

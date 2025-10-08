@@ -25,7 +25,7 @@ export default function NextEpisode({ nextEpisode }: NextEpisodeProps) {
                     alt=""
                 />
 
-                <small className="block my-2 mb-1 font-semibold text-slate-300 uppercase">
+                <small className="block my-2 mb-1 font-semibold text-zinc-300 uppercase">
                     {nextEpisode.season.anime.title}
                 </small>
 

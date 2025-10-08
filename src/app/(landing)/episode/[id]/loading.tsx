@@ -14,7 +14,7 @@ export default function Loading() {
                     duration: .5,
                     delay: .2
                 }}
-                className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-slate-950'>
+                className='absolute top-0 bottom-0 left-0 right-0 grid place-items-center z-50 bg-zinc-950'>
                 <Loader2 className="mr-2 h-10 w-10 animate-spin text-zinc-500" />
             </motion.div>
         </AnimatePresence >

@@ -112,13 +112,13 @@ const ProgressSlider = () => {
 
 
       <div className="w-full h-2 relative group rounded-full">
-        <Slider.Bar className="bg-slate-50/70" percent={hoverPercent} />
-        <Slider.Bar className="bg-slate-50/60" percent={bufferPercent} />
-        <Slider.Bar className="bg-slate-50" percent={currentPercent} />
-        <Slider.Bar className="bg-slate-50/40 w-full" />
+        <Slider.Bar className="bg-zinc-50/70" percent={hoverPercent} />
+        <Slider.Bar className="bg-zinc-50/60" percent={bufferPercent} />
+        <Slider.Bar className="bg-zinc-50" percent={currentPercent} />
+        <Slider.Bar className="bg-zinc-50/40 w-full" />
         <Slider.Dot
           className={classNames(
-            "w-3.5 h-3.5 absolute bg-slate-50 rounded-full",
+            "w-3.5 h-3.5 absolute bg-zinc-50 rounded-full",
             isDesktop ? "hidden group-hover:block" : "block"
           )}
           percent={currentPercent}
@@ -127,7 +127,7 @@ const ProgressSlider = () => {
 
         {!!hoverPercent && videoEl?.duration && (
           <div
-            className="bg-black/80 text-white p-1 absolute bottom-full mb-3 transform -translate-x-1/2"
+            className="bg-black/80 text-white p-1 absolute bottom-full mb-3 transform -tranzinc-x-1/2"
             style={{ left: `${hoverPercent}%` }}
           >
             {convertTime((hoverPercent / 100) * videoEl.duration)}

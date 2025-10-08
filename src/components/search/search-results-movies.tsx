@@ -25,7 +25,7 @@ const SearchResultsMoviesList = ({ movies, user }: SearchResultsMoviesListProps)
         <ul className="grid gap-2 lg:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] grid-cols-[repeat(auto-fill,minmax(8rem,1fr))]">
             {movies &&
                 movies.map((movie) => (
-                    <li key={movie.id} className="h-full w-full border-2 border-transparent hover:border-slate-100 transition">
+                    <li key={movie.id} className="h-full w-full border-2 border-transparent hover:border-zinc-100 transition">
                         <Link href={`/movie/${movie.id}`}>
                             <img
                                 className="h-full w-full object-cover"

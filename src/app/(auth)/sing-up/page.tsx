@@ -90,7 +90,7 @@ export default function SignUp() {
   return (
     <FormProvider {...form}>
       <div className="grid place-items-center h-full">
-        <div className="bg-slate-900 p-12 py-16 pb-20 max-w-xl w-full rounded-lg m">
+        <div className="bg-zinc-900 p-12 py-16 pb-20 max-w-xl w-full rounded-lg m">
           <div className="mb-14 text-center">
             <h1 className="text-4xl mb-2 font-bold">Criar conta</h1>
             <p>Digite o endereço de e-mail e a senha da sua conta.</p>
@@ -150,7 +150,7 @@ export default function SignUp() {
               </Label>
             </div>
 
-            <p className="mt-4 hover:underline transition text-sm font-semibold text-slate-200 hover:text-slate-400">
+            <p className="mt-4 hover:underline transition text-sm font-semibold text-zinc-200 hover:text-zinc-400">
               <Link href="/">Esqueceu sua senha?</Link>
             </p>
 

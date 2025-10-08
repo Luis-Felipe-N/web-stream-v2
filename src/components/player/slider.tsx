@@ -358,7 +358,7 @@ const Dot: React.FC<DotProps> = ({
 
   return (
     <div
-      className={classNames('absolute rounded-full top-1/2 transform -translate-x-1/2 -translate-y-1/2', className)}
+      className={classNames('absolute rounded-full top-1/2 transform -tranzinc-x-1/2 -tranzinc-y-1/2', className)}
       style={{
         ...dotStyle,
         ...dotSize,

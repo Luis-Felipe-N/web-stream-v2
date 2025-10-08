@@ -24,7 +24,7 @@ export default function CommentList({ episode }: CommentListProps) {
     if (isLoading) { // Melhor verificar se há comentários
         return (
             <div className="mt-12">
-                <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-slate-200 rounded-full"></div>Comentários</strong>
+                <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-zinc-200 rounded-full"></div>Comentários</strong>
                 <p className="mt-4 text-sm text-gray-500">Carregando comentários...</p>
             </div>
         )
@@ -34,7 +34,7 @@ export default function CommentList({ episode }: CommentListProps) {
     if (!comments || comments.length === 0) { // Melhor verificar se há comentários
         return (
             <div className="mt-12">
-                <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-slate-200 rounded-full"></div>Comentários</strong>
+                <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-zinc-200 rounded-full"></div>Comentários</strong>
                 <p className="mt-4 text-sm text-gray-500">Ainda não há comentários para este episódio.</p>
             </div>
         )
@@ -42,7 +42,7 @@ export default function CommentList({ episode }: CommentListProps) {
 
     return (
         <div className="mt-12">
-            <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-slate-200 rounded-full"></div>Comentários</strong>
+            <strong className="flex gap-2 items-center text-200"><div className="w-1 h-1 bg-zinc-200 rounded-full"></div>Comentários</strong>
             {comments.map(comment => {
                 let createdAtDate;
                 try {

@@ -41,7 +41,7 @@ export default async function EpisodeList({ seasonId }: EpisodeListProps) {
         {episodes.map((episode) => (
           <li className="w-full" key={episode.id}>
             <Link href={`/episode/${episode.id}`} className="group">
-              <div className="aspect-video overflow-hidden bg-slate-700"> {/* Added for consistent image sizing and placeholder */}
+              <div className="aspect-video overflow-hidden bg-zinc-700"> {/* Added for consistent image sizing and placeholder */}
                 <img
                   width={850} // These are more like aspect ratio hints for layout, actual size will be controlled by CSS/parent
                   height={478} // Assuming a 16:9 or similar aspect ratio for episode covers
@@ -50,10 +50,10 @@ export default async function EpisodeList({ seasonId }: EpisodeListProps) {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" // Added styling for responsive images
                 />
               </div>
-              <small className="block mt-2 mb-1 font-semibold text-slate-300 uppercase truncate group-hover:text-slate-100">
+              <small className="block mt-2 mb-1 font-semibold text-zinc-300 uppercase truncate group-hover:text-zinc-100">
                 {episode.season.anime.title}
               </small>
-              <p className="text-slate-100 group-hover:text-white truncate">
+              <p className="text-zinc-100 group-hover:text-white truncate">
                 T{episode.season.title.split('  ')[1]} E
                 {episode.title.split(' ')[1]} - {episode.title}
               </p>

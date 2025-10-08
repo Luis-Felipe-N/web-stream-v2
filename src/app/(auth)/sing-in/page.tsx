@@ -29,6 +29,8 @@ export default function SingIn() {
     }
   })
 
+  // const data = await getPopularAnime()
+
   const router = useRouter()
 
   async function handleLogin(credentials: loginFormData) {
@@ -46,19 +48,21 @@ export default function SingIn() {
         return;
       }
 
-      if (response?.status === 401 || !response?.ok) {
-        let errorMessage = 'Credenciais incorretas. Verifique seu e-mail e senha.';
+      if (response.status === 401 || !response.ok) {
+        let errorMessage = 'Credenciais inválidas. Verifique seu e-mail e senha.';
         if (response.error === 'CredentialsSignin') {
-          errorMessage = 'Email ou senha inválidos. Por favor, tente novamente.';
+          errorMessage = 'Email ou senha incorretos. Por favor, tente novamente.';
+        } else if (response.error === 'CallbackRouteError') {
+          errorMessage = 'Problema ao autenticar. Tente novamente mais tarde.';
+          console.error("NextAuth Callback Route Error:", response.error);
         } else if (response.error) {
-          errorMessage = 'Ocorreu um erro ao tentar fazer login. Tente mais tarde.';
+          errorMessage = `Não foi possível fazer login: ${response.error}.`;
           console.error("NextAuth SignIn Error:", response.error);
         }
 
         setError('root', { message: errorMessage });
         return;
       }
-
       router.replace('/')
 
     } catch (error) {
@@ -70,68 +74,74 @@ export default function SingIn() {
   }
 
   return (
-    <div className="grid place-items-center h-full">
-      <div className="bg-slate-900 p-12 py-16 pb-20 max-w-xl w-full rounded-lg m">
-        <div className="mb-14 text-center">
-          <h1 className="text-4xl mb-2 font-bold">Entrar</h1>
-          <p>Acesse sua conta para continuar.</p>
-        </div>
-
-        <form onSubmit={handleSubmit(handleLogin)} className="w-full">
-          {errors.root && (
-            <Alert variant="destructive" className='mb-4'>
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Erro ao Entrar</AlertTitle>
-              <AlertDescription>
-                {errors.root.message}
-              </AlertDescription>
-            </Alert>
-          )}
-          <div className="grid items-center gap-1.5">
-            <Label className="text-base font-semibold">
-              Endereço de email
-              <Input
-                className="mt-2"
-                {...register('email')}
-                placeholder="Ex: email@gmail.com"
-                errors={errors.email}
-              />
-            </Label>
+    <div className="flex flex-1 h-full">
+      <main className="flex flex-col items-center flex-1 flex-shrink-0 px-5 pt-16 pb-8 border-r shadow-lg bg-[#171717] ">
+        <header className='w-full px-4'>
+          <Link href={'/'} className='font-black text-3xl'>./stream</Link>
+        </header>
+        <div className='flex-1 flex flex-col justify-center w-[330px] sm:w-[384px]'>
+          <div className="mb-10">
+            <h1 className="mt-8 mb-2 lg:text-3xl ">Bem vindo</h1>
+            <p className='text-sm text-muted-foreground'>Informe seus dados para acessar sua conta</p>
           </div>
 
-          <div className="grid items-center gap-1.5 mt-4">
-            <Label className="text-base font-semibold">
-              Senha
+          <form onSubmit={handleSubmit(handleLogin)} className="w-full">
+            {errors.root && (
+              <Alert variant="destructive" className='mb-4'>
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Erro ao Entrar</AlertTitle>
+                <AlertDescription>
+                  {errors.root.message}
+                </AlertDescription>
+              </Alert>
+            )}
+            <div className="mt-2">
+              <Label htmlFor={`email`}>Email</Label>
               <Input
-                {...register('password')}
-                placeholder="Ex: suasenha"
+                placeholder="seuemail@gmail.com"
+                {...register("email", { required: true })}
+                type="email"
+                className='mt-2'
+              />
+
+            </div>
+
+            <div className="mt-2">
+              <div>
+                <Label htmlFor={`password`}>Senha</Label>
+              </div>
+              <Input
+                placeholder="seu-senha-secreta"
+                {...register("password", { required: true })}
                 type="password"
-                className="mt-2"
-                errors={errors.password}
+                className='mt-2'
               />
-            </Label>
-          </div>
+            </div>
 
-          <p className="mt-4 hover:underline transition text-sm font-semibold text-slate-200 hover:text-slate-400">
-            <Link href="/">Esqueceu sua senha?</Link>
-          </p>
+            {isSubmitting ? (
+              <Button className="mt-12 w-full font-bold " size="lg" disabled={isSubmitting}>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Entrando
+              </Button>
+            ) : (
+              <Button
+                className="font-bold w-full mt-12 px-4 py-2 h-[42px] border"
+                type="submit"
+              >
+                Entrar
+              </Button>
+            )}
 
-          {isSubmitting ? (
-            <Button className="mt-12 w-full h-16 font-bold " size="lg" disabled={isSubmitting}>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Entrando
-            </Button>
-          ) : (
-            <Button className="mt-12 w-full font-bold h-16" size="lg" type="submit">
-              Entrar
-            </Button>
-          )}
+            <div className="my-8 text-sm text-center space-x-2">
+              <span className='text-muted-foreground'>Não possui uma conta?</span>
+              <Link className='underline font-semibold transition hover:underline text-[#E71D36] hover:text-[#E71D36]/50' href={'/sing-up'}>Faça seu cadastro.</Link>
+            </div>
 
-          <p className="mt-4 text-sm font-semibold text-slate-200 ">
-            Não possui uma conta? <Link className='hover:underline transition text-[#E71D36] hover:text-slate-400' href={'/sing-up'}>Faça seu cadastro.</Link>
-          </p>
+          </form>
+        </div>
+      </main>
+      <aside className='flex-col items-center justify-center flex-1 flex-shrink hidden basis-1/4 xl:flex bg-[#0f0f0f]'>
 
-        </form>
-      </div>
+      </aside>
     </div>
   )
 }

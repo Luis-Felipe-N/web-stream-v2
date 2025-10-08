@@ -21,9 +21,9 @@ export default function Header() {
   }, []);
   return (
     <>
-      <header className={`transition duration-500 px-4 md:px-8 lg:px-24 grid grid-cols-12 grid-rows-2 items-center w-full fixed top-0 z-30 ${scrollY > 10 ? "bg-slate-950/90" : ""}`}>
+      <header className={`transition duration-500 px-4 md:px-8 lg:px-24 grid grid-cols-12 grid-rows-2 items-center w-full fixed top-0 z-30 ${scrollY > 10 ? "bg-zinc-950/90" : ""}`}>
         <h1 className="text-3xl py-6 font-bold lg:col-span-3 md:lg:col-span-3 col-span-6 md:lg:row-span-2 lg:row-span-2 row-span-1">
-          <Link className="px-6 inline-block" href={'/'}>
+          <Link className="px-6 inline-block font-black text-3xl" href={'/'}>
             ./stream
           </Link>
         </h1>
@@ -36,7 +36,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <a className="px-6 inline-block text-slate-100/50 cursor-default">
+              <a className="px-6 inline-block text-zinc-100/50 cursor-default">
                 Filmes
               </a>
             </li>
@@ -56,7 +56,7 @@ export default function Header() {
         </div>
       </header >
 
-      <div className="absolute top-0 left-0 right-0 w-full  bg-gradient-to-b from-slate-950/60 via-slate-950/30 to-transparent z-10 h-[15rem]"></div>
+      <div className="absolute top-0 left-0 right-0 w-full  bg-gradient-to-b from-zinc-950/60 via-zinc-950/30 to-transparent z-10 h-[15rem]"></div>
     </>
   )
 }

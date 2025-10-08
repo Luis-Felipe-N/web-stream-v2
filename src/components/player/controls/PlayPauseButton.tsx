@@ -23,7 +23,7 @@ const PlayPauseButton = () => {
   return (
     <button
       onClick={handleClick}
-      className='bg-slate-50 p-4 rounded-full text-slate-950'
+      className='bg-zinc-50 p-4 rounded-full text-zinc-950'
     // {stringInterpolate(i18n.controls.pause)}
     >
       {videoState.buffering ? (

@@ -31,7 +31,7 @@ export function SearchResultsAnimes({ animes }: SearchResultsProps) {
                             transition={{
                                 duration: 0.5,
                             }}
-                            className="h-full w-full border-2 border-transparent hover:border-slate-100 transition" // Apply styling here
+                            className="h-full w-full border-2 border-transparent hover:border-zinc-100 transition" // Apply styling here
                         >
                             <Link href={`/anime/${anime.slug}`}>
                                 <img

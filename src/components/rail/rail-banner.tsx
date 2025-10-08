@@ -41,7 +41,7 @@ export default function RailBanner({ title, query, genre }: RailBannerProps) {
         {data &&
           data.map((anime) => (
             <SwiperSlide className="swiper-slide-perview" key={anime.id}>
-              <div className="aspect-[4/3] lg:w-[35rem] lg:h-[19.75rem] md:w-[10rem] md:h-[14.62rem] w-[8rem] h-[11.69rem] border-2 border-transparent hover:border-slate-100 transition relative">
+              <div className="aspect-[4/3] lg:w-[35rem] lg:h-[19.75rem] md:w-[10rem] md:h-[14.62rem] w-[8rem] h-[11.69rem] border-2 border-transparent hover:border-zinc-100 transition relative">
                 <Link href={`/anime/${anime.slug}`}>
                   <Image
                     quality={100}
@@ -52,7 +52,7 @@ export default function RailBanner({ title, query, genre }: RailBannerProps) {
                     alt=""
                   ></Image>
                 </Link>
-                <div className='bg-gradient-to-tr from-slate-900/30 via-slate-900/10 to-transparent absolute bottom-0 p-4 pt-20'>
+                <div className='bg-gradient-to-tr from-zinc-900/30 via-zinc-900/10 to-transparent absolute bottom-0 p-4 pt-20'>
                   <h1 className='text-xl font-semibold'>{anime.title}</h1>
                 </div>
               </div>

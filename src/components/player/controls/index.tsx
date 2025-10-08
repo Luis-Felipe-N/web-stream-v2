@@ -14,7 +14,7 @@ export default function Controls() {
 
     return (
         <div className="absolute z-10 bottom-0 left-0 right-0 lg:p-12 md:p-8 p-4 b">
-            <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950/80 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
+            <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-zinc-950/80 via-zinc-950/0 to-transparent z-0 h-[100rem]"></div>
             <div className="relative z-2">
                 <ProgressTimer />
                 <ProgressSlider />

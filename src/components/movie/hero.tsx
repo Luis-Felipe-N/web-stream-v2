@@ -42,8 +42,8 @@ export default function Hero() {
             data.map((movie) => (
               <SwiperSlide key={movie.id}>
                 <div className="lg:h-screen h-[70vh] flex items-end">
-                  <div className="relative z-10  w-full bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent">
-                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+                  <div className="relative z-10  w-full bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent">
+                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-zinc-950 via-transparent to-transparent">
                       <h1 className="font-semibold  text-4xl">{movie.title}</h1>
                       <p className="max-w-6xl mt-4 truncate-text lg:text md:text-sm text-xs">
                         {movie.synopsis}
@@ -51,13 +51,13 @@ export default function Hero() {
 
                       <Link
                         href={`/movie/${movie.id}`}
-                        className="mt-4 rounded-md bg- font-bold font-white uppercase bg-slate-700/50 hover:bg-slate-800/80 transition px-8 py-4 inline-block"
+                        className="mt-4 rounded-md bg- font-bold font-white uppercase bg-zinc-700/50 hover:bg-zinc-800/80 transition px-8 py-4 inline-block"
                       >
                         Assistir agora
                       </Link>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent z-0 h-[40rem]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent z-0 h-[40rem]"></div>
                   </div>
 
                   <picture className="absolute top-0 left-0 right-0 bottom-0 z-0">

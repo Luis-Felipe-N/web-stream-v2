@@ -8,8 +8,8 @@ export default function Loading() {
     return (
         <main>
             <div className='lg:h-[80vh] md:h-[60vh] h-[50vh]'>
-                <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent">
-                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+                <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-zinc-950/30 via-zinc-950/30 to-transparent">
+                    <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:pb-32 pb-12 bg-gradient-to-tr from-zinc-950 via-transparent to-transparent">
                         <h1 className="font-semibold  text-4xl"></h1>
                         <strong className="text-green-500 uppercase mt-4 block lg:text-base text-sm">
 
@@ -21,7 +21,7 @@ export default function Loading() {
                         <Skeleton className='w-[200px] h-[56px] mt-4'></Skeleton>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-zinc-950 via-zinc-950/0 to-transparent z-0 h-[100rem]"></div>
                 </div>
             </div>
 

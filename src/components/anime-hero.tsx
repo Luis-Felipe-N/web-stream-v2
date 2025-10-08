@@ -33,8 +33,8 @@ export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) 
       }} className='flex items-end lg:h-[80vh] md:h-[80vh] h-[75vh]'>
       <div
         className="flex items-end w-full h-full">
-        <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-slate-950/30 via-slate-950/30 to-transparent" style={{ backgroundSize: 'cover', backgroundImage: `url(${banner})` }}>
-          <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:py-16 py-8 bg-gradient-to-tr from-slate-950 via-transparent to-transparent">
+        <div className="h-full relative z-10 flex items-end w-full bg-gradient-to-t from-zinc-950/30 via-zinc-950/30 to-transparent" style={{ backgroundSize: 'cover', backgroundImage: `url(${banner})` }}>
+          <div className="relative z-10 px-4 md:px-8 lg:px-24 lg:py-16 py-8 bg-gradient-to-tr from-zinc-950 via-transparent to-transparent">
             <div className='lg:space-y-6 space-y-4'>
               <h1 className={`font-semibold lg:text-5xl text-3xl ${outfit.className}`}>{anime.title}</h1>
 
@@ -94,7 +94,7 @@ export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) 
 
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-slate-950 via-slate-950/0 to-transparent z-0 h-[100rem]"></div>
+          <div className="absolute bottom-0 left-0 right-0 w-full  bg-gradient-to-t from-zinc-950 via-zinc-950/0 to-transparent z-0 h-[100rem]"></div>
         </div>
       </div>
     </motion.section>
