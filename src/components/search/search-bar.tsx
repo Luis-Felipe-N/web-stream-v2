@@ -13,7 +13,7 @@ export function SearchBar() {
     let timeOutSearch: any
 
     function handleSearch(term: string) {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams.toString());
 
         clearTimeout(timeOutSearch)
         timeOutSearch = setTimeout(async () => {
@@ -45,7 +45,6 @@ export function SearchBar() {
             <Input
                 className="w-full"
                 placeholder="Encontre animes de todos estilos"
-                // icon={<Search className="hover:font-bold" size={24} />}
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
