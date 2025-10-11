@@ -12,7 +12,8 @@ export interface GenreT {
   title: string
   slug: string
 }
-interface Anime {
+
+export interface Anime {
   id: string
   title: string
   slug: string

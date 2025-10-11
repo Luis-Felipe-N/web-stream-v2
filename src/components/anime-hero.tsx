@@ -10,6 +10,9 @@ import { motion } from "framer-motion";
 
 import { Outfit } from 'next/font/google';
 import { FaPlay, FaVideo } from 'react-icons/fa6'
+import { useQuery } from '@tanstack/react-query';
+import { fetchWatchedEpisodes } from '@/server/actions/episode/fetch-watched-episodes';
+import { ProgressWatching } from './progress-watching';
 
 
 const outfit = Outfit({ subsets: ['latin'] });
@@ -22,6 +25,18 @@ interface AnimeHeroProps {
 export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) {
 
   const banner = anime?.banner ? anime?.banner.split('?')[0] : anime.cover
+  const { data: watchedEpisodes } = useQuery({
+    queryKey: ['watchedEpisodes'],
+    queryFn: () => fetchWatchedEpisodes(),
+  })
+
+  const watchedEpisodesByAnime = watchedEpisodes ? watchedEpisodes.filter(w => w.episode.season.animeId === anime.id) : undefined
+
+  const lastWatchedEpisode = watchedEpisodesByAnime && watchedEpisodesByAnime[0]
+
+  if (lastWatchedEpisode) {
+    const URLEpisodeToWatch = `/episode/${lastWatchedEpisode.episodeId}`
+  }
 
   return (
     <motion.section
@@ -68,10 +83,16 @@ export default function AnimeHero({ anime, URLEpisodeToWatch }: AnimeHeroProps) 
 
               <div className="flex gap-4">
                 <Link href={URLEpisodeToWatch}>
-                  <Button className='gap-2 font-bold text-base px-16 py-6'>
+                  <Button className='gap-2 font-bold text-base px-8 py-7 relative overflow-hidden'>
                     <FaPlay />
 
-                    Assista 1T E1
+                    {lastWatchedEpisode ? (
+                      <div>
+                        Continue Ep. {lastWatchedEpisode.episode.title.split(' ')[1]}
+                        <ProgressWatching watched={lastWatchedEpisode} className="bg-white" />
+                      </div>
+                    ) : 'Assistir Agora'}
+
                   </Button>
                 </Link>
 

@@ -1,10 +1,7 @@
 
+import Link from "next/link";
 import { fetchWatchedEpisodes } from "@/server/actions/episode/fetch-watched-episodes";
 import { Watched } from "@/types";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-import { Skeleton } from "./ui/skeleton";
 import { getServerSession } from "next-auth";
 
 interface KeepWatchingProps {

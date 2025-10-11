@@ -1,7 +1,6 @@
 'use server'
 
 import { api } from '@/data/api'; // Sua função fetch wrapper
-import { getSession } from './movies/get-session'; // Sua função para pegar a sessão/token
 
 export async function getWatchBrasilUserProfile() {
 

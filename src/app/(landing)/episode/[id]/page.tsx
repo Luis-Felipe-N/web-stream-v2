@@ -5,7 +5,7 @@ import { api } from '@/data/api'
 import NextEpisode from '@/components/next-episode'
 import CommentForm from '@/components/comment/comment-form'
 import CommentList from '@/components/comment/comment-list'
-import EpisodeDescription from '@/components/episode-description'
+import EpisodeDescription from '@/components/episode/episode-description'
 
 import { getBaseUrl } from '@/utils/get-base-url'
 import { EpisodeT } from '@/types'
@@ -35,8 +35,6 @@ function getNextEpisode(episode: EpisodeT) {
 
   return nextEpisode
 }
-
-
 
 export default async function Anime({ params }: AnimeProps) {
   console.log(`[SERVER RENDER Anime Page] ID: ${params.id}, Timestamp: ${new Date().toISOString()}`);

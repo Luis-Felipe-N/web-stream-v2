@@ -1,3 +1,5 @@
+'use server'
+
 import type { Metadata, ResolvingMetadata } from 'next';
 
 import Season from '@/components/season'
@@ -102,7 +104,6 @@ export default async function Anime({ params }: AnimeProps) {
       />
 
       <AnimeHero anime={anime} URLEpisodeToWatch={URLEpisodeToWatch} />
-
 
       <Season anime={anime} />
     </main>

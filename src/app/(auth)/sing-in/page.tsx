@@ -4,7 +4,7 @@ import { getPopularAnime } from '@/server/actions/animes/get-popular-anime'
 
  export default async function SingIn() {
   const popular = await getPopularAnime()
-  console.log(popular)
+  
   return (
     <div className="flex flex-1 h-full">
       <main className="flex flex-col items-center flex-1 flex-shrink-0 px-5 pt-16 pb-8 border-r shadow-lg bg-[#171717] ">

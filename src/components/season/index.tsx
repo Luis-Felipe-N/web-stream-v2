@@ -2,14 +2,13 @@
 
 import { AnimeT } from '@/types'
 import SeasonButton from './season-button'
-import EpisodeList from '../episode-list'
-import { useState } from 'react'
+import EpisodeList from '../episode/episode-list'
+import { Suspense, useState } from 'react'
 interface SeasonProps {
   anime: AnimeT
 }
 
 export default function Season({ anime }: SeasonProps) {
-
   const seasons = anime.seasons.sort(function (x, y) {
     return Number(x.title.split('  ')[1]) - Number(y.title.split('  ')[1])
   })
@@ -19,12 +18,14 @@ export default function Season({ anime }: SeasonProps) {
   async function handleOnValueChange(value: string) {
     setSeasonId(value)
   }
+  console.log(seasonId)
 
   return (
     <section className="relative z-20 px-4 md:px-8 lg:px-24">
       <SeasonButton seasons={seasons} onValueChange={handleOnValueChange} />
 
-      <EpisodeList seasonId={seasonId} />
+        {seasonId && <EpisodeList seasonId={seasonId} />}
+    
     </section>
   )
 }

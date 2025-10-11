@@ -29,8 +29,6 @@ export default function SingInForm() {
     }
   })
 
-  
-
   const router = useRouter()
 
   async function handleLogin(credentials: loginFormData) {
@@ -47,6 +45,8 @@ export default function SingInForm() {
         })
         return;
       }
+
+      console.log(response)
 
       if (response.status === 401 || !response.ok) {
         let errorMessage = 'Credenciais inválidas. Verifique seu e-mail e senha.';

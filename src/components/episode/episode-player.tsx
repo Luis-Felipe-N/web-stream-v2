@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion'
 import { EpisodeT } from "@/types";
-import Player from "./player";
+import Player from "../player";
 import { getBaseUrl } from "@/utils/get-base-url";
 import { Source } from "@/types/types";
 
