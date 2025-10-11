@@ -14,7 +14,8 @@ export async function KeepWatching() {
 
     if (!data?.user) return null
 
-    const watchedEpisodes = await fetchWatchedEpisodes();
+    try {
+        const watchedEpisodes = await fetchWatchedEpisodes();
 
     const getProgress = (watched: Watched) => {
         return (watched.stopAt / watched.episode.duration) * 100
@@ -49,4 +50,10 @@ export async function KeepWatching() {
             </ul>
         </section>
     )
+    } catch (error) {
+        console.error("Erro ao obter a sessão do usuário:", error);
+        return null; // Ou lidar com o erro de outra forma
+    }
+
+    
 }
