@@ -1,3 +1,4 @@
+'use server'
 
 import Link from "next/link";
 import { fetchWatchedEpisodes } from "@/server/actions/episode/fetch-watched-episodes";
@@ -11,7 +12,7 @@ interface KeepWatchingProps {
 export async function KeepWatching() {
     const data = await getServerSession()
 
-    if (!data) return null
+    if (!data?.user) return null
 
     const watchedEpisodes = await fetchWatchedEpisodes();
 
